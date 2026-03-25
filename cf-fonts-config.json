@@ -1,0 +1,45 @@
+{
+  "CallerReference": "fonts-jamestannahill-2026-03-25",
+  "Aliases": {
+    "Quantity": 1,
+    "Items": ["fonts.jamestannahill.com"]
+  },
+  "DefaultRootObject": "",
+  "Origins": {
+    "Quantity": 1,
+    "Items": [
+      {
+        "Id": "S3-fonts-jamestannahill",
+        "DomainName": "fonts.jamestannahill.com.s3.us-east-1.amazonaws.com",
+        "OriginAccessControlId": "EP4NU60F50U39",
+        "S3OriginConfig": {
+          "OriginAccessIdentity": ""
+        }
+      }
+    ]
+  },
+  "DefaultCacheBehavior": {
+    "TargetOriginId": "S3-fonts-jamestannahill",
+    "ViewerProtocolPolicy": "redirect-to-https",
+    "AllowedMethods": {
+      "Quantity": 2,
+      "Items": ["GET", "HEAD"],
+      "CachedMethods": {
+        "Quantity": 2,
+        "Items": ["GET", "HEAD"]
+      }
+    },
+    "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
+    "ResponseHeadersPolicyId": "60669652-455b-4ae9-85a4-c4c02393f86c",
+    "Compress": true
+  },
+  "ViewerCertificate": {
+    "ACMCertificateArn": "arn:aws:acm:us-east-1:216890068001:certificate/ce69576a-58c5-4c24-a004-6e579faf1553",
+    "SSLSupportMethod": "sni-only",
+    "MinimumProtocolVersion": "TLSv1.2_2021"
+  },
+  "Comment": "fonts.jamestannahill.com - self-hosted WOFF2 fonts CDN",
+  "Enabled": true,
+  "HttpVersion": "http2and3",
+  "PriceClass": "PriceClass_100"
+}
