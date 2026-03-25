@@ -1,0 +1,44 @@
+{
+  "CallerReference": "map-jamestannahill-2026-03-25",
+  "Aliases": {
+    "Quantity": 1,
+    "Items": ["map.jamestannahill.com"]
+  },
+  "DefaultRootObject": "index.html",
+  "Origins": {
+    "Quantity": 1,
+    "Items": [
+      {
+        "Id": "S3-map-jamestannahill",
+        "DomainName": "map.jamestannahill.com.s3.us-east-1.amazonaws.com",
+        "OriginAccessControlId": "E1PW4U7477V8MJ",
+        "S3OriginConfig": {
+          "OriginAccessIdentity": ""
+        }
+      }
+    ]
+  },
+  "DefaultCacheBehavior": {
+    "TargetOriginId": "S3-map-jamestannahill",
+    "ViewerProtocolPolicy": "redirect-to-https",
+    "AllowedMethods": {
+      "Quantity": 2,
+      "Items": ["GET", "HEAD"],
+      "CachedMethods": {
+        "Quantity": 2,
+        "Items": ["GET", "HEAD"]
+      }
+    },
+    "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
+    "Compress": true
+  },
+  "ViewerCertificate": {
+    "ACMCertificateArn": "arn:aws:acm:us-east-1:216890068001:certificate/4fdb6db2-ed02-4213-bfe2-272f3908acbd",
+    "SSLSupportMethod": "sni-only",
+    "MinimumProtocolVersion": "TLSv1.2_2021"
+  },
+  "Comment": "map.jamestannahill.com - Mapbox map page",
+  "Enabled": true,
+  "HttpVersion": "http2and3",
+  "PriceClass": "PriceClass_100"
+}
