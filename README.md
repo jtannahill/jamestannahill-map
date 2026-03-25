@@ -1,5 +1,7 @@
 # jamestannahill-map
 
+[![Built with Mapbox](https://img.shields.io/badge/Built%20with-Mapbox-blue?logo=mapbox)](https://www.mapbox.com)
+
 Static pages for `map.jamestannahill.com` and `contact.jamestannahill.com` — a Mapbox map and tactical digital business card for James Tannahill.
 
 ## Pages
