@@ -19,6 +19,10 @@
   <meta name="twitter:description" content="Intelligent Capital at xAI. Private Equity. Healthcare Intelligence. AI Infrastructure.">
   <meta name="robots" content="index, follow">
   <meta name="author" content="James Tannahill">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="https://fonts.jamestannahill.com/NHGDisplay-Roman.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://fonts.jamestannahill.com/NHGDisplay-Light.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="canonical" href="https://contact.jamestannahill.com">
   <script type="application/ld+json">
   {
@@ -872,13 +876,16 @@
   <!-- QR fullscreen overlay -->
   <div class="qr-overlay" id="qrOverlay" onclick="closeQROverlay()">
     <canvas id="qrLarge"></canvas>
-    <div class="qr-overlay-label">contact.jamestannahill.com</div>
+    <div class="qr-overlay-label">scan to add contact</div>
     <div class="qr-overlay-hint">tap to close</div>
   </div>
 
   <div class="toast" id="toast">Contact saved</div>
 
   <script>
+    // MECARD for QR (compact, universal iOS+Android)
+    const MECARD = 'MECARD:N:Tannahill,James;ORG:xAI;TITLE:Intelligent Capital;EMAIL:contact@jamestannahill.com;URL:https\\://www.jamestannahill.com;ADR:W 57th Street;NOTE:Signal preferred;;';
+
     function revealSignal(el) {
       const rv = el.querySelector('.redacted-value');
       if (rv.classList.contains('revealed')) {
@@ -989,11 +996,11 @@
         navigator.wakeLock.request('screen').catch(() => {});
       }
 
-      // Render large QR into overlay canvas
+      // Render large vCard QR into overlay canvas
       if (typeof qrcode !== 'undefined') {
         const canvas = document.getElementById('qrLarge');
-        const qr = qrcode(0, 'M');
-        qr.addData('https://contact.jamestannahill.com');
+        const qr = qrcode(0, 'L');
+        qr.addData(MECARD);
         qr.make();
         const mc = qr.getModuleCount();
         const dpr = window.devicePixelRatio || 1;
@@ -1031,12 +1038,11 @@
     (function(){
       const canvas = document.getElementById('qr');
       if (!canvas) return;
-      const url = 'https://contact.jamestannahill.com';
       const script = document.createElement('script');
       script.src = 'https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js';
       script.onload = function() {
-        const qr = qrcode(0, 'M');
-        qr.addData(url);
+        const qr = qrcode(0, 'L');
+        qr.addData(MECARD);
         qr.make();
 
         const mc = qr.getModuleCount();
