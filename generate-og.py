@@ -4,7 +4,8 @@
 import random
 from PIL import Image, ImageDraw, ImageFont
 
-W, H = 1200, 630
+SCALE = 3
+W, H = 1200 * SCALE, 630 * SCALE
 BG = (6, 6, 6)
 GOLD = (201, 168, 76)
 GOLD_DIM = (139, 115, 50)
@@ -12,6 +13,7 @@ TEXT_LIGHT = (216, 212, 204)
 GRAY = (74, 74, 74)
 
 FONT_PATH = "/System/Library/Fonts/HelveticaNeue.ttc"
+AVENIR_PATH = "/Users/jamest/Library/Fonts/Avenir LT Std 85 Heavy.otf"
 
 img = Image.new("RGB", (W, H), BG)
 draw = ImageDraw.Draw(img)
@@ -30,15 +32,15 @@ for y in range(H):
         )
 
 # --- Fonts ---
-font_name = ImageFont.truetype(FONT_PATH, size=60, index=7)       # Light
-font_subtitle = ImageFont.truetype(FONT_PATH, size=18, index=7)   # Light
-font_coords = ImageFont.truetype(FONT_PATH, size=14, index=7)     # Light
-font_tiny = ImageFont.truetype(FONT_PATH, size=10, index=0)       # Regular
-font_bracket = ImageFont.truetype(FONT_PATH, size=18, index=7)    # Light
+font_name = ImageFont.truetype(AVENIR_PATH, size=120 * SCALE)       # Avenir 85 Heavy
+font_subtitle = ImageFont.truetype(AVENIR_PATH, size=34 * SCALE)   # Avenir 85 Heavy
+font_coords = ImageFont.truetype(AVENIR_PATH, size=22 * SCALE)     # Avenir 85 Heavy
+font_tiny = ImageFont.truetype(FONT_PATH, size=10 * SCALE, index=0)       # Regular
+font_bracket = ImageFont.truetype(FONT_PATH, size=18 * SCALE, index=7)    # Light
 
 # --- Gold horizontal rule near top center ---
-rule_y = 230
-rule_w = 32
+rule_y = 190 * SCALE
+rule_w = 32 * SCALE
 draw.line(
     [(W // 2 - rule_w // 2, rule_y), (W // 2 + rule_w // 2, rule_y)],
     fill=GOLD,
@@ -50,7 +52,7 @@ name_text = "James Tannahill"
 name_bbox = draw.textbbox((0, 0), name_text, font=font_name)
 name_w = name_bbox[2] - name_bbox[0]
 draw.text(
-    ((W - name_w) // 2, rule_y + 20),
+    ((W - name_w) // 2, rule_y + 20 * SCALE),
     name_text,
     fill=TEXT_LIGHT,
     font=font_name,
@@ -61,7 +63,7 @@ subtitle_text = "INTELLIGENT CAPITAL  ·  xAI"
 subtitle_bbox = draw.textbbox((0, 0), subtitle_text, font=font_subtitle)
 subtitle_w = subtitle_bbox[2] - subtitle_bbox[0]
 draw.text(
-    ((W - subtitle_w) // 2, rule_y + 92),
+    ((W - subtitle_w) // 2, rule_y + 120 * SCALE),
     subtitle_text,
     fill=GOLD_DIM,
     font=font_subtitle,
@@ -72,16 +74,16 @@ coords_text = "40.765°N  ·  73.977°W  ·  NYC"
 coords_bbox = draw.textbbox((0, 0), coords_text, font=font_coords)
 coords_w = coords_bbox[2] - coords_bbox[0]
 draw.text(
-    ((W - coords_w) // 2, rule_y + 122),
+    ((W - coords_w) // 2, rule_y + 160 * SCALE),
     coords_text,
     fill=GRAY,
     font=font_coords,
 )
 
 # --- Corner brackets ---
-BRACKET_LEN = 28
-BRACKET_WEIGHT = 1
-MARGIN = 36
+BRACKET_LEN = 28 * SCALE
+BRACKET_WEIGHT = SCALE
+MARGIN = 36 * SCALE
 
 
 def draw_bracket(corner: str):
@@ -108,13 +110,16 @@ for c in ("tl", "tr", "bl", "br"):
 
 # --- "// SECURE CHANNEL" top-left ---
 draw.text(
-    (MARGIN + 4, MARGIN + 8),
+    (MARGIN + 4 * SCALE, MARGIN + 8 * SCALE),
     "// SECURE CHANNEL",
     fill=GRAY,
     font=font_tiny,
 )
 
+# --- Downscale with high-quality antialiasing ---
+img = img.resize((1200, 630), Image.LANCZOS)
+
 # --- Save ---
 out_path = "/Users/jamest/jamestannahill-map/og-image.png"
-img.save(out_path, "PNG")
-print(f"Saved {W}x{H} OG image to {out_path}")
+img.save(out_path, "PNG", optimize=True)
+print(f"Saved 1200x630 OG image (rendered at {W}x{H}, 3x supersampled) to {out_path}")
