@@ -1,0 +1,134 @@
+{
+  "formatVersion": 1,
+  "passTypeIdentifier": "pass.com.jamestannahill.contact",
+  "serialNumber": "JT-CONTACT-002",
+  "teamIdentifier": "P3ZC6ZG46V",
+  "organizationName": "James Tannahill",
+  "description": "James Tannahill — Contact Card",
+  "logoText": "James Tannahill",
+  "foregroundColor": "rgb(216, 212, 204)",
+  "backgroundColor": "rgb(6, 6, 6)",
+  "labelColor": "rgb(201, 168, 76)",
+  "webServiceURL": "https://contact.jamestannahill.com/api/passes/",
+  "authenticationToken": "vxwxd7J8AlNNFPS8k0a0FfUFtq0ewzFdc",
+  "locations": [
+    {
+      "latitude": 40.7654,
+      "longitude": -73.9770,
+      "relevantText": "James Tannahill — New York City"
+    }
+  ],
+  "generic": {
+    "primaryFields": [
+      {
+        "key": "name",
+        "label": "NAME",
+        "value": "James Tannahill"
+      }
+    ],
+    "secondaryFields": [
+      {
+        "key": "title",
+        "label": "TITLE",
+        "value": "Intelligent Capital"
+      },
+      {
+        "key": "org",
+        "label": "ORG",
+        "value": "xAI"
+      }
+    ],
+    "auxiliaryFields": [
+      {
+        "key": "email",
+        "label": "EMAIL",
+        "value": "contact@jamestannahill.com"
+      },
+      {
+        "key": "location",
+        "label": "LOCATION",
+        "value": "New York City"
+      }
+    ],
+    "backFields": [
+      {
+        "key": "email-back",
+        "label": "EMAIL",
+        "value": "contact@jamestannahill.com",
+        "attributedValue": "<a href='mailto:contact@jamestannahill.com'>contact@jamestannahill.com</a>"
+      },
+      {
+        "key": "signal",
+        "label": "SIGNAL",
+        "value": "Open Signal",
+        "attributedValue": "<a href='https://signal.me/#eu/3hUDHh_XxE2hwtAccNwvVfHdogG5yYgHN3HUVkYwouyUV3rkCh1CDLW6u061E1Ha'>Open Signal →</a>"
+      },
+      {
+        "key": "whatsapp",
+        "label": "WHATSAPP",
+        "value": "Open WhatsApp",
+        "attributedValue": "<a href='https://wa.me/12123086406'>Open WhatsApp →</a>"
+      },
+      {
+        "key": "linkedin",
+        "label": "LINKEDIN",
+        "value": "linkedin.com/in/jamesstannahill",
+        "attributedValue": "<a href='https://www.linkedin.com/in/jamesstannahill'>linkedin.com/in/jamesstannahill</a>"
+      },
+      {
+        "key": "github",
+        "label": "GITHUB",
+        "value": "github.com/jtannahill",
+        "attributedValue": "<a href='https://github.com/jtannahill'>github.com/jtannahill</a>"
+      },
+      {
+        "key": "bloomberg",
+        "label": "BLOOMBERG",
+        "value": "Terminal Profile",
+        "attributedValue": "<a href='https://www.bloomberg.com/profile/person/23291921'>Bloomberg Profile →</a>"
+      },
+      {
+        "key": "website",
+        "label": "WEBSITE",
+        "value": "jamestannahill.com",
+        "attributedValue": "<a href='https://www.jamestannahill.com'>jamestannahill.com</a>"
+      },
+      {
+        "key": "contact",
+        "label": "CONTACT PAGE",
+        "value": "contact.jamestannahill.com",
+        "attributedValue": "<a href='https://contact.jamestannahill.com'>contact.jamestannahill.com</a>"
+      },
+      {
+        "key": "map",
+        "label": "MAP",
+        "value": "map.jamestannahill.com",
+        "attributedValue": "<a href='https://map.jamestannahill.com'>map.jamestannahill.com</a>"
+      },
+      {
+        "key": "art",
+        "label": "ART",
+        "value": "art.jamestannahill.com",
+        "attributedValue": "<a href='https://art.jamestannahill.com'>art.jamestannahill.com</a>"
+      },
+      {
+        "key": "ventures",
+        "label": "VENTURES",
+        "value": "Plocamium Holdings · 1nessAgency · HLTHvrs · MonkeyThorn · gOOOvy · NewYorkLab · HMU API · RDLB"
+      }
+    ]
+  },
+  "barcode": {
+    "format": "PKBarcodeFormatQR",
+    "message": "MECARD:N:Tannahill,James;ORG:xAI;TITLE:Intelligent Capital;EMAIL:contact@jamestannahill.com;URL:https\\://www.jamestannahill.com;ADR:W 57th Street;NOTE:Signal preferred;;",
+    "messageEncoding": "iso-8859-1"
+  },
+  "associatedStoreIdentifiers": [6760204246],
+  "barcodes": [
+    {
+      "format": "PKBarcodeFormatQR",
+      "message": "MECARD:N:Tannahill,James;ORG:xAI;TITLE:Intelligent Capital;EMAIL:contact@jamestannahill.com;URL:https\\://www.jamestannahill.com;ADR:W 57th Street;NOTE:Signal preferred;;",
+      "messageEncoding": "iso-8859-1"
+    }
+  ]
+}
