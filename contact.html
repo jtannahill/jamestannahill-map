@@ -21,6 +21,11 @@
   <meta name="author" content="James Tannahill">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="JT">
+  <meta name="theme-color" content="#060606">
   <link rel="preload" href="https://fonts.jamestannahill.com/NHGDisplay-Roman.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="https://fonts.jamestannahill.com/NHGDisplay-Light.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="canonical" href="https://contact.jamestannahill.com">
@@ -840,6 +845,12 @@
         <a href="/JamesTannahill.pkpass" class="action-btn" style="gap: 0; padding: 8px 16px;">
           <img src="/add-to-apple-wallet.svg" alt="Add to Apple Wallet" style="height: 40px; width: auto;">
         </a>
+        <button class="action-btn" id="pushBtn" onclick="togglePush()" style="display:none;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+          <span id="pushLabel">// Notify Me</span>
+        </button>
       </div>
     </section>
 
@@ -884,6 +895,134 @@
   </div>
 
   <div class="toast" id="toast">Contact saved</div>
+
+  <script>
+  // ─── SERVICE WORKER + PWA ────────────────────────────────────────────
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').then(reg => {
+        console.log('[SW] registered', reg.scope);
+      }).catch(e => console.warn('[SW] failed', e));
+    });
+  }
+
+  // ─── WEB PUSH ────────────────────────────────────────────────────────
+  const VAPID_PUBLIC_KEY = 'BFIFhADuQ1yanvfGWtfEhtWCDRegFn98goWLzQbU8qgb95YOatlYKNkDg2kWIVNKzMinEMbV_Lulou5EmGxx4bY';
+
+  function urlBase64ToUint8Array(b64) {
+    const pad = '='.repeat((4 - b64.length % 4) % 4);
+    const raw = atob((b64 + pad).replace(/-/g, '+').replace(/_/g, '/'));
+    return new Uint8Array([...raw].map(c => c.charCodeAt(0)));
+  }
+
+  async function initPush() {
+    if (!('Notification' in window) || !('serviceWorker' in navigator) || !('PushManager' in window)) return;
+    const btn = document.getElementById('pushBtn');
+    if (btn) btn.style.display = 'flex';
+
+    const perm = Notification.permission;
+    if (perm === 'granted') {
+      const sw = await navigator.serviceWorker.ready;
+      const sub = await sw.pushManager.getSubscription();
+      if (sub) updatePushBtn(true);
+    }
+  }
+
+  function updatePushBtn(subscribed) {
+    const btn = document.getElementById('pushBtn');
+    const lbl = document.getElementById('pushLabel');
+    if (!btn || !lbl) return;
+    lbl.textContent = subscribed ? '// Subscribed' : '// Notify Me';
+    btn.style.color = subscribed ? 'var(--gold)' : '';
+  }
+
+  async function togglePush() {
+    if (!('Notification' in window) || !('PushManager' in window)) {
+      showToast('Push not supported');
+      return;
+    }
+    const sw = await navigator.serviceWorker.ready;
+    const existing = await sw.pushManager.getSubscription();
+
+    if (existing) {
+      await existing.unsubscribe();
+      await fetch('/api/push/unsubscribe', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ endpoint: existing.endpoint }),
+      });
+      updatePushBtn(false);
+      showToast('Notifications off');
+      return;
+    }
+
+    const perm = await Notification.requestPermission();
+    if (perm !== 'granted') { showToast('Permission denied'); return; }
+
+    const sub = await sw.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
+    });
+
+    await fetch('/api/push/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ subscription: sub.toJSON() }),
+    });
+
+    updatePushBtn(true);
+    showToast('// Notifications active');
+  }
+
+  window.addEventListener('load', initPush);
+
+  // ─── GYROSCOPE PARALLAX ──────────────────────────────────────────────
+  (function() {
+    if (!window.DeviceOrientationEvent) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    let tX = 0, tY = 0, cX = 0, cY = 0;
+    const page = document.querySelector('.page');
+    const MAX_ROT = 6;
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    function onOrientation(e) {
+      const g = e.gamma || 0;
+      const b = (e.beta || 50) - 50;
+      tX = Math.max(-1, Math.min(1, g / 25));
+      tY = Math.max(-1, Math.min(1, b / 25));
+    }
+
+    function tick() {
+      cX = lerp(cX, tX, 0.06);
+      cY = lerp(cY, tY, 0.06);
+      if (Math.abs(cX - tX) > 0.001 || Math.abs(cY - tY) > 0.001) {
+        page.style.transform = `perspective(1000px) rotateY(${cX * MAX_ROT}deg) rotateX(${-cY * MAX_ROT * 0.6}deg)`;
+      }
+      requestAnimationFrame(tick);
+    }
+
+    function startParallax() {
+      window.addEventListener('deviceorientation', onOrientation, { passive: true });
+      tick();
+    }
+
+    setTimeout(() => {
+      if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+        // iOS 13+ — trigger on first touch (satisfies user gesture requirement)
+        document.addEventListener('touchstart', function req() {
+          document.removeEventListener('touchstart', req);
+          DeviceOrientationEvent.requestPermission()
+            .then(p => { if (p === 'granted') startParallax(); })
+            .catch(() => {});
+        }, { once: true, passive: true });
+      } else {
+        startParallax(); // Android / non-iOS
+      }
+    }, 1000); // after page-in animation completes
+  })();
+  </script>
 
   <script>
     // MECARD for QR (compact, universal iOS+Android)

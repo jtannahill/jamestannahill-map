@@ -25,8 +25,10 @@ s3 = boto3.client("s3")
 TABLE_NAME = os.environ.get("TABLE_NAME", "wallet-pass-registrations")
 PASS_BUCKET = os.environ.get("PASS_BUCKET", "contact.jamestannahill.com")
 AUTH_TOKEN = os.environ.get("AUTH_TOKEN", "vxwxd7J8AlNNFPS8k0a0FfUFtq0ewzFdc")
+PUSH_TABLE_NAME = "web-push-subscriptions"
 
 table = dynamodb.Table(TABLE_NAME)
+push_table = dynamodb.Table(PUSH_TABLE_NAME)
 
 
 def handler(event, context):
@@ -44,6 +46,14 @@ def handler(event, context):
     headers = {k.lower(): v for k, v in headers.items()} if headers else {}
 
     print(f"{method} {path}")
+
+    # CORS preflight
+    if method == "OPTIONS":
+        return cors_response(200, "")
+
+    # Push subscription routes (no Apple auth required)
+    if "/api/push/" in path:
+        return handle_push(method, path, raw_body)
 
     # Auth check (except for log endpoint and GET passes)
     if "/v1/log" not in path:
@@ -126,6 +136,50 @@ def handler(event, context):
             return response(500, "Error")
 
     return response(404, "Not found")
+
+
+def handle_push(method, path, raw_body):
+    if method == "POST" and path.endswith("/subscribe"):
+        try:
+            body = json.loads(raw_body) if raw_body else {}
+            sub = body.get("subscription")
+            if not sub or "endpoint" not in sub:
+                return cors_response(400, {"error": "Missing subscription"})
+            push_table.put_item(Item={
+                "endpoint": sub["endpoint"],
+                "subscription": json.dumps(sub),
+                "subscribedAt": int(time.time()),
+            })
+            print(f"Push subscriber added: {sub['endpoint'][:60]}...")
+            return cors_response(201, {"status": "subscribed"})
+        except Exception as e:
+            print(f"Subscribe error: {e}")
+            return cors_response(500, {"error": str(e)})
+
+    if method == "DELETE" and path.endswith("/unsubscribe"):
+        try:
+            body = json.loads(raw_body) if raw_body else {}
+            endpoint = body.get("endpoint")
+            if endpoint:
+                push_table.delete_item(Key={"endpoint": endpoint})
+            return cors_response(200, {"status": "unsubscribed"})
+        except Exception as e:
+            return cors_response(500, {"error": str(e)})
+
+    return cors_response(404, {"error": "Not found"})
+
+
+def cors_response(status, body):
+    return {
+        "statusCode": status,
+        "headers": {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "https://contact.jamestannahill.com",
+            "Access-Control-Allow-Methods": "POST, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type",
+        },
+        "body": body if isinstance(body, str) else json.dumps(body),
+    }
 
 
 def extract_part(parts, after):
