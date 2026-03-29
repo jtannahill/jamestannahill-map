@@ -8,10 +8,9 @@ call GET /v1/passes/{passTypeID}/{serial} and update the card.
 
 import json
 import os
-import time
 import ssl
-import http.client
 import boto3
+import httpx
 
 PASS_TYPE_ID = "pass.com.jamestannahill.contact"
 TABLE_NAME = os.environ.get("TABLE_NAME", "wallet-pass-registrations")
@@ -40,23 +39,21 @@ def push_to_device(token, context):
     """Send empty push notification to trigger pass update."""
     payload = json.dumps({}).encode("utf-8")
 
-    ctx = ssl.create_default_context()
-    ctx.load_cert_chain(CERT_PATH, KEY_PATH)
+    with httpx.Client(
+        http2=True,
+        cert=(CERT_PATH, KEY_PATH),
+    ) as client:
+        resp = client.post(
+            f"https://{APNS_HOST}/3/device/{token}",
+            content=payload,
+            headers={
+                "apns-topic": PASS_TYPE_ID,
+                "apns-push-type": "background",
+                "apns-priority": "5",
+            },
+        )
 
-    conn = http.client.HTTPSConnection(APNS_HOST, APNS_PORT, context=ctx)
-    headers = {
-        "apns-topic": PASS_TYPE_ID,
-        "apns-push-type": "background",
-        "apns-priority": "5",
-    }
-
-    conn.request("POST", f"/3/device/{token}", payload, headers)
-    resp = conn.getresponse()
-    status = resp.status
-    body = resp.read().decode("utf-8")
-    conn.close()
-
-    return status, body
+    return resp.status_code, resp.text
 
 
 def main():
