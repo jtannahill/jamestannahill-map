@@ -122,14 +122,14 @@
   },
   "barcode": {
     "format": "PKBarcodeFormatQR",
-    "message": "MECARD:N:Tannahill,James;ORG:xAI;TITLE:Intelligent Capital;EMAIL:contact@jamestannahill.com;URL:https\\://www.jamestannahill.com;ADR:W 57th Street;NOTE:Signal preferred;;",
+    "message": "MECARD:N:Tannahill,James;ORG:xAI;TITLE:Intelligent Capital;EMAIL:contact@jamestannahill.com;URL:https://www.jamestannahill.com;ADR:W 57th Street;NOTE:Signal preferred;;",
     "messageEncoding": "iso-8859-1"
   },
   "associatedStoreIdentifiers": [6760204246],
   "barcodes": [
     {
       "format": "PKBarcodeFormatQR",
-      "message": "MECARD:N:Tannahill,James;ORG:xAI;TITLE:Intelligent Capital;EMAIL:contact@jamestannahill.com;URL:https\\://www.jamestannahill.com;ADR:W 57th Street;NOTE:Signal preferred;;",
+      "message": "MECARD:N:Tannahill,James;ORG:xAI;TITLE:Intelligent Capital;EMAIL:contact@jamestannahill.com;URL:https://www.jamestannahill.com;ADR:W 57th Street;NOTE:Signal preferred;;",
       "messageEncoding": "iso-8859-1"
     }
   ]
