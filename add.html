@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>James Tannahill — Add to Wallet</title>
+  <meta name="robots" content="noindex">
+  <style>
+    @font-face {
+      font-family: 'NHG Display';
+      src: url('https://fonts.jamestannahill.com/NHGDisplay-Light.woff2') format('woff2');
+      font-weight: 300; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'NHG Display';
+      src: url('https://fonts.jamestannahill.com/NHGDisplay-Roman.woff2') format('woff2');
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gold: #C9A84C;
+      --gold-dim: #8B7332;
+      --ink: #060606;
+      --surface: #0A0A0A;
+      --border: rgba(201, 168, 76, 0.12);
+      --ash: #4A4A4A;
+      --paper: #D8D4CC;
+      --paper-dim: #9A9690;
+      --mono: 'JetBrains Mono', monospace;
+      --nhg: 'NHG Display', 'Helvetica Neue', -apple-system, sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--ink);
+      font-family: var(--nhg);
+      -webkit-font-smoothing: antialiased;
+      color: var(--paper);
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100dvh;
+      padding: 32px 24px;
+    }
+
+    /* Scanline */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 100;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+    }
+
+    .card {
+      width: 100%;
+      max-width: 360px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      padding: 40px 32px;
+      text-align: center;
+      animation: fade-in 0.6s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fade-in {
+      to { opacity: 1; }
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 8px;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ash);
+      margin-bottom: 28px;
+    }
+
+    .tag::before { content: '// '; color: var(--gold-dim); }
+
+    .name {
+      font-weight: 300;
+      font-size: 32px;
+      letter-spacing: 0.06em;
+      color: var(--paper);
+      margin-bottom: 6px;
+    }
+
+    .title {
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 36px;
+    }
+
+    .divider {
+      width: 32px;
+      height: 1px;
+      background: var(--border);
+      margin: 0 auto 32px;
+    }
+
+    /* iOS Safari — show wallet button */
+    .wallet-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 16px;
+      background: var(--gold);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink);
+      transition: opacity 0.2s ease;
+      margin-bottom: 12px;
+    }
+
+    .wallet-btn:active { opacity: 0.8; }
+
+    .wallet-btn svg {
+      width: 16px;
+      height: 16px;
+      margin-right: 10px;
+      flex-shrink: 0;
+    }
+
+    /* iOS Chrome / non-Safari */
+    .safari-prompt {
+      display: none;
+    }
+
+    .safari-prompt .message {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--paper-dim);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .safari-prompt .message strong {
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .safari-link {
+      display: block;
+      padding: 14px;
+      border: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--paper-dim);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+      margin-bottom: 10px;
+    }
+
+    .safari-link:hover { border-color: rgba(201,168,76,0.3); color: var(--paper); }
+
+    /* Android / Desktop */
+    .fallback {
+      display: none;
+    }
+
+    .fallback .message {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--paper-dim);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .contact-link {
+      display: block;
+      padding: 14px;
+      border: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .contact-link:hover { border-color: rgba(201,168,76,0.3); color: var(--gold); }
+
+    .hint {
+      font-family: var(--mono);
+      font-size: 7px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ash);
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="tag">wallet pass</div>
+    <div class="name">James Tannahill</div>
+    <div class="title">Intelligent Capital &middot; xAI</div>
+    <div class="divider"></div>
+
+    <!-- iOS Safari: direct wallet add -->
+    <a class="wallet-btn" id="walletBtn" href="/JamesTannahill.pkpass">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+      </svg>
+      Add to Apple Wallet
+    </a>
+
+    <!-- iOS Chrome / Firefox -->
+    <div class="safari-prompt" id="safariPrompt">
+      <div class="message">
+        This pass requires <strong>Safari</strong> to add to Apple Wallet.<br>
+        Open the link below in Safari.
+      </div>
+      <a class="safari-link" href="/JamesTannahill.pkpass" target="_blank">
+        Open pass in Safari &rarr;
+      </a>
+    </div>
+
+    <!-- Android / Desktop -->
+    <div class="fallback" id="fallback">
+      <div class="message">
+        Apple Wallet passes require an iPhone.<br>
+        View the full contact card instead.
+      </div>
+      <a class="contact-link" href="https://contact.jamestannahill.com">
+        contact.jamestannahill.com &rarr;
+      </a>
+    </div>
+
+    <div class="hint" id="hint"></div>
+  </div>
+
+  <script>
+    const ua = navigator.userAgent;
+    const isIOS = /iPhone|iPad|iPod/.test(ua);
+    const isSafari = /Safari/.test(ua) && !/CriOS|Chrome|FxiOS|OPiOS|EdgiOS/.test(ua);
+    const isAndroid = /Android/.test(ua);
+
+    if (isIOS && isSafari) {
+      // Safari on iOS — show wallet button (or auto-redirect)
+      document.getElementById('walletBtn').style.display = 'flex';
+      document.getElementById('hint').textContent = 'tap to add · updates automatically';
+      // Auto-trigger after brief delay so user sees the card
+      setTimeout(() => {
+        window.location.href = '/JamesTannahill.pkpass';
+      }, 800);
+    } else if (isIOS) {
+      // Chrome / Firefox on iOS
+      document.getElementById('safariPrompt').style.display = 'block';
+      document.getElementById('hint').textContent = 'ios · non-safari browser detected';
+    } else {
+      // Android / Desktop
+      document.getElementById('fallback').style.display = 'block';
+      document.getElementById('hint').textContent = isAndroid ? 'android · apple wallet not available' : 'desktop · scan on iphone';
+    }
+  </script>
+</body>
+</html>
