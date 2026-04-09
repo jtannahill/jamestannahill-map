@@ -29,6 +29,8 @@
   <link rel="preload" href="https://fonts.jamestannahill.com/NHGDisplay-Roman.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="https://fonts.jamestannahill.com/NHGDisplay-Light.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="canonical" href="https://contact.jamestannahill.com">
+  <link rel="ai" href="/llms.txt" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -61,8 +63,7 @@
     "affiliation": [
       {"@type": "Organization", "name": "Plocamium Holdings", "url": "https://www.plocamium.com", "description": "Private Equity"},
       {"@type": "Organization", "name": "1nessAgency", "url": "https://www.1nessagency.com", "description": "Healthcare Marketing"},
-      {"@type": "Organization", "name": "HLTHvrs", "url": "https://hlthvrs.com", "description": "Marketing SaaS"},
-      {"@type": "Organization", "name": "MonkeyThorn", "url": "https://monkeythorn.com", "description": "Encrypted Video Conferencing"},
+      {"@type": "Organization", "name": "MonkeyThorn", "url": "https://meet.monkeythorn.com/meet", "description": "Encrypted Video Conferencing"},
       {"@type": "Organization", "name": "gOOOvy", "url": "https://gooovy.com", "description": "Voice Auto-Reply"},
       {"@type": "Organization", "name": "NewYorkLab", "url": "https://newyorklab.co", "description": "Environmental Intelligence"},
       {"@type": "Organization", "name": "HMU API", "url": "https://hmuapi.com", "description": "Communication Gateway"},
@@ -699,7 +700,29 @@
       .ventures-grid { grid-template-columns: 1fr; }
       .venture-card { min-height: 48px; }
     }
+
+    /* Scroll reveal */
+    .sr { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .sr.visible { opacity: 1; transform: translateY(0); }
+    /* View transitions */
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root) { animation: 200ms ease both ct-fade-out; }
+    ::view-transition-new(root) { animation: 280ms ease both ct-fade-in; }
+    @keyframes ct-fade-out { to { opacity: 0; } }
+    @keyframes ct-fade-in { from { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .sr { opacity: 1 !important; transform: none !important; }
+      ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
+    }
   </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WRDEHD4QYL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WRDEHD4QYL');
+  </script>
 </head>
 <body>
   <div class="page">
@@ -711,7 +734,7 @@
       <a href="https://map.jamestannahill.com" class="header-coords">40.765&deg;N &middot; 73.977&deg;W &middot; NYC</a>
     </header>
 
-    <section class="links">
+    <section class="links sr">
       <div class="section-label">Connect</div>
       <div class="links-grid" style="grid-template-columns: 1fr 1fr 1fr;">
 
@@ -789,7 +812,7 @@
       </div>
     </section>
 
-    <section class="ventures">
+    <section class="ventures sr">
       <div class="section-label">Ventures</div>
       <div class="ventures-grid">
         <a href="https://www.plocamium.com" target="_blank" rel="noopener" class="venture-card">
@@ -800,11 +823,7 @@
           <div class="venture-name">1nessAgency</div>
           <div class="venture-desc">Healthcare Marketing</div>
         </a>
-        <a href="https://hlthvrs.com" target="_blank" rel="noopener" class="venture-card">
-          <div class="venture-name">HLTHvrs</div>
-          <div class="venture-desc">Marketing SaaS</div>
-        </a>
-        <a href="https://monkeythorn.com" target="_blank" rel="noopener" class="venture-card">
+        <a href="https://meet.monkeythorn.com/meet" target="_blank" rel="noopener" class="venture-card">
           <div class="venture-name">MonkeyThorn</div>
           <div class="venture-desc">Encrypted Video</div>
         </a>
@@ -827,7 +846,7 @@
       </div>
     </section>
 
-    <section class="actions">
+    <section class="actions sr">
       <div class="section-label">Actions</div>
       <div class="actions-row">
         <button class="action-btn" onclick="downloadVCard()">
@@ -1262,6 +1281,16 @@
       };
       document.head.appendChild(script);
     })();
+  </script>
+  <script>
+  (function() {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.sr').forEach(function(el) { obs.observe(el); });
+  })();
   </script>
 </body>
 </html>

@@ -24,6 +24,8 @@
   <link rel="preload" href="https://fonts.jamestannahill.com/NHGDisplay-Roman.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="https://fonts.jamestannahill.com/NHGDisplay-Light.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="canonical" href="https://map.jamestannahill.com">
+  <link rel="ai" href="/llms.txt" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -434,7 +436,29 @@
       .coords { top: 20px; right: 24px; }
       .coords-value { font-size: 12px; }
     }
+
+    /* Scroll reveal */
+    .sr { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .sr.visible { opacity: 1; transform: translateY(0); }
+    /* View transitions */
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root) { animation: 200ms ease both ct-fade-out; }
+    ::view-transition-new(root) { animation: 280ms ease both ct-fade-in; }
+    @keyframes ct-fade-out { to { opacity: 0; } }
+    @keyframes ct-fade-in { from { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .sr { opacity: 1 !important; transform: none !important; }
+      ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
+    }
   </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WRDEHD4QYL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WRDEHD4QYL');
+  </script>
 </head>
 <body>
   <div id="map"></div>
@@ -445,12 +469,12 @@
     <a href="https://www.jamestannahill.com" class="wordmark-text">JT</a>
   </div>
 
-  <div class="coords">
+  <div class="coords sr">
     <div class="coords-label">Location</div>
     <div class="coords-value">40.765&deg;N &middot; 73.977&deg;W</div>
   </div>
 
-  <div class="card">
+  <div class="card sr">
     <div class="card-rule"></div>
     <div>
       <a href="https://contact.jamestannahill.com" class="card-name" style="text-decoration:none;color:var(--paper);transition:color 0.3s ease;">James Tannahill</a>
@@ -533,6 +557,16 @@
 
       markerEl.addEventListener('click', () => marker.togglePopup());
     });
+  </script>
+  <script>
+  (function() {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.sr').forEach(function(el) { obs.observe(el); });
+  })();
   </script>
 </body>
 </html>

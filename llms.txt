@@ -1,0 +1,18 @@
+# James Tannahill — Contact & Location
+
+> Contact page and interactive map for James Tannahill, Intelligent Capital at xAI.
+
+## contact.jamestannahill.com
+
+A structured contact page for James Tannahill. Includes venture links (Plocamium Holdings, 1nessAgency, MonkeyThorn Meet, gOOOvy, NewYorkLab, HMU API, RDLB), social profiles (LinkedIn, GitHub, X/Twitter), and a contact form via HMU API.
+
+Contact API: https://hmuapi.com/api/u/jamestannahill
+
+## map.jamestannahill.com
+
+An interactive Mapbox map showing James Tannahill's location in New York City, with a tactical business card layout and MECARD QR code for contact sharing.
+
+## About
+
+James Tannahill — jamestannahill.com
+Intelligent Capital at xAI. Founder of Plocamium Holdings.

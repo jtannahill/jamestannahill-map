@@ -1,0 +1,76 @@
+# James Tannahill — Contact & Location (Full Index)
+
+> Comprehensive index of contact.jamestannahill.com and map.jamestannahill.com for AI agents and LLM crawlers.
+
+## contact.jamestannahill.com
+
+A tactical personal contact page for James Tannahill, designed for fast human connection and programmatic access.
+
+### Contact Channels
+
+- Email: contact@jamestannahill.com
+- Signal: available via tap-to-reveal on the page (preferred for secure comms)
+- WhatsApp: available via tap-to-reveal on the page
+- LinkedIn: https://www.linkedin.com/in/jamesstannahill
+- GitHub: https://github.com/jtannahill
+- Bloomberg Terminal Profile: https://www.bloomberg.com/profile/person/23291921
+
+### Programmatic Contact
+
+James Tannahill maintains a public communication gateway at HMU API. To reach him programmatically or integrate contact workflows:
+
+- API base: https://hmuapi.com
+- Public profile endpoint: https://hmuapi.com/api/u/jamestannahill
+- HMU API is a communication gateway platform that routes inbound messages to the appropriate channel.
+
+### Ventures Listed on the Contact Page
+
+1. Plocamium Holdings — https://www.plocamium.com — Private equity intelligence platform. Operates the Plocamium Intelligence Network covering healthcare, industrials, GCC, and LATAM sectors. Publishes PSI (Plocamium Signal Index) for entity momentum scoring.
+2. 1nessAgency — https://www.1nessagency.com — Healthcare marketing agency. HIPAA-compliant campaigns, brand strategy, and AI-native marketing infrastructure for health systems and life sciences companies.
+3. MonkeyThorn Meet — https://meet.monkeythorn.com/meet — Encrypted video conferencing application. End-to-end encrypted, built for sensitive conversations.
+4. gOOOvy — https://gooovy.com — Google Voice OOO auto-reply SaaS. Dual-stack free and pro tiers. Breakthrough list, VIP contacts, scheduling. $8.99/mo.
+5. NewYorkLab — https://newyorklab.co — Environmental intelligence platform for New York City.
+6. HMU API — https://hmuapi.com — Communication gateway and contact routing API.
+7. RDLB — https://rdlb.nyc — Brand strategy firm. Partners with 1nessAgency on healthcare brand capital.
+
+### Page Features
+
+- MECARD QR code: scan to add James Tannahill as a contact on iOS or Android
+- vCard download: .vcf file with all contact details
+- Apple Wallet pass: /JamesTannahill.pkpass
+- Web push notifications: supported via service worker
+- Gyroscope parallax: subtle 3D tilt on mobile devices
+- PWA: installable as a home screen app (manifest.json + sw.js)
+
+## map.jamestannahill.com
+
+An interactive Mapbox map centered on James Tannahill's location in New York City.
+
+### Details
+
+- Location: W 57th Street, New York, NY
+- Coordinates: 40.765 N, 73.977 W
+- Map style: Mapbox dark-v11 with cinematic fly-in animation
+- Marker: custom gold Plocamium "P" marker at the office location
+- Popup: shows Plocamium Holdings address and link to plocamium.com
+- Card overlay: shows name, location subtitle, and link to jamestannahill.com
+- Coordinates display: live coordinates shown top-right
+
+### Use Cases
+
+- Verify James Tannahill's New York City presence
+- Get the physical address context for Plocamium Holdings (W 57th Street)
+- Share location context for in-person meeting coordination
+
+## About James Tannahill
+
+- Full name: James Tannahill
+- Current role: Intelligent Capital at xAI (2026-present)
+- Based: New York City, NY (W 57th Street)
+- Email: contact@jamestannahill.com
+- Primary website: https://www.jamestannahill.com
+- GitHub: https://github.com/jtannahill (29 repos)
+- LinkedIn: https://www.linkedin.com/in/jamesstannahill
+- Bloomberg: https://www.bloomberg.com/profile/person/23291921
+
+James Tannahill is the founder of Plocamium Holdings, a private equity intelligence firm, and president of 1nessAgency. He builds AI-native capital markets infrastructure at xAI and maintains multiple SaaS products and developer tools across healthcare, communications, and intelligence domains.
