@@ -12,17 +12,17 @@ Static pages and Apple Wallet pass infrastructure for `map.jamestannahill.com` a
 Dark Mapbox GL JS map centered on W 57th Street, Manhattan. Plocamium Holdings marker with popup, cinematic fly-in animation on load.
 
 ### `contact.jamestannahill.com`
-Tactical HUD-style digital business card. Neue Haas Grotesk + JetBrains Mono. Gold/ink palette.
+Bloomberg editorial digital business card (redesigned Apr 2026). JetBrains Mono. White/black/red palette — black topbar with `#e01a1a` red rule, white body, 3-cell data strip (xAI / NYC / PE·HC).
 
 **Features:**
-- Contact links — Email, Signal (redacted/tap-to-reveal), WhatsApp (redacted/tap-to-reveal), LinkedIn, GitHub, Bloomberg, Art
-- Ventures grid — Plocamium, 1nessAgency, HLTHvrs, MonkeyThorn, gOOOvy, NewYorkLab, HMU API, RDLB
+- Contact links — Email (featured, red left border), Signal (redacted/tap-to-reveal), WhatsApp (redacted/tap-to-reveal), LinkedIn, GitHub, Bloomberg Terminal Profile, Art
+- Ventures grid — Plocamium, 1nessAgency, MonkeyThorn, gOOOvy, NewYorkLab, HMU API, RDLB
 - vCard download — saves contact to phone with all channels
-- QR code — MECARD format, tactical dark theme, fullscreen overlay on tap
+- QR code — MECARD format, dark modules on light bg, red crosshairs, fullscreen overlay on tap
 - Apple Wallet pass — add to Wallet via button or NFC physical card
 - Gyroscope parallax — subtle tilt effect on mobile
 - PWA — installable, service worker cached, offline-capable
-- Web push notifications — opt-in notify button
+- Web push — opt-in `// Subscribed` button (shows when supported)
 - SEO — Person schema (JSON-LD), OG + Twitter cards
 
 ### `contact.jamestannahill.com/add`
