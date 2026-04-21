@@ -23,11 +23,9 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.json">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="JT">
-  <meta name="theme-color" content="#060606">
-  <link rel="preload" href="https://fonts.jamestannahill.com/NHGDisplay-Roman.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="https://fonts.jamestannahill.com/NHGDisplay-Light.woff2" as="font" type="font/woff2" crossorigin>
+  <meta name="theme-color" content="#1a1a1a">
   <link rel="canonical" href="https://contact.jamestannahill.com">
   <link rel="ai" href="/llms.txt" />
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
@@ -37,37 +35,25 @@
     "@type": "Person",
     "name": "James Tannahill",
     "jobTitle": "Intelligent Capital",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "xAI"
-    },
+    "worksFor": { "@type": "Organization", "name": "xAI" },
     "url": "https://www.jamestannahill.com",
     "sameAs": [
       "https://www.linkedin.com/in/jamesstannahill",
       "https://github.com/jtannahill",
       "https://www.bloomberg.com/profile/person/23291921",
       "https://contact.jamestannahill.com",
-      "https://map.jamestannahill.com",
-      "https://art.jamestannahill.com",
-      "https://hmuapi.com",
-      "https://rdlb.nyc"
+      "https://map.jamestannahill.com"
     ],
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "W 57th Street",
-      "addressLocality": "New York",
-      "addressRegion": "NY",
-      "addressCountry": "US"
-    },
+    "address": { "@type": "PostalAddress", "streetAddress": "W 57th Street", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US" },
     "email": "contact@jamestannahill.com",
     "affiliation": [
-      {"@type": "Organization", "name": "Plocamium Holdings", "url": "https://www.plocamium.com", "description": "Private Equity"},
-      {"@type": "Organization", "name": "1nessAgency", "url": "https://www.1nessagency.com", "description": "Healthcare Marketing"},
-      {"@type": "Organization", "name": "MonkeyThorn", "url": "https://meet.monkeythorn.com/meet", "description": "Encrypted Video Conferencing"},
-      {"@type": "Organization", "name": "gOOOvy", "url": "https://gooovy.com", "description": "Voice Auto-Reply"},
-      {"@type": "Organization", "name": "NewYorkLab", "url": "https://newyorklab.co", "description": "Environmental Intelligence"},
-      {"@type": "Organization", "name": "HMU API", "url": "https://hmuapi.com", "description": "Communication Gateway"},
-      {"@type": "Organization", "name": "RDLB", "url": "https://rdlb.nyc", "description": "Brand Strategy"}
+      {"@type": "Organization", "name": "Plocamium Holdings", "url": "https://www.plocamium.com"},
+      {"@type": "Organization", "name": "1nessAgency", "url": "https://www.1nessagency.com"},
+      {"@type": "Organization", "name": "MonkeyThorn", "url": "https://meet.monkeythorn.com/meet"},
+      {"@type": "Organization", "name": "gOOOvy", "url": "https://gooovy.com"},
+      {"@type": "Organization", "name": "NewYorkLab", "url": "https://newyorklab.co"},
+      {"@type": "Organization", "name": "HMU API", "url": "https://hmuapi.com"},
+      {"@type": "Organization", "name": "RDLB", "url": "https://rdlb.nyc"}
     ]
   }
   </script>
@@ -75,647 +61,420 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    @font-face {
-      font-family: 'NHG Display';
-      src: url('https://fonts.jamestannahill.com/NHGDisplay-Light.woff2') format('woff2');
-      font-weight: 300;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'NHG Display';
-      src: url('https://fonts.jamestannahill.com/NHGDisplay-Roman.woff2') format('woff2');
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'NHG Display';
-      src: url('https://fonts.jamestannahill.com/NHGDisplay-Medium.woff2') format('woff2');
-      font-weight: 500;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'NHG Display';
-      src: url('https://fonts.jamestannahill.com/NHGDisplay-Bold.woff2') format('woff2');
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Avenir 85 Heavy';
-      src: url('https://fonts.jamestannahill.com/Avenir-85-Heavy.woff2') format('woff2');
-      font-weight: 800;
-      font-style: normal;
-      font-display: swap;
-    }
-
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --gold: #C9A84C;
-      --gold-dim: #8B7332;
-      --gold-glow: rgba(201, 168, 76, 0.25);
-      --gold-faint: rgba(201, 168, 76, 0.06);
-      --ink: #060606;
-      --surface: #0A0A0A;
-      --surface-raised: #111111;
-      --border: rgba(201, 168, 76, 0.1);
-      --border-hover: rgba(201, 168, 76, 0.3);
-      --ash: #4A4A4A;
-      --stone: #6A6A6A;
-      --paper: #D8D4CC;
-      --paper-dim: #9A9690;
-      --red: #8B3A3A;
-      --green: #3A6B3A;
+      --red: #e01a1a;
+      --red-dark: #c01515;
+      --ink: #1a1a1a;
+      --text: #333;
+      --muted: #888;
+      --rule: #e0e0e0;
+      --bg: #ffffff;
+      --bg-lift: #f8f8f8;
       --mono: 'JetBrains Mono', monospace;
-      --nhg: 'NHG Display', 'Neue Haas Grotesk Display Pro', 'Helvetica Neue', 'Helvetica', -apple-system, sans-serif;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--ink);
+      background: var(--bg);
       min-height: 100dvh;
-      font-family: var(--nhg);
+      font-family: var(--mono);
       -webkit-font-smoothing: antialiased;
-      color: var(--paper);
+      color: var(--ink);
       overflow-x: hidden;
     }
 
-    /* Scanline overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 100;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0, 0, 0, 0.03) 2px,
-        rgba(0, 0, 0, 0.03) 4px
-      );
-    }
-
-    /* Grain */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 99;
-      opacity: 0.03;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
-
-    /* Layout */
-    .page {
-      max-width: 640px;
-      margin: 0 auto;
-      padding: 72px 28px 48px;
-      opacity: 0;
-      animation: page-in 0.8s ease 0.15s forwards;
-    }
-
-    @keyframes page-in {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Tactical header */
-    .header {
-      text-align: center;
-      margin-bottom: 48px;
-      position: relative;
-    }
-
-    .header-tag {
-      font-family: var(--mono);
-      font-size: 8px;
-      font-weight: 400;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--ash);
-      margin-bottom: 20px;
-    }
-
-    .header-name {
-      font-family: var(--nhg);
-      font-weight: 300;
-      font-size: 48px;
-      letter-spacing: 0.05em;
-      line-height: 1.1;
-      color: var(--paper);
-      margin-bottom: 10px;
-    }
-
-    .header-title {
-      font-family: var(--mono);
-      font-size: 10px;
-      font-weight: 400;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold-dim);
-    }
-
-    .header-coords {
-      display: inline-block;
-      font-family: var(--mono);
-      font-size: 9px;
-      font-weight: 300;
-      color: var(--ash);
-      margin-top: 8px;
-      letter-spacing: 0.1em;
-      text-decoration: none;
-      transition: color 0.25s ease;
-    }
-
-    .header-coords:hover { color: var(--gold-dim); }
-
-    /* Section labels — tactical */
-    .section-label {
+    /* ── TOPBAR ── */
+    .bb-topbar {
+      background: var(--ink);
+      border-bottom: 2px solid var(--red);
+      height: 44px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-family: var(--mono);
-      font-size: 8px;
+      padding: 0 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding-top: env(safe-area-inset-top, 0);
+    }
+    .bb-topbar-name {
+      color: #fff;
+      font-size: 11px;
       font-weight: 500;
-      letter-spacing: 0.3em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--ash);
-      margin-bottom: 16px;
+    }
+    .bb-topbar-ts {
+      margin-left: auto;
+      color: #555;
+      font-size: 9px;
+      letter-spacing: 0.06em;
     }
 
-    .section-label::before {
-      content: '//';
-      color: var(--gold-dim);
+    /* ── PAGE ── */
+    .page {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 0 max(40px, env(safe-area-inset-bottom, 40px));
     }
 
-    .section-label::after {
-      content: '';
+    /* ── HERO ── */
+    .hero {
+      padding: 28px 20px 20px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .hero-eyebrow {
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .hero-name {
+      font-size: 38px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      line-height: 0.95;
+      margin-bottom: 12px;
+    }
+    .hero-role {
+      font-size: 11px;
+      color: #555;
+      line-height: 1.55;
+      margin-bottom: 10px;
+      font-weight: 300;
+    }
+    .hero-coords {
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .hero-coords:hover { color: var(--red); }
+
+    /* ── DATA STRIP ── */
+    .data-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: 1px solid var(--rule);
+    }
+    .ds-cell {
+      padding: 13px 10px;
+      border-right: 1px solid var(--rule);
+      text-align: center;
+    }
+    .ds-cell:last-child { border-right: none; }
+    .ds-val {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      margin-bottom: 3px;
+    }
+    .ds-lbl {
+      display: block;
+      font-size: 7px;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-hdr {
+      padding: 10px 20px 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-hdr-name {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    .section-hdr-rule {
       flex: 1;
       height: 1px;
-      background: var(--border);
+      background: var(--rule);
     }
 
-    /* Links grid */
-    .links { margin-bottom: 40px; }
+    /* ── LINK ROWS ── */
+    .link-row {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 11px 20px;
+      border-bottom: 1px solid #f4f4f4;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.1s;
+      background: transparent;
+      border: none;
+      width: 100%;
+      text-align: left;
+      font-family: var(--mono);
+    }
+    .link-row:last-of-type { border-bottom: 1px solid var(--rule); }
+    .link-row:hover, .link-row:active { background: var(--bg-lift); }
+    .link-row.featured {
+      border-left: 2px solid var(--red);
+      padding-left: 18px;
+    }
+    .link-ico {
+      width: 15px;
+      height: 15px;
+      color: #ccc;
+      flex-shrink: 0;
+    }
+    .link-lbl {
+      font-size: 8px;
+      color: #bbb;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      width: 64px;
+      flex-shrink: 0;
+    }
+    .link-val {
+      font-size: 10px;
+      color: var(--text);
+      flex: 1;
+      letter-spacing: 0.02em;
+    }
+    .link-val.redacted {
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+    .link-val.revealed { color: var(--ink); }
+    .link-arr { font-size: 9px; color: var(--red); flex-shrink: 0; }
 
-    .links-grid {
+    /* ── VENTURES ── */
+    .ventures-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
+      background: var(--rule);
+      margin: 0;
+    }
+    .venture-card {
+      background: var(--bg);
+      padding: 14px 16px;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.1s;
+      -webkit-tap-highlight-color: transparent;
+      display: block;
+    }
+    .venture-card:hover, .venture-card:active { background: var(--bg-lift); }
+    .venture-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      margin-bottom: 3px;
+    }
+    .venture-desc {
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
 
-    .link-item {
+    /* ── ACTIONS ── */
+    .actions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--rule);
+    }
+    .action-btn {
+      background: var(--bg);
+      padding: 14px 16px;
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 16px 16px;
-      background: var(--surface);
-      text-decoration: none;
-      color: var(--paper-dim);
-      transition: all 0.25s ease;
-      position: relative;
-      -webkit-tap-highlight-color: transparent;
-      min-height: 48px;
-    }
-
-    .link-item:hover, .link-item:active {
-      background: var(--surface-raised);
-      color: var(--paper);
-    }
-
-    .link-item:hover .link-icon, .link-item:active .link-icon { color: var(--gold); }
-
-    .link-icon {
-      width: 16px;
-      height: 16px;
-      flex-shrink: 0;
-      color: var(--ash);
-      transition: color 0.25s ease;
-    }
-
-    .link-text { flex: 1; min-width: 0; }
-
-    .link-label {
+      gap: 8px;
       font-family: var(--mono);
-      font-size: 8px;
+      font-size: 10px;
       font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--ash);
-      margin-bottom: 2px;
-      transition: color 0.25s ease;
-    }
-
-    .link-item:hover .link-label { color: var(--gold-dim); }
-
-    .link-value {
-      font-family: var(--mono);
-      font-size: 12px;
-      font-weight: 300;
-      letter-spacing: 0.02em;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    /* Redacted phone */
-    .link-redacted {
+      letter-spacing: 0.06em;
+      color: var(--ink);
+      text-decoration: none;
       cursor: pointer;
+      border: none;
+      transition: background 0.1s;
+      -webkit-tap-highlight-color: transparent;
+      width: 100%;
+      text-align: left;
     }
+    .action-btn:hover, .action-btn:active { background: var(--bg-lift); }
+    .action-btn svg { width: 14px; height: 14px; flex-shrink: 0; color: var(--muted); }
+    .action-btn.subscribed { color: var(--red); }
+    .action-btn.subscribed svg { color: var(--red); }
+    .action-wallet {
+      padding: 8px 16px;
+      justify-content: center;
+    }
+    .action-wallet img { height: 36px; width: auto; }
 
-    .redacted-value {
-      font-family: var(--mono);
-      font-size: 12px;
-      font-weight: 300;
-      letter-spacing: 0.04em;
-      color: var(--red);
+    /* ── QR ── */
+    .qr-section {
+      padding: 20px 20px 16px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .qr-frame {
       position: relative;
+      display: inline-block;
+      padding: 4px;
+      margin-bottom: 12px;
     }
-
-    .redacted-value.revealed { color: var(--paper-dim); }
-
-    .redacted-value .redact-bars {
-      background: var(--red);
-      color: var(--red);
-      padding: 1px 2px;
-      letter-spacing: 0.08em;
+    .qr-corner {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-color: var(--red);
+      border-style: solid;
+      opacity: 0.5;
     }
-
-    .redacted-hint {
-      font-family: var(--mono);
-      font-size: 7px;
+    .qr-corner.tl { top: 0; left: 0; border-width: 1px 0 0 1px; }
+    .qr-corner.tr { top: 0; right: 0; border-width: 1px 1px 0 0; }
+    .qr-corner.bl { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
+    .qr-corner.br { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
+    #qr { display: block; cursor: pointer; }
+    .qr-label {
+      font-size: 8px;
+      color: var(--muted);
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--ash);
-      margin-top: 2px;
-    }
-
-    .redacted-value.revealed + .redacted-hint { display: none; }
-
-    /* Status indicator */
-    .link-status {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--green);
-      flex-shrink: 0;
-      box-shadow: 0 0 6px rgba(58, 107, 58, 0.5);
-      animation: pulse-status 3s ease infinite;
-    }
-
-    @keyframes pulse-status {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-
-    /* Ventures */
-    .ventures { margin-bottom: 40px; }
-
-    .ventures-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-    }
-
-    .venture-card {
-      padding: 18px 14px;
-      background: var(--surface);
-      text-decoration: none;
-      transition: all 0.25s ease;
-      display: block;
-      min-height: 48px;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .venture-card:hover, .venture-card:active { background: var(--surface-raised); }
-    .venture-card:hover .venture-name, .venture-card:active .venture-name { color: var(--gold); }
-
-    .venture-name {
-      font-family: var(--nhg);
-      font-weight: 500;
-      font-size: 16px;
-      color: var(--paper);
-      margin-bottom: 4px;
-      transition: color 0.25s ease;
-    }
-
-    .venture-desc {
-      font-family: var(--mono);
-      font-size: 8px;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      color: var(--ash);
-      line-height: 1.5;
-      text-transform: uppercase;
-    }
-
-    /* Actions */
-    .actions { margin-bottom: 40px; }
-
-    .actions-row {
-      display: flex;
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-    }
-
-    .action-btn {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 16px 16px;
-      background: var(--surface);
-      border: none;
-      cursor: pointer;
-      font-family: var(--mono);
-      font-size: 9px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--paper-dim);
-      transition: all 0.25s ease;
-      text-decoration: none;
-      min-height: 48px;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .action-btn:hover, .action-btn:active { background: var(--surface-raised); color: var(--gold); }
-
-    .action-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
-
-    /* QR section — full tactical */
-    .qr-section {
       text-align: center;
-      padding-top: 4px;
+      margin-bottom: 12px;
     }
-
-    .qr-frame {
-      display: inline-block;
-      position: relative;
-      padding: 6px;
-    }
-
-    /* Corner brackets */
-    .qr-frame::before, .qr-frame::after, .qr-frame .corner-bl, .qr-frame .corner-br {
-      content: '';
-      position: absolute;
-      width: 18px;
-      height: 18px;
-      border-color: var(--gold-dim);
-      border-style: solid;
-    }
-
-    .qr-frame::before { top: 0; left: 0; border-width: 1px 0 0 1px; }
-    .qr-frame::after { top: 0; right: 0; border-width: 1px 1px 0 0; }
-    .qr-frame .corner-bl { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
-    .qr-frame .corner-br { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
-
-    .qr-container {
-      display: block;
-      padding: 14px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      position: relative;
-    }
-
-    .qr-container canvas { display: block; margin: 0 auto; }
-
-    .qr-label {
-      font-family: var(--mono);
-      font-size: 7px;
-      font-weight: 400;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--ash);
-      margin-top: 8px;
-    }
-
     .qr-actions {
       display: flex;
-      gap: 10px;
-      justify-content: center;
-      margin-top: 16px;
+      gap: 8px;
     }
-
     .qr-btn {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       gap: 6px;
-      padding: 8px 14px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      cursor: pointer;
+      padding: 8px 16px;
+      border: 1px solid var(--rule);
+      background: var(--bg);
       font-family: var(--mono);
-      font-size: 8px;
-      font-weight: 500;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--paper-dim);
-      transition: all 0.25s ease;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
       -webkit-tap-highlight-color: transparent;
     }
+    .qr-btn:hover, .qr-btn:active { border-color: var(--ink); color: var(--ink); }
+    .qr-btn svg { width: 11px; height: 11px; }
 
-    .qr-btn:hover, .qr-btn:active { border-color: var(--border-hover); color: var(--gold); }
-    .qr-btn svg { width: 12px; height: 12px; flex-shrink: 0; }
-
-    /* QR fullscreen overlay */
+    /* ── QR OVERLAY ── */
     .qr-overlay {
       position: fixed;
       inset: 0;
-      z-index: 200;
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.97);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 24px;
+      z-index: 200;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s ease;
-      -webkit-tap-highlight-color: transparent;
+      transition: opacity 0.25s ease;
     }
-
-    .qr-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .qr-overlay canvas {
-      display: block;
-      width: 260px !important;
-      height: 260px !important;
-      image-rendering: pixelated;
-    }
-
+    .qr-overlay.active { opacity: 1; pointer-events: auto; }
+    .qr-overlay canvas { display: block; }
     .qr-overlay-label {
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 400;
+      margin-top: 16px;
+      font-size: 9px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: #333;
+      color: var(--muted);
     }
-
     .qr-overlay-hint {
-      font-family: var(--mono);
-      font-size: 9px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #999;
-    }
-
-    /* Footer */
-    .footer {
-      text-align: center;
-      margin-top: 48px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer-link {
-      font-family: var(--mono);
-      font-size: 10px;
-      font-weight: 300;
-      color: var(--ash);
-      text-decoration: none;
-      letter-spacing: 0.08em;
-      transition: color 0.25s ease;
-    }
-
-    .footer-link:hover { color: var(--gold-dim); }
-
-    .footer-ts {
-      font-family: var(--mono);
-      font-size: 7px;
-      color: var(--ash);
       margin-top: 6px;
+      font-size: 8px;
       letter-spacing: 0.15em;
-      opacity: 0.5;
+      color: #ccc;
     }
 
-    /* Toast */
+    /* ── FOOTER ── */
+    .footer {
+      padding: 16px 20px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-link {
+      font-size: 10px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+    }
+    .footer-link:hover { color: var(--ink); }
+    .footer-ts { font-size: 8px; color: #ccc; letter-spacing: 0.06em; }
+
+    /* ── TOAST ── */
     .toast {
       position: fixed;
-      bottom: 32px;
+      bottom: max(28px, env(safe-area-inset-bottom, 28px));
       left: 50%;
-      transform: translateX(-50%) translateY(16px);
-      background: var(--surface-raised);
-      border: 1px solid var(--border-hover);
+      transform: translateX(-50%) translateY(12px);
+      background: var(--ink);
+      border-top: 2px solid var(--red);
       padding: 10px 20px;
       font-family: var(--mono);
       font-size: 10px;
-      letter-spacing: 0.1em;
-      color: var(--gold);
+      letter-spacing: 0.08em;
+      color: #fff;
       opacity: 0;
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      z-index: 50;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 300;
       pointer-events: none;
+      white-space: nowrap;
     }
-
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-    /* Mobile */
-    @media (max-width: 600px) {
-      .page {
-        padding: 40px 20px 36px;
-        padding-top: max(40px, env(safe-area-inset-top, 40px));
-        padding-bottom: max(36px, env(safe-area-inset-bottom, 36px));
-        padding-left: max(20px, env(safe-area-inset-left, 20px));
-        padding-right: max(20px, env(safe-area-inset-right, 20px));
-      }
-      .header { margin-bottom: 32px; }
-      .header-name { font-size: 34px; letter-spacing: 0.02em; }
-      .header-title { font-size: 11px; letter-spacing: 0.14em; }
-      .header-coords { font-size: 10px; }
-      .header-tag { font-size: 9px; }
-      .section-label { font-size: 9px; margin-bottom: 14px; }
-
-      /* All links single column on mobile */
-      .links-grid {
-        grid-template-columns: 1fr !important;
-      }
-      .link-item {
-        padding: 18px 20px;
-        min-height: 56px;
-        -webkit-tap-highlight-color: transparent;
-      }
-      /* Reset grid positioning for single column */
-      .link-item[style*="grid-column"],
-      .link-item[style*="grid-row"] {
-        grid-column: auto !important;
-        grid-row: auto !important;
-      }
-      .link-label { font-size: 9px; letter-spacing: 0.18em; }
-      .link-value { font-size: 14px; }
-      .redacted-value { font-size: 14px; }
-      .redacted-hint { font-size: 8px; letter-spacing: 0.12em; }
-
-      .links { margin-bottom: 32px; }
-      .ventures { margin-bottom: 32px; }
-      .ventures-grid { grid-template-columns: 1fr 1fr; }
-      .venture-card {
-        padding: 18px 16px;
-        min-height: 56px;
-        -webkit-tap-highlight-color: transparent;
-      }
-      .venture-name { font-size: 17px; }
-      .venture-desc { font-size: 9px; }
-
-      .actions { margin-bottom: 32px; }
-      .actions-row { flex-direction: column; }
-      .action-btn {
-        padding: 18px 20px;
-        min-height: 56px;
-        font-size: 10px;
-        -webkit-tap-highlight-color: transparent;
-      }
-
-      .qr-actions { flex-direction: row; gap: 8px; }
-      .qr-btn { padding: 10px 16px; font-size: 9px; }
-
-      .footer { margin-top: 36px; }
-      .footer-link { font-size: 11px; }
-      .footer-ts { font-size: 8px; }
-      .toast {
-        bottom: max(24px, env(safe-area-inset-bottom, 24px));
-        font-size: 11px;
-        padding: 12px 20px;
-      }
-    }
-
-    @media (max-width: 380px) {
-      .header-name { font-size: 28px; }
-      .ventures-grid { grid-template-columns: 1fr; }
-      .venture-card { min-height: 48px; }
-    }
-
-    /* Scroll reveal */
-    .sr { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    /* ── SCROLL REVEAL ── */
+    .sr { opacity: 0; transform: translateY(16px); transition: opacity 0.55s ease, transform 0.55s ease; }
     .sr.visible { opacity: 1; transform: translateY(0); }
-    /* View transitions */
+
+    /* ── MOBILE ── */
+    @media (max-width: 480px) {
+      .hero-name { font-size: 34px; }
+      .link-row { padding: 13px 20px; min-height: 52px; }
+      .link-val { font-size: 11px; }
+      .venture-name { font-size: 14px; }
+      .action-btn { font-size: 11px; min-height: 52px; }
+    }
+
+    /* ── VIEW TRANSITIONS ── */
     @view-transition { navigation: auto; }
-    ::view-transition-old(root) { animation: 200ms ease both ct-fade-out; }
-    ::view-transition-new(root) { animation: 280ms ease both ct-fade-in; }
-    @keyframes ct-fade-out { to { opacity: 0; } }
-    @keyframes ct-fade-in { from { opacity: 0; } }
+    ::view-transition-old(root) { animation: 180ms ease both fade-out; }
+    ::view-transition-new(root) { animation: 260ms ease both fade-in; }
+    @keyframes fade-out { to { opacity: 0; } }
+    @keyframes fade-in { from { opacity: 0; } }
     @media (prefers-reduced-motion: reduce) {
       .sr { opacity: 1 !important; transform: none !important; }
       ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
     }
   </style>
-  <!-- Google tag (gtag.js) -->
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WRDEHD4QYL"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -725,95 +484,114 @@
   </script>
 </head>
 <body>
+
+  <!-- TOPBAR -->
+  <div class="bb-topbar">
+    <span class="bb-topbar-name">James Tannahill</span>
+    <span class="bb-topbar-ts">40.765°N · 73.977°W</span>
+  </div>
+
   <div class="page">
 
-    <header class="header">
-      <div class="header-tag">// secure channel</div>
-      <h1 class="header-name">James Tannahill</h1>
-      <div class="header-title">Intelligent Capital &middot; xAI</div>
-      <a href="https://map.jamestannahill.com" class="header-coords">40.765&deg;N &middot; 73.977&deg;W &middot; NYC</a>
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-eyebrow">Intelligent Capital · xAI</div>
+      <h1 class="hero-name">James<br>Tannahill</h1>
+      <div class="hero-role">Private Equity · Healthcare Intelligence<br>AI Infrastructure · New York</div>
+      <a href="https://map.jamestannahill.com" class="hero-coords">W 57th Street · New York, NY</a>
     </header>
 
-    <section class="links sr">
-      <div class="section-label">Connect</div>
-      <div class="links-grid" style="grid-template-columns: 1fr 1fr 1fr;">
-
-        <a href="mailto:contact@jamestannahill.com" class="link-item" style="grid-column: 1 / 3;">
-          <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-          </svg>
-          <div class="link-text">
-            <div class="link-label">Email</div>
-            <div class="link-value">contact@jamestannahill.com</div>
-          </div>
-          <div class="link-status"></div>
-        </a>
-
-        <div class="link-item link-redacted" onclick="revealSignal(this)" style="grid-column: 3; grid-row: 1;">
-          <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.5 14.5l-4-4 1.41-1.41L10.5 13.67l5.09-5.09L17 10l-6.5 6.5z"/>
-          </svg>
-          <div class="link-text">
-            <div class="link-label">Signal</div>
-            <div class="redacted-value"><span class="redact-bars">&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;</span></div>
-            <div class="redacted-hint">tap to connect</div>
-          </div>
-        </div>
-
-        <div class="link-item link-redacted" onclick="revealWhatsApp(this)" style="grid-column: 3; grid-row: 2;">
-          <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-          <div class="link-text">
-            <div class="link-label">WhatsApp</div>
-            <div class="redacted-value"><span class="redact-bars">&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;</span></div>
-            <div class="redacted-hint">tap to connect</div>
-          </div>
-        </div>
-
-        <a href="https://www.linkedin.com/in/jamesstannahill" target="_blank" rel="noopener" class="link-item">
-          <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-          </svg>
-          <div class="link-text">
-            <div class="link-label">LinkedIn</div>
-            <div class="link-value">jamesstannahill</div>
-          </div>
-        </a>
-
-        <a href="https://github.com/jtannahill" target="_blank" rel="noopener" class="link-item">
-          <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-          </svg>
-          <div class="link-text">
-            <div class="link-label">GitHub</div>
-            <div class="link-value">jtannahill</div>
-          </div>
-        </a>
-
-        <a href="https://www.bloomberg.com/profile/person/23291921" target="_blank" rel="noopener" class="link-item">
-          <span class="link-icon" style="font-family: 'Avenir 85 Heavy', 'Avenir Heavy', 'Avenir', var(--nhg); font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; width: 18px; height: 18px; color: currentColor;">B</span>
-          <div class="link-text">
-            <div class="link-label">Bloomberg</div>
-            <div class="link-value">Terminal Profile</div>
-          </div>
-        </a>
-
-        <a href="https://art.jamestannahill.com" target="_blank" rel="noopener" class="link-item">
-          <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-          </svg>
-          <div class="link-text">
-            <div class="link-label">Art</div>
-            <div class="link-value">art.jamestannahill.com</div>
-          </div>
-        </a>
-
+    <!-- DATA STRIP -->
+    <div class="data-strip">
+      <div class="ds-cell">
+        <span class="ds-val">xAI</span>
+        <span class="ds-lbl">Company</span>
       </div>
-    </section>
+      <div class="ds-cell">
+        <span class="ds-val">NYC</span>
+        <span class="ds-lbl">Location</span>
+      </div>
+      <div class="ds-cell">
+        <span class="ds-val">PE · HC</span>
+        <span class="ds-lbl">Focus</span>
+      </div>
+    </div>
 
-    <section class="ventures sr">
-      <div class="section-label">Ventures</div>
+    <!-- CONTACT LINKS -->
+    <div class="sr">
+      <div class="section-hdr">
+        <span class="section-hdr-name">Contact</span>
+        <span class="section-hdr-rule"></span>
+      </div>
+
+      <a href="mailto:contact@jamestannahill.com" class="link-row featured">
+        <svg class="link-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </svg>
+        <span class="link-lbl">Email</span>
+        <span class="link-val">contact@jamestannahill.com</span>
+        <span class="link-arr">→</span>
+      </a>
+
+      <div class="link-row" onclick="revealSignal(this)">
+        <svg class="link-ico" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.5 14.5l-4-4 1.41-1.41L10.5 13.67l5.09-5.09L17 10l-6.5 6.5z"/>
+        </svg>
+        <span class="link-lbl">Signal</span>
+        <span class="link-val redacted" id="signal-val">████████</span>
+        <span class="link-arr" style="color:#ccc">→</span>
+      </div>
+
+      <div class="link-row" onclick="revealWhatsApp(this)">
+        <svg class="link-ico" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        <span class="link-lbl">WhatsApp</span>
+        <span class="link-val redacted" id="wa-val">████████████</span>
+        <span class="link-arr" style="color:#ccc">→</span>
+      </div>
+
+      <a href="https://www.linkedin.com/in/jamesstannahill" target="_blank" rel="noopener" class="link-row">
+        <svg class="link-ico" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+        <span class="link-lbl">LinkedIn</span>
+        <span class="link-val">jamesstannahill</span>
+        <span class="link-arr">→</span>
+      </a>
+
+      <a href="https://github.com/jtannahill" target="_blank" rel="noopener" class="link-row">
+        <svg class="link-ico" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+        </svg>
+        <span class="link-lbl">GitHub</span>
+        <span class="link-val">jtannahill</span>
+        <span class="link-arr">→</span>
+      </a>
+
+      <a href="https://www.bloomberg.com/profile/person/23291921" target="_blank" rel="noopener" class="link-row">
+        <span class="link-ico" style="font-family:'Avenir 85 Heavy','Avenir Heavy',Avenir,sans-serif;font-weight:800;font-size:16px;display:flex;align-items:center;justify-content:center;color:#bbb;">B</span>
+        <span class="link-lbl">Bloomberg</span>
+        <span class="link-val">Terminal Profile</span>
+        <span class="link-arr">→</span>
+      </a>
+
+      <a href="https://art.jamestannahill.com" target="_blank" rel="noopener" class="link-row">
+        <svg class="link-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        <span class="link-lbl">Art</span>
+        <span class="link-val">art.jamestannahill.com</span>
+        <span class="link-arr">→</span>
+      </a>
+    </div>
+
+    <!-- VENTURES -->
+    <div class="sr">
+      <div class="section-hdr" style="margin-top:8px">
+        <span class="section-hdr-name">Ventures</span>
+        <span class="section-hdr-rule"></span>
+      </div>
       <div class="ventures-grid">
         <a href="https://www.plocamium.com" target="_blank" rel="noopener" class="venture-card">
           <div class="venture-name">Plocamium</div>
@@ -837,18 +615,22 @@
         </a>
         <a href="https://hmuapi.com" target="_blank" rel="noopener" class="venture-card">
           <div class="venture-name">HMU API</div>
-          <div class="venture-desc">Communication Gateway</div>
+          <div class="venture-desc">Comm Gateway</div>
         </a>
         <a href="https://rdlb.nyc" target="_blank" rel="noopener" class="venture-card">
           <div class="venture-name">RDLB</div>
           <div class="venture-desc">Brand Strategy</div>
         </a>
       </div>
-    </section>
+    </div>
 
-    <section class="actions sr">
-      <div class="section-label">Actions</div>
-      <div class="actions-row">
+    <!-- ACTIONS -->
+    <div class="sr">
+      <div class="section-hdr" style="margin-top:8px">
+        <span class="section-hdr-name">Actions</span>
+        <span class="section-hdr-rule"></span>
+      </div>
+      <div class="actions-grid">
         <button class="action-btn" onclick="downloadVCard()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
@@ -861,8 +643,8 @@
           </svg>
           View Map
         </a>
-        <a href="/JamesTannahill.pkpass" class="action-btn" style="gap: 0; padding: 8px 16px;">
-          <img src="/add-to-apple-wallet.svg" alt="Add to Apple Wallet" style="height: 40px; width: auto;">
+        <a href="./JamesTannahill.pkpass" class="action-btn action-wallet">
+          <img src="./add-to-apple-wallet.svg" alt="Add to Apple Wallet">
         </a>
         <button class="action-btn" id="pushBtn" onclick="togglePush()" style="display:none;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -871,18 +653,18 @@
           <span id="pushLabel">// Notify Me</span>
         </button>
       </div>
-    </section>
+    </div>
 
-    <section class="qr-section">
-      <div class="section-label" style="justify-content: center;">Scan</div>
+    <!-- QR -->
+    <div class="qr-section sr">
       <div class="qr-frame">
-        <span class="corner-bl"></span>
-        <span class="corner-br"></span>
-        <div class="qr-container" onclick="openQROverlay(event)" style="cursor:pointer;">
-          <canvas id="qr"></canvas>
-          <div class="qr-label">contact.jamestannahill.com</div>
-        </div>
+        <span class="qr-corner tl"></span>
+        <span class="qr-corner tr"></span>
+        <span class="qr-corner bl"></span>
+        <span class="qr-corner br"></span>
+        <canvas id="qr" onclick="openQROverlay(event)" style="cursor:pointer;"></canvas>
       </div>
+      <div class="qr-label">contact.jamestannahill.com</div>
       <div class="qr-actions">
         <button class="qr-btn" onclick="shareQR()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -897,35 +679,34 @@
           Copy Link
         </button>
       </div>
-    </section>
+    </div>
 
+    <!-- FOOTER -->
     <footer class="footer">
       <a href="https://www.jamestannahill.com" class="footer-link">jamestannahill.com</a>
       <div class="footer-ts" id="timestamp"></div>
     </footer>
 
-  </div>
+  </div><!-- /page -->
 
-  <!-- QR fullscreen overlay -->
+  <!-- QR OVERLAY -->
   <div class="qr-overlay" id="qrOverlay" onclick="closeQROverlay()">
     <canvas id="qrLarge"></canvas>
     <div class="qr-overlay-label">scan to add contact</div>
     <div class="qr-overlay-hint">tap to close</div>
   </div>
 
-  <div class="toast" id="toast">Contact saved</div>
+  <div class="toast" id="toast"></div>
 
   <script>
-  // ─── SERVICE WORKER + PWA ────────────────────────────────────────────
+  // ── SERVICE WORKER ────────────────────────────────────────────────────
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js').then(reg => {
-        console.log('[SW] registered', reg.scope);
-      }).catch(e => console.warn('[SW] failed', e));
+      navigator.serviceWorker.register('/sw.js').catch(e => console.warn('[SW]', e));
     });
   }
 
-  // ─── WEB PUSH ────────────────────────────────────────────────────────
+  // ── WEB PUSH ──────────────────────────────────────────────────────────
   const VAPID_PUBLIC_KEY = 'BFIFhADuQ1yanvfGWtfEhtWCDRegFn98goWLzQbU8qgb95YOatlYKNkDg2kWIVNKzMinEMbV_Lulou5EmGxx4bY';
 
   function urlBase64ToUint8Array(b64) {
@@ -938,9 +719,7 @@
     if (!('Notification' in window) || !('serviceWorker' in navigator) || !('PushManager' in window)) return;
     const btn = document.getElementById('pushBtn');
     if (btn) btn.style.display = 'flex';
-
-    const perm = Notification.permission;
-    if (perm === 'granted') {
+    if (Notification.permission === 'granted') {
       const sw = await navigator.serviceWorker.ready;
       const sub = await sw.pushManager.getSubscription();
       if (sub) updatePushBtn(true);
@@ -952,133 +731,103 @@
     const lbl = document.getElementById('pushLabel');
     if (!btn || !lbl) return;
     lbl.textContent = subscribed ? '// Subscribed' : '// Notify Me';
-    btn.style.color = subscribed ? 'var(--gold)' : '';
+    if (subscribed) btn.classList.add('subscribed'); else btn.classList.remove('subscribed');
   }
 
   async function togglePush() {
-    if (!('Notification' in window) || !('PushManager' in window)) {
-      showToast('Push not supported');
-      return;
-    }
+    if (!('Notification' in window) || !('PushManager' in window)) { showToast('Push not supported'); return; }
     const sw = await navigator.serviceWorker.ready;
     const existing = await sw.pushManager.getSubscription();
-
     if (existing) {
       await existing.unsubscribe();
-      await fetch('/api/push/unsubscribe', {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ endpoint: existing.endpoint }),
-      });
+      await fetch('/api/push/unsubscribe', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ endpoint: existing.endpoint }) });
       updatePushBtn(false);
       showToast('Notifications off');
       return;
     }
-
     const perm = await Notification.requestPermission();
     if (perm !== 'granted') { showToast('Permission denied'); return; }
-
-    const sub = await sw.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
-    });
-
-    await fetch('/api/push/subscribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ subscription: sub.toJSON() }),
-    });
-
+    const sub = await sw.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY) });
+    await fetch('/api/push/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ subscription: sub.toJSON() }) });
     updatePushBtn(true);
     showToast('// Notifications active');
   }
 
   window.addEventListener('load', initPush);
 
-  // ─── GYROSCOPE PARALLAX ──────────────────────────────────────────────
+  // ── GYROSCOPE PARALLAX ─────────────────────────────────────────────
   (function() {
     if (!window.DeviceOrientationEvent) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
     let tX = 0, tY = 0, cX = 0, cY = 0;
     const page = document.querySelector('.page');
-    const MAX_ROT = 6;
-
+    const MAX_ROT = 4;
     function lerp(a, b, t) { return a + (b - a) * t; }
-
     function onOrientation(e) {
       const g = e.gamma || 0;
       const b = (e.beta || 50) - 50;
       tX = Math.max(-1, Math.min(1, g / 25));
       tY = Math.max(-1, Math.min(1, b / 25));
     }
-
     function tick() {
       cX = lerp(cX, tX, 0.06);
       cY = lerp(cY, tY, 0.06);
       if (Math.abs(cX - tX) > 0.001 || Math.abs(cY - tY) > 0.001) {
-        page.style.transform = `perspective(1000px) rotateY(${cX * MAX_ROT}deg) rotateX(${-cY * MAX_ROT * 0.6}deg)`;
+        page.style.transform = `perspective(1200px) rotateY(${cX * MAX_ROT}deg) rotateX(${-cY * MAX_ROT * 0.6}deg)`;
       }
       requestAnimationFrame(tick);
     }
-
     function startParallax() {
       window.addEventListener('deviceorientation', onOrientation, { passive: true });
       tick();
     }
-
     setTimeout(() => {
       if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-        // iOS 13+ — trigger on first touch (satisfies user gesture requirement)
         document.addEventListener('touchstart', function req() {
           document.removeEventListener('touchstart', req);
-          DeviceOrientationEvent.requestPermission()
-            .then(p => { if (p === 'granted') startParallax(); })
-            .catch(() => {});
+          DeviceOrientationEvent.requestPermission().then(p => { if (p === 'granted') startParallax(); }).catch(() => {});
         }, { once: true, passive: true });
       } else {
-        startParallax(); // Android / non-iOS
+        startParallax();
       }
-    }, 1000); // after page-in animation completes
+    }, 800);
   })();
   </script>
 
   <script>
-    // MECARD for QR (compact, universal iOS+Android)
     const MECARD = 'MECARD:N:Tannahill,James;ORG:xAI;TITLE:Intelligent Capital;EMAIL:contact@jamestannahill.com;URL:https://www.jamestannahill.com;ADR:W 57th Street;NOTE:Signal preferred;;';
 
     function revealSignal(el) {
-      const rv = el.querySelector('.redacted-value');
-      if (rv.classList.contains('revealed')) {
+      const val = document.getElementById('signal-val');
+      if (val.classList.contains('revealed')) {
         window.open('https://signal.me/#eu/3hUDHh_XxE2hwtAccNwvVfHdogG5yYgHN3HUVkYwouyUV3rkCh1CDLW6u061E1Ha', '_blank');
         return;
       }
-      rv.innerHTML = 'Signal &rarr; Open';
-      rv.classList.add('revealed');
-      rv.style.color = '#D8D4CC';
+      val.textContent = 'Signal → Open';
+      val.classList.remove('redacted');
+      val.classList.add('revealed');
+      el.querySelector('.link-arr').style.color = 'var(--red)';
       showToast('Opening Signal');
     }
 
     function revealWhatsApp(el) {
-      const rv = el.querySelector('.redacted-value');
-      if (rv.classList.contains('revealed')) {
+      const val = document.getElementById('wa-val');
+      if (val.classList.contains('revealed')) {
         window.open('https://wa.me/12123086406', '_blank');
         return;
       }
-      rv.innerHTML = 'WhatsApp &rarr; Open';
-      rv.classList.add('revealed');
-      rv.style.color = '#D8D4CC';
+      val.textContent = 'WhatsApp → Open';
+      val.classList.remove('redacted');
+      val.classList.add('revealed');
+      el.querySelector('.link-arr').style.color = 'var(--red)';
       showToast('Opening WhatsApp');
     }
 
     function downloadVCard() {
       const vcard = [
-        'BEGIN:VCARD',
-        'VERSION:3.0',
-        'N:Tannahill;James;;;',
-        'FN:James Tannahill',
-        'TITLE:Intelligent Capital',
-        'ORG:xAI',
+        'BEGIN:VCARD', 'VERSION:3.0',
+        'N:Tannahill;James;;;', 'FN:James Tannahill',
+        'TITLE:Intelligent Capital', 'ORG:xAI',
         'EMAIL;TYPE=INTERNET:contact@jamestannahill.com',
         'URL:https://www.jamestannahill.com',
         'URL:https://hmuapi.com',
@@ -1094,37 +843,25 @@
         'NOTE:Intelligent Capital at xAI. President\\, Plocamium Holdings. Signal preferred.',
         'END:VCARD'
       ].join('\r\n');
-
       const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = url;
-      a.download = 'James_Tannahill.vcf';
-      a.click();
+      a.href = url; a.download = 'James_Tannahill.vcf'; a.click();
       URL.revokeObjectURL(url);
       showToast('Contact saved');
     }
 
-    // Share QR as image
     async function shareQR() {
       const canvas = document.getElementById('qr');
       try {
         const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
         const file = new File([blob], 'james-tannahill-contact.png', { type: 'image/png' });
-
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          await navigator.share({
-            title: 'James Tannahill — Contact',
-            text: 'Scan to connect',
-            files: [file]
-          });
+          await navigator.share({ title: 'James Tannahill — Contact', text: 'Scan to connect', files: [file] });
         } else {
-          // Fallback — download the QR image
           const url = URL.createObjectURL(blob);
           const a = document.createElement('a');
-          a.href = url;
-          a.download = 'james-tannahill-qr.png';
-          a.click();
+          a.href = url; a.download = 'james-tannahill-qr.png'; a.click();
           URL.revokeObjectURL(url);
           showToast('QR downloaded');
         }
@@ -1134,9 +871,7 @@
     }
 
     function copyLink() {
-      navigator.clipboard.writeText('https://contact.jamestannahill.com').then(() => {
-        showToast('Link copied');
-      });
+      navigator.clipboard.writeText('https://contact.jamestannahill.com').then(() => showToast('Link copied'));
     }
 
     function showToast(msg) {
@@ -1146,18 +881,11 @@
       setTimeout(() => t.classList.remove('show'), 2500);
     }
 
-    // QR overlay — enlarge + max brightness
     function openQROverlay(e) {
       e.stopPropagation();
       const overlay = document.getElementById('qrOverlay');
       overlay.classList.add('active');
-
-      // Request screen wake lock to keep screen on
-      if ('wakeLock' in navigator) {
-        navigator.wakeLock.request('screen').catch(() => {});
-      }
-
-      // Render large vCard QR into overlay canvas
+      if ('wakeLock' in navigator) navigator.wakeLock.request('screen').catch(() => {});
       if (typeof qrcode !== 'undefined') {
         const canvas = document.getElementById('qrLarge');
         const qr = qrcode(0, 'L');
@@ -1165,23 +893,17 @@
         qr.make();
         const mc = qr.getModuleCount();
         const dpr = window.devicePixelRatio || 1;
-        const cell = 10;
-        const margin = 30;
+        const cell = 10, margin = 30;
         const size = mc * cell + margin * 2;
-        canvas.width = size * dpr;
-        canvas.height = size * dpr;
-        canvas.style.width = '260px';
-        canvas.style.height = '260px';
+        canvas.width = size * dpr; canvas.height = size * dpr;
+        canvas.style.width = '260px'; canvas.style.height = '260px';
         const ctx = canvas.getContext('2d');
         ctx.scale(dpr, dpr);
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(0, 0, size, size);
-        ctx.fillStyle = '#000000';
+        ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, size, size);
+        ctx.fillStyle = '#1a1a1a';
         for (let r = 0; r < mc; r++) {
           for (let c = 0; c < mc; c++) {
-            if (qr.isDark(r, c)) {
-              ctx.fillRect(c * cell + margin, r * cell + margin, cell, cell);
-            }
+            if (qr.isDark(r, c)) ctx.fillRect(c * cell + margin, r * cell + margin, cell, cell);
           }
         }
       }
@@ -1191,11 +913,9 @@
       document.getElementById('qrOverlay').classList.remove('active');
     }
 
-    // Timestamp
-    document.getElementById('timestamp').textContent =
-      'Last updated ' + new Date().toISOString().slice(0, 10);
+    document.getElementById('timestamp').textContent = 'Updated ' + new Date().toISOString().slice(0, 10);
 
-    // QR Code — tactical dark with gold modules + crosshairs
+    // QR Code — dark modules on light bg, red crosshairs
     (function(){
       const canvas = document.getElementById('qr');
       if (!canvas) return;
@@ -1205,83 +925,55 @@
         const qr = qrcode(0, 'L');
         qr.addData(MECARD);
         qr.make();
-
         const mc = qr.getModuleCount();
         const dpr = window.devicePixelRatio || 1;
-        const cell = 5;
-        const margin = 20;
+        const cell = 5, margin = 20;
         const size = mc * cell + margin * 2;
-
-        canvas.width = size * dpr;
-        canvas.height = size * dpr;
-        canvas.style.width = size + 'px';
-        canvas.style.height = size + 'px';
-
+        canvas.width = size * dpr; canvas.height = size * dpr;
+        canvas.style.width = size + 'px'; canvas.style.height = size + 'px';
         const ctx = canvas.getContext('2d');
         ctx.scale(dpr, dpr);
-        ctx.fillStyle = '#060606';
+        ctx.fillStyle = '#f8f8f8';
         ctx.fillRect(0, 0, size, size);
-
-        // Grid lines (very faint)
-        ctx.strokeStyle = 'rgba(201, 168, 76, 0.04)';
-        ctx.lineWidth = 0.5;
-        for (let i = 0; i <= mc; i++) {
-          const p = i * cell + margin;
-          ctx.beginPath(); ctx.moveTo(p, margin); ctx.lineTo(p, size - margin); ctx.stroke();
-          ctx.beginPath(); ctx.moveTo(margin, p); ctx.lineTo(size - margin, p); ctx.stroke();
-        }
-
         // QR modules
+        ctx.fillStyle = '#1a1a1a';
         for (let r = 0; r < mc; r++) {
           for (let c = 0; c < mc; c++) {
-            if (qr.isDark(r, c)) {
-              ctx.fillStyle = '#C9A84C';
-              ctx.fillRect(c * cell + margin, r * cell + margin, cell, cell);
-            }
+            if (qr.isDark(r, c)) ctx.fillRect(c * cell + margin, r * cell + margin, cell, cell);
           }
         }
-
-        // Crosshair lines in margins
-        const cx = size / 2;
-        const cy = size / 2;
-        ctx.strokeStyle = 'rgba(201, 168, 76, 0.2)';
+        // Red crosshairs
+        const cx = size / 2, cy = size / 2;
+        ctx.strokeStyle = 'rgba(224, 26, 26, 0.25)';
         ctx.lineWidth = 0.5;
-        // H
         ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(margin - 6, cy); ctx.stroke();
         ctx.beginPath(); ctx.moveTo(size - margin + 6, cy); ctx.lineTo(size, cy); ctx.stroke();
-        // V
         ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, margin - 6); ctx.stroke();
         ctx.beginPath(); ctx.moveTo(cx, size - margin + 6); ctx.lineTo(cx, size); ctx.stroke();
-
-        // Corner tick marks
-        ctx.strokeStyle = 'rgba(201, 168, 76, 0.3)';
+        // Corner ticks
+        ctx.strokeStyle = 'rgba(224, 26, 26, 0.35)';
         ctx.lineWidth = 1;
         const tm = 8;
-        // TL
-        ctx.beginPath(); ctx.moveTo(margin - 2, margin - 2); ctx.lineTo(margin - 2 + tm, margin - 2); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(margin - 2, margin - 2); ctx.lineTo(margin - 2, margin - 2 + tm); ctx.stroke();
-        // TR
-        ctx.beginPath(); ctx.moveTo(size - margin + 2, margin - 2); ctx.lineTo(size - margin + 2 - tm, margin - 2); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(size - margin + 2, margin - 2); ctx.lineTo(size - margin + 2, margin - 2 + tm); ctx.stroke();
-        // BL
-        ctx.beginPath(); ctx.moveTo(margin - 2, size - margin + 2); ctx.lineTo(margin - 2 + tm, size - margin + 2); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(margin - 2, size - margin + 2); ctx.lineTo(margin - 2, size - margin + 2 - tm); ctx.stroke();
-        // BR
-        ctx.beginPath(); ctx.moveTo(size - margin + 2, size - margin + 2); ctx.lineTo(size - margin + 2 - tm, size - margin + 2); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(size - margin + 2, size - margin + 2); ctx.lineTo(size - margin + 2, size - margin + 2 - tm); ctx.stroke();
+        [[margin-2, margin-2, 1, 0, 1, 0],
+         [size-margin+2, margin-2, -1, 0, 1, 0],
+         [margin-2, size-margin+2, 1, 0, -1, 0],
+         [size-margin+2, size-margin+2, -1, 0, -1, 0]].forEach(([x,y,dx,_,dy]) => {
+          ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+dx*tm,y); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x,y+dy*tm); ctx.stroke();
+        });
       };
-
       script.onerror = function() {
-        canvas.width = 180; canvas.height = 180;
+        canvas.width = 160; canvas.height = 160;
         const ctx = canvas.getContext('2d');
-        ctx.fillStyle = '#060606'; ctx.fillRect(0, 0, 180, 180);
-        ctx.fillStyle = '#4A4A4A'; ctx.font = '10px JetBrains Mono, monospace';
+        ctx.fillStyle = '#f8f8f8'; ctx.fillRect(0,0,160,160);
+        ctx.fillStyle = '#ccc'; ctx.font = '9px JetBrains Mono, monospace';
         ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-        ctx.fillText('QR UNAVAILABLE', 90, 90);
+        ctx.fillText('QR UNAVAILABLE', 80, 80);
       };
       document.head.appendChild(script);
     })();
   </script>
+
   <script>
   (function() {
     var obs = new IntersectionObserver(function(entries) {
