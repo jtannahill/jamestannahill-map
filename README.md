@@ -1,6 +1,11 @@
 # jamestannahill-map
 
-[![Built with Mapbox](https://img.shields.io/badge/Built%20with-Mapbox-blue?logo=mapbox)](https://www.mapbox.com)
+![Status](https://img.shields.io/badge/status-live-success)
+[![Mapbox](https://img.shields.io/badge/Mapbox-000000?logo=mapbox&logoColor=white)](https://www.mapbox.com)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
+![CloudFront](https://img.shields.io/badge/AWS-CloudFront-FF9900?logo=amazonaws&logoColor=white)
+[![Live](https://img.shields.io/badge/live-map.jamestannahill.com-blue)](https://map.jamestannahill.com)
+![Last Commit](https://img.shields.io/github/last-commit/jtannahill/jamestannahill-map)
 
 Static pages and Apple Wallet pass infrastructure for `map.jamestannahill.com` and `contact.jamestannahill.com`.
 
