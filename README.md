@@ -17,25 +17,25 @@ Static pages and Apple Wallet pass infrastructure for `map.jamestannahill.com` a
 Dark Mapbox GL JS map centered on W 57th Street, Manhattan. Plocamium Holdings marker with popup, cinematic fly-in animation on load.
 
 ### `contact.jamestannahill.com`
-Bloomberg editorial digital business card (redesigned Apr 2026). JetBrains Mono. White/black/red palette — black topbar with `#e01a1a` red rule, white body, 3-cell data strip (xAI / NYC / PE·HC).
+Bloomberg editorial digital business card (redesigned Apr 2026). JetBrains Mono. White/black/red palette: black topbar with `#e01a1a` red rule, white body, 3-cell data strip (xAI / NYC / PE·HC).
 
 **Features:**
-- Contact links — Email (featured, red left border), Signal (redacted/tap-to-reveal), WhatsApp (redacted/tap-to-reveal), LinkedIn, GitHub, Bloomberg Terminal Profile, Art
-- Ventures grid — Plocamium, 1nessAgency, MonkeyThorn, gOOOvy, NewYorkLab, HMU API, RDLB
-- vCard download — saves contact to phone with all channels
-- QR code — MECARD format, dark modules on light bg, red crosshairs, fullscreen overlay on tap
-- Apple Wallet pass — add to Wallet via button or NFC physical card
-- Gyroscope parallax — subtle tilt effect on mobile
-- PWA — installable, service worker cached, offline-capable
-- Web push — opt-in `// Subscribed` button (shows when supported)
-- SEO — Person schema (JSON-LD), OG + Twitter cards
+- Contact links: Email (featured, red left border), Signal (redacted/tap-to-reveal), WhatsApp (redacted/tap-to-reveal), LinkedIn, GitHub, Bloomberg Terminal Profile, Art
+- Ventures grid: Plocamium, 1nessAgency, MonkeyThorn, gOOOvy, NewYorkLab, HMU API, RDLB
+- vCard download: saves contact to phone with all channels
+- QR code: MECARD format, dark modules on light bg, red crosshairs, fullscreen overlay on tap
+- Apple Wallet pass: add to Wallet via button or NFC physical card
+- Gyroscope parallax: subtle tilt effect on mobile
+- PWA: installable, service worker cached, offline-capable
+- Web push: opt-in `// Subscribed` button (shows when supported)
+- SEO: Person schema (JSON-LD), OG + Twitter cards
 
 ### `contact.jamestannahill.com/add`
-NFC landing page — device-aware router for the physical business card NFC chip.
+NFC landing page: device-aware router for the physical business card NFC chip.
 
 | Device + Browser | Behavior |
 |---|---|
-| iPhone + Safari | Auto-redirects to `.pkpass` — Wallet opens in ~1 second |
+| iPhone + Safari | Auto-redirects to `.pkpass`: Wallet opens in ~1 second |
 | iPhone + Chrome/other | Shows "Open in Safari" with direct link |
 | Android | Shows contact card link |
 | Desktop | Shows "Scan on iPhone" message |
@@ -44,15 +44,15 @@ NFC landing page — device-aware router for the physical business card NFC chip
 
 ## Apple Wallet Pass
 
-Pass type: `pass.com.jamestannahill.contact` — Team `P3ZC6ZG46V`
+Pass type: `pass.com.jamestannahill.contact`: Team `P3ZC6ZG46V`
 
 **Pass features:**
-- Generic pass — name, title, org, email, coordinates
-- Back fields — Signal, WhatsApp, LinkedIn, GitHub, Bloomberg, all venture links
-- MECARD QR barcode — scannable to save contact
-- Location relevance — surfaces on lock screen near W 57th St, NYC
-- Web service — live push updates via APNs when pass content changes
-- Device registration — DynamoDB (`wallet-pass-registrations`)
+- Generic pass: name, title, org, email, coordinates
+- Back fields: Signal, WhatsApp, LinkedIn, GitHub, Bloomberg, all venture links
+- MECARD QR barcode: scannable to save contact
+- Location relevance: surfaces on lock screen near W 57th St, NYC
+- Web service: live push updates via APNs when pass content changes
+- Device registration: DynamoDB (`wallet-pass-registrations`)
 
 ### Pass Update Pipeline
 
@@ -67,7 +67,7 @@ This does five things in sequence:
 2. Signs with `~/pass-cert.pem` + `~/pass-key.pem` against WWDR
 3. Packages into `JamesTannahill.pkpass`
 4. Uploads to S3 + invalidates CloudFront cache
-5. Sends silent APNs push to all registered devices — Wallet fetches the new pass automatically
+5. Sends silent APNs push to all registered devices: Wallet fetches the new pass automatically
 
 ### Manual Push Only
 
@@ -79,7 +79,7 @@ python3 pass-service/push_update.py
 
 - File: `~/pass-cert.pem` + `~/pass-key.pem`
 - Valid until: **Apr 25, 2027**
-- Same certificate signs the pass and sends APNs push — no separate push cert needed
+- Same certificate signs the pass and sends APNs push: no separate push cert needed
 
 ---
 
@@ -87,7 +87,7 @@ python3 pass-service/push_update.py
 
 The `/add` landing page is designed for an NFC chip embedded in a physical business card.
 
-**Chip:** NTAG213 (144 bytes — URL fits with 70+ bytes to spare)
+**Chip:** NTAG213 (144 bytes: URL fits with 70+ bytes to spare)
 
 **URL written to chip:**
 ```
@@ -97,7 +97,7 @@ https://contact.jamestannahill.com/add
 **Writing with Flipper Zero (Momentum firmware):**
 ```
 NFC → Saved → [tag] → Write
-  → hold blank NTAG213 to Flipper back (top third — NFC antenna)
+  → hold blank NTAG213 to Flipper back (top third: NFC antenna)
   → vibration = success
   → repeat for each card
 ```
@@ -105,7 +105,7 @@ NFC → Saved → [tag] → Write
 **Test before writing physical cards:**
 ```
 NFC → Saved → [tag] → Emulate
-  → hold Flipper to iPhone — banner appears — tap — Wallet opens
+  → hold Flipper to iPhone: banner appears: tap: Wallet opens
 ```
 
 **Card format recommendation:** Matte black metal (aluminum) with gold laser engraving, NTAG213 embedded with booster antenna. Flipper writes to the antenna corner.
@@ -118,7 +118,7 @@ Tap iPhone to card
   → /add page loads, detects Safari
   → auto-redirects to .pkpass
   → Wallet opens with "Add to Apple Wallet"
-  → one tap — pass saved
+  → one tap: pass saved
 ```
 
 ---
@@ -159,22 +159,22 @@ aws cloudfront create-invalidation --distribution-id E28BIZ72OMRUET --paths "/ad
 ```
 index.html              Map page (Mapbox GL JS)
 contact.html            Contact/business card page
-add.html                NFC landing page — device-aware Wallet pass router
+add.html                NFC landing page: device-aware Wallet pass router
 sw.js                   Service worker (PWA + offline cache)
 manifest.json           PWA manifest
 og-image.png            OG social preview image
 
 pass-build/
   pass.pass/            Pass bundle (edit pass.json here)
-    pass.json           Pass definition — fields, locations, web service URL
+    pass.json           Pass definition: fields, locations, web service URL
     manifest.json       Auto-generated SHA-1 manifest (do not edit)
     signature           Auto-generated PKCS#7 signature (do not edit)
     *.png               Pass imagery (icon, logo, thumbnail)
   JamesTannahill.pkpass Signed pass (built by update-pass.sh)
 
 pass-service/
-  handler.py            Lambda — Apple Wallet web service (register/unregister/serve/log)
-  push_update.py        APNs push — notifies all registered devices to fetch updated pass
+  handler.py            Lambda: Apple Wallet web service (register/unregister/serve/log)
+  push_update.py        APNs push: notifies all registered devices to fetch updated pass
 
-update-pass.sh          Full pass pipeline — rebuild, sign, upload, invalidate, push
+update-pass.sh          Full pass pipeline: rebuild, sign, upload, invalidate, push
 ```
