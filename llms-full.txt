@@ -73,4 +73,4 @@ An interactive Mapbox map centered on James Tannahill's location in New York Cit
 - LinkedIn: https://www.linkedin.com/in/jamesstannahill
 - Bloomberg: https://www.bloomberg.com/profile/person/23291921
 
-James Tannahill is the founder of Plocamium Holdings, a private equity intelligence firm, and president of 1nessAgency. He builds AI-native capital markets infrastructure at xAI and maintains multiple SaaS products and developer tools across healthcare, communications, and intelligence domains.
+James Tannahill is the president of Plocamium Holdings, a private equity intelligence firm, and president of 1nessAgency. He builds AI-native capital markets infrastructure at xAI and maintains multiple SaaS products and developer tools across healthcare, communications, and intelligence domains.

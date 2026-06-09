@@ -8,6 +8,7 @@ Endpoints per Apple spec:
   POST   /v1/log                                                   — log errors
 """
 
+import hmac
 import json
 import os
 import time
@@ -24,7 +25,7 @@ s3 = boto3.client("s3")
 
 TABLE_NAME = os.environ.get("TABLE_NAME", "wallet-pass-registrations")
 PASS_BUCKET = os.environ.get("PASS_BUCKET", "contact.jamestannahill.com")
-AUTH_TOKEN = os.environ.get("AUTH_TOKEN", "vxwxd7J8AlNNFPS8k0a0FfUFtq0ewzFdc")
+AUTH_TOKEN = os.environ.get("AUTH_TOKEN", "")
 PUSH_TABLE_NAME = "web-push-subscriptions"
 
 table = dynamodb.Table(TABLE_NAME)
@@ -55,24 +56,31 @@ def handler(event, context):
     if "/api/push/" in path:
         return handle_push(method, path, raw_body)
 
-    # Auth check (except for log endpoint and GET passes)
-    if "/v1/log" not in path:
-        auth = headers.get("authorization", "")
-        if not path.endswith("/log") and "passes" not in path:
-            if auth != f"ApplePass {AUTH_TOKEN}":
-                return response(401, "Unauthorized")
+    # Requests arrive as /api/passes/v1/... behind CloudFront; strip the
+    # service prefix so route checks match the v1 paths.
+    route = path.split("/api/passes", 1)[-1] if "/api/passes" in path else path
+    parts = route.strip("/").split("/")
 
-    # Route
-    parts = path.strip("/").split("/")
+    # Auth check per Apple spec: pass fetch and device register/unregister
+    # require "Authorization: ApplePass <token>". The registrations-list GET
+    # and the log endpoint are unauthenticated by spec.
+    needs_auth = (
+        (method == "GET" and "passes" in parts)
+        or (method in ("POST", "DELETE") and "registrations" in parts)
+    )
+    if needs_auth:
+        auth = headers.get("authorization", "")
+        if not AUTH_TOKEN or not hmac.compare_digest(auth, f"ApplePass {AUTH_TOKEN}"):
+            return response(401, "Unauthorized")
 
     # POST /v1/log
-    if method == "POST" and path.endswith("/log"):
+    if method == "POST" and route.endswith("/log"):
         body = json.loads(raw_body) if raw_body else {}
         print(f"Pass log: {json.dumps(body)}")
         return response(200, "OK")
 
     # POST /v1/devices/{deviceID}/registrations/{passTypeID}/{serial}
-    if method == "POST" and "registrations" in path and len(parts) >= 5:
+    if method == "POST" and "registrations" in parts and len(parts) >= 5:
         device_id = parts[-3] if "registrations" in parts[-4] else extract_part(parts, "devices")
         serial = parts[-1]
         body = json.loads(raw_body) if raw_body else {}
@@ -88,7 +96,7 @@ def handler(event, context):
         return response(201, "Created")
 
     # DELETE /v1/devices/{deviceID}/registrations/{passTypeID}/{serial}
-    if method == "DELETE" and "registrations" in path:
+    if method == "DELETE" and "registrations" in parts:
         device_id = extract_part(parts, "devices")
         serial = parts[-1]
 
@@ -100,7 +108,7 @@ def handler(event, context):
         return response(200, "OK")
 
     # GET /v1/devices/{deviceID}/registrations/{passTypeID}
-    if method == "GET" and "registrations" in path and "passes" not in path:
+    if method == "GET" and "registrations" in parts and "passes" not in parts:
         device_id = extract_part(parts, "devices")
 
         result = table.query(
@@ -117,7 +125,7 @@ def handler(event, context):
         }))
 
     # GET /v1/passes/{passTypeID}/{serial}
-    if method == "GET" and "passes" in path:
+    if method == "GET" and "passes" in parts:
         try:
             obj = s3.get_object(Bucket=PASS_BUCKET, Key="JamesTannahill.pkpass")
             pass_data = obj["Body"].read()

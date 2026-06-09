@@ -152,6 +152,10 @@ aws cloudfront create-invalidation --distribution-id E28BIZ72OMRUET --paths "/*"
 aws s3 cp add.html s3://contact.jamestannahill.com/add --content-type "text/html"
 aws cloudfront create-invalidation --distribution-id E28BIZ72OMRUET --paths "/add"
 
+# 404 page (CloudFront serves /404.html for 403 and 404 errors)
+aws s3 cp 404.html s3://contact.jamestannahill.com/404.html --content-type "text/html"
+aws cloudfront create-invalidation --distribution-id E28BIZ72OMRUET --paths "/404.html"
+
 # Wallet pass (full pipeline)
 ./update-pass.sh
 ```
@@ -162,6 +166,8 @@ aws cloudfront create-invalidation --distribution-id E28BIZ72OMRUET --paths "/ad
 index.html              Map page (Mapbox GL JS)
 contact.html            Contact/business card page
 add.html                NFC landing page: device-aware Wallet pass router
+404.html                Not-found page (served by CloudFront for 403/404)
+sitemap.xml             Sitemap (lists only the root URL)
 sw.js                   Service worker (PWA + offline cache)
 manifest.json           PWA manifest
 og-image.png            OG social preview image

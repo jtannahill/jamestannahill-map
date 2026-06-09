@@ -15,4 +15,4 @@ An interactive Mapbox map showing James Tannahill's location in New York City, w
 ## About
 
 James Tannahill — jamestannahill.com
-Intelligent Capital at xAI. Founder of Plocamium Holdings.
+Intelligent Capital at xAI. President, Plocamium Holdings.
