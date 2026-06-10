@@ -716,6 +716,13 @@
       ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
     }
   </style>
+  <!-- CSP NOTE: the inline script blocks below (and the one on add.html) are
+       allowlisted by sha256 hashes in the CloudFront response headers policy
+       "contact-jamestannahill-security-csp" (25fe67ef-1688-4657-b87a-8138ed0e245b).
+       Inline onclick="" handlers are covered by 'unsafe-hashes' plus per-handler
+       hashes. ANY edit to an inline script block or onclick attribute value
+       requires recomputing its hash and updating that policy, or the script will
+       be blocked in production. -->
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WRDEHD4QYL"></script>
   <script>

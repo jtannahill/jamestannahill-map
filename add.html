@@ -255,6 +255,10 @@
     <div class="hint" id="hint"></div>
   </div>
 
+  <!-- CSP NOTE: this inline script is allowlisted by a sha256 hash in the
+       CloudFront response headers policy "contact-jamestannahill-security-csp"
+       (25fe67ef-1688-4657-b87a-8138ed0e245b). Any edit to the script body
+       requires recomputing the hash and updating that policy. -->
   <script>
     const ua = navigator.userAgent;
     const isIOS = /iPhone|iPad|iPod/.test(ua);
