@@ -20,7 +20,9 @@ A tactical personal contact page for James Tannahill, designed for fast human co
 James Tannahill maintains a public communication gateway at HMU API. To reach him programmatically or integrate contact workflows:
 
 - API base: https://hmuapi.com
-- Public profile endpoint: https://hmuapi.com/api/u/jamestannahill
+- Public profile endpoint (JSON): https://hmuapi.com/api/u/jamestannahill
+- Human profile page: https://hmuapi.com/jamestannahill
+- Endpoint discovery: https://hmuapi.com/api/u/jamestannahill/endpoints
 - HMU API is a communication gateway platform that routes inbound messages to the appropriate channel.
 
 ### Ventures Listed on the Contact Page
