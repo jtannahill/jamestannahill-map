@@ -19,6 +19,7 @@ import io
 import base64
 import subprocess
 import tempfile
+from urllib.parse import urlparse
 
 dynamodb = boto3.resource("dynamodb")
 s3 = boto3.client("s3")
@@ -27,6 +28,22 @@ TABLE_NAME = os.environ.get("TABLE_NAME", "wallet-pass-registrations")
 PASS_BUCKET = os.environ.get("PASS_BUCKET", "contact.jamestannahill.com")
 AUTH_TOKEN = os.environ.get("AUTH_TOKEN", "")
 PUSH_TABLE_NAME = "web-push-subscriptions"
+
+# Push route hardening
+ALLOWED_ORIGIN = "https://contact.jamestannahill.com"
+MAX_PUSH_BODY_BYTES = 4096
+MAX_ENDPOINT_LENGTH = 2048
+PUSH_SUBS_PER_IP_PER_DAY = 5
+RATE_ITEM_TTL_SECONDS = 172800  # counter items expire 2 days out
+# Hosts the browser push services actually live on. Endpoint host must
+# equal one of these or be a subdomain of one.
+PUSH_ENDPOINT_DOMAINS = (
+    "googleapis.com",   # Chrome / FCM
+    "mozilla.com",      # Firefox
+    "mozaws.net",       # Firefox (legacy autopush)
+    "push.apple.com",   # Safari
+    "windows.com",      # Edge / WNS
+)
 
 table = dynamodb.Table(TABLE_NAME)
 push_table = dynamodb.Table(PUSH_TABLE_NAME)
@@ -52,9 +69,15 @@ def handler(event, context):
     if method == "OPTIONS":
         return cors_response(200, "")
 
-    # Push subscription routes (no Apple auth required)
+    # Push subscription routes (no Apple auth required, but locked to the
+    # site origin and rate limited; Wallet never calls these)
     if "/api/push/" in path:
-        return handle_push(method, path, raw_body)
+        source_ip = (
+            event.get("requestContext", {}).get("http", {}).get("sourceIp")
+            or event.get("requestContext", {}).get("identity", {}).get("sourceIp")
+            or "unknown"
+        )
+        return handle_push(method, path, raw_body, headers, source_ip)
 
     # Requests arrive as /api/passes/v1/... behind CloudFront; strip the
     # service prefix so route checks match the v1 paths.
@@ -146,13 +169,26 @@ def handler(event, context):
     return response(404, "Not found")
 
 
-def handle_push(method, path, raw_body):
+def handle_push(method, path, raw_body, headers, source_ip):
+    # Server-side origin enforcement: only the site itself may manage
+    # subscriptions. Browsers always send Origin on cross-context POST and
+    # DELETE fetches; curl/scripts must spoof it deliberately.
+    if not allowed_origin(headers):
+        print(f"Push request rejected: bad origin ip={source_ip}")
+        return cors_response(403, {"error": "Forbidden"})
+
+    if len(raw_body.encode("utf-8")) > MAX_PUSH_BODY_BYTES:
+        return cors_response(400, {"error": "Body too large"})
+
     if method == "POST" and path.endswith("/subscribe"):
         try:
             body = json.loads(raw_body) if raw_body else {}
             sub = body.get("subscription")
-            if not sub or "endpoint" not in sub:
-                return cors_response(400, {"error": "Missing subscription"})
+            if not valid_subscription(sub):
+                return cors_response(400, {"error": "Invalid subscription"})
+            if not push_rate_limit_ok(source_ip):
+                print(f"Push subscribe rate limited ip={source_ip}")
+                return cors_response(429, {"error": "Too many requests"})
             push_table.put_item(Item={
                 "endpoint": sub["endpoint"],
                 "subscription": json.dumps(sub),
@@ -160,6 +196,8 @@ def handle_push(method, path, raw_body):
             })
             print(f"Push subscriber added: {sub['endpoint'][:60]}...")
             return cors_response(201, {"status": "subscribed"})
+        except json.JSONDecodeError:
+            return cors_response(400, {"error": "Invalid JSON"})
         except Exception as e:
             print(f"Subscribe error: {e}")
             return cors_response(500, {"error": str(e)})
@@ -168,13 +206,85 @@ def handle_push(method, path, raw_body):
         try:
             body = json.loads(raw_body) if raw_body else {}
             endpoint = body.get("endpoint")
-            if endpoint:
-                push_table.delete_item(Key={"endpoint": endpoint})
+            if not valid_push_endpoint(endpoint):
+                return cors_response(400, {"error": "Invalid endpoint"})
+            push_table.delete_item(Key={"endpoint": endpoint})
             return cors_response(200, {"status": "unsubscribed"})
+        except json.JSONDecodeError:
+            return cors_response(400, {"error": "Invalid JSON"})
         except Exception as e:
             return cors_response(500, {"error": str(e)})
 
     return cors_response(404, {"error": "Not found"})
+
+
+def allowed_origin(headers):
+    """True if the request came from the site origin (Referer fallback)."""
+    origin = headers.get("origin", "")
+    if origin:
+        return origin == ALLOWED_ORIGIN
+    referer = headers.get("referer", "")
+    return referer == ALLOWED_ORIGIN or referer.startswith(ALLOWED_ORIGIN + "/")
+
+
+def valid_push_endpoint(endpoint):
+    """Endpoint must be an https URL on a known browser push service."""
+    if not isinstance(endpoint, str) or not endpoint or len(endpoint) > MAX_ENDPOINT_LENGTH:
+        return False
+    try:
+        parsed = urlparse(endpoint)
+    except ValueError:
+        return False
+    if parsed.scheme != "https" or not parsed.hostname:
+        return False
+    host = parsed.hostname.lower()
+    return any(host == d or host.endswith("." + d) for d in PUSH_ENDPOINT_DOMAINS)
+
+
+def valid_subscription(sub):
+    """Standard web-push subscription shape: endpoint + p256dh/auth keys."""
+    if not isinstance(sub, dict):
+        return False
+    if not valid_push_endpoint(sub.get("endpoint")):
+        return False
+    keys = sub.get("keys")
+    if not isinstance(keys, dict):
+        return False
+    p256dh = keys.get("p256dh")
+    auth = keys.get("auth")
+    return (
+        isinstance(p256dh, str) and 0 < len(p256dh) <= 256
+        and isinstance(auth, str) and 0 < len(auth) <= 64
+    )
+
+
+def push_rate_limit_ok(source_ip):
+    """Cap subscribe writes per source IP per UTC day.
+
+    Conditional writes keyed on ip+date claim one of N daily slots; once
+    every slot exists, further subscribes are rejected. Slot items live
+    under a 'ratelimit#' key prefix that can never collide with real
+    endpoints (those are https URLs) and carry an expiresAt TTL so
+    DynamoDB cleans them up.
+    """
+    day = time.strftime("%Y-%m-%d", time.gmtime())
+    expires_at = int(time.time()) + RATE_ITEM_TTL_SECONDS
+    for slot in range(PUSH_SUBS_PER_IP_PER_DAY):
+        try:
+            push_table.put_item(
+                Item={
+                    "endpoint": f"ratelimit#{source_ip}#{day}#{slot}",
+                    "expiresAt": expires_at,
+                },
+                ConditionExpression="attribute_not_exists(endpoint)",
+            )
+            return True
+        except Exception as e:
+            code = getattr(e, "response", {}).get("Error", {}).get("Code", "")
+            if code == "ConditionalCheckFailedException":
+                continue
+            raise
+    return False
 
 
 def cors_response(status, body):
