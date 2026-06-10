@@ -140,8 +140,11 @@ Tap iPhone to card
 ## Deploy
 
 ```bash
-# Map page
-aws s3 cp index.html s3://map.jamestannahill.com/index.html --content-type "text/html"
+# Map page — NOTE: the map source lives in map/, NOT the repo root.
+# Root index.html is the CONTACT card (it deploys to the contact bucket as
+# index.html). Deploying root index.html to the map bucket is the Apr-Jun
+# 2026 regression that served the contact card on map.jamestannahill.com.
+aws s3 sync map/ s3://map.jamestannahill.com/ --exclude ".*"
 aws cloudfront create-invalidation --distribution-id EBLKZPTH1FBUA --paths "/*"
 
 # Contact page
