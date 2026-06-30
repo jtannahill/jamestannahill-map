@@ -1,10 +1,10 @@
-# James Tannahill — Contact & Location
+# James Tannahill - Contact & Location
 
-> Contact page and interactive map for James Tannahill, Intelligent Capital at xAI.
+> Contact page and interactive map for James Tannahill, Intelligent Capital at xAI, President & Managing Partner of Plocamium Holdings, and Head of Field Operations at ProSecPR.
 
 ## contact.jamestannahill.com
 
-A structured contact page for James Tannahill. Includes venture links (Plocamium Holdings, 1nessAgency, MonkeyThorn Meet, gOOOvy, NewYorkLab, HMU API, RDLB), social profiles (LinkedIn, GitHub, X/Twitter), and a contact form via HMU API.
+A structured contact page for James Tannahill. Includes venture links (Plocamium Holdings, 1nessAgency, MonkeyThorn Meet, gOOOvy, NewYorkLab, HMU API, RDLB, ProSecPR), social profiles (LinkedIn, GitHub, X/Twitter), and a contact form via HMU API.
 
 Contact API: https://hmuapi.com/api/u/jamestannahill
 
@@ -14,5 +14,15 @@ An interactive Mapbox map showing James Tannahill's location in New York City, w
 
 ## About
 
-James Tannahill — jamestannahill.com
-Intelligent Capital at xAI. President, Plocamium Holdings.
+James Tannahill - jamestannahill.com
+Intelligent Capital at xAI. President, Plocamium Holdings. Head of Field Operations, ProSecPR.
+
+## Ventures
+
+- Plocamium Holdings (https://www.plocamium.com): Operator-led private equity, patient capital across industrial technologies and healthcare
+- ProSecPR (https://prosecpr.com): Veteran-led security advisory firm. Strategic intelligence, elite personnel, advanced technology, and continuous protection across Latin America
+- 1nessAgency (https://www.1nessagency.com): Digital marketing and growth systems engineered on ethics, data, and design for regulated industries
+- MonkeyThorn Meet (https://meet.monkeythorn.com/meet): Privacy-first video conferencing. Zero AI processing, zero recordings.
+- NewYorkLab (https://newyorklab.co): Urban intelligence platform mapping the future state of cities through data and sensor networks
+- HMU API (https://hmuapi.com): Structured contact channels for people, apps, and AI agents
+- RDLB (https://www.rdlb.nyc): Strategic brand architecture for investors and operators
