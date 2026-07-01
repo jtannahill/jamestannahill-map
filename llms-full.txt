@@ -32,7 +32,7 @@ James Tannahill maintains a public communication gateway at HMU API. To reach hi
 3. 1nessAgency — https://www.1nessagency.com — Healthcare marketing agency. HIPAA-compliant campaigns, brand strategy, and AI-native marketing infrastructure for health systems and life sciences companies.
 4. MonkeyThorn Meet — https://meet.monkeythorn.com/meet — Encrypted video conferencing application. End-to-end encrypted, built for sensitive conversations.
 5. gOOOvy — https://gooovy.com — Google Voice OOO auto-reply SaaS. Dual-stack free and pro tiers. Breakthrough list, VIP contacts, scheduling. $8.99/mo.
-6. NewYorkLab — https://newyorklab.co — Environmental intelligence platform for New York City.
+6. NewYorkLab — https://www.newyorklab.co — Environmental intelligence platform for New York City.
 7. HMU API — https://hmuapi.com — Communication gateway and contact routing API.
 8. RDLB — https://rdlb.nyc — Brand strategy firm. Partners with 1nessAgency on healthcare brand capital.
 
