@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>James Tannahill — Add to Wallet</title>
   <meta name="robots" content="noindex">
   <style>
@@ -37,6 +37,7 @@
       background: var(--ink);
       font-family: var(--nhg);
       -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
       color: var(--paper);
     }
 
@@ -45,7 +46,8 @@
       align-items: center;
       justify-content: center;
       min-height: 100dvh;
-      padding: 32px 24px;
+      padding: max(32px, env(safe-area-inset-top, 0px)) max(24px, env(safe-area-inset-right, 0px)) max(32px, env(safe-area-inset-bottom, 0px)) max(24px, env(safe-area-inset-left, 0px));
+      touch-action: manipulation;
     }
 
     /* Scanline */

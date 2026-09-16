@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>James Tannahill | Intelligent Capital · SpaceXAI</title>
   <meta name="description" content="James Tannahill. Intelligent Capital at SpaceXAI. Private Equity, Healthcare Intelligence, AI Infrastructure.">
   <meta property="og:title" content="James Tannahill | Intelligent Capital · SpaceXAI">
@@ -79,7 +79,7 @@
       --mono: 'JetBrains Mono', monospace;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
     body {
       background: var(--bg);
@@ -88,20 +88,28 @@
       -webkit-font-smoothing: antialiased;
       color: var(--ink);
       overflow-x: hidden;
+      touch-action: manipulation;
     }
 
     /* ── TOPBAR ── */
     .bb-topbar {
       background: var(--ink);
       border-bottom: 2px solid var(--red);
-      height: 44px;
+      min-height: 44px;
       display: flex;
       align-items: center;
-      padding: 0 20px;
+      padding: env(safe-area-inset-top, 0) max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px));
       position: sticky;
       top: 0;
       z-index: 100;
-      padding-top: env(safe-area-inset-top, 0);
+    }
+    .bb-topbar-inner {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      min-height: 44px;
+      padding: 0 4px;
+      gap: 12px;
     }
     .bb-topbar-name {
       color: #fff;
@@ -109,12 +117,18 @@
       font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
     }
     .bb-topbar-ts {
       margin-left: auto;
       color: #555;
       font-size: 9px;
       letter-spacing: 0.06em;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     /* ── PAGE ── */
@@ -253,6 +267,8 @@
       color: var(--text);
       flex: 1;
       letter-spacing: 0.02em;
+      min-width: 0;
+      overflow-wrap: anywhere;
     }
     .link-val.redacted {
       color: var(--muted);
@@ -279,6 +295,7 @@
       display: block;
     }
     .venture-card:hover, .venture-card:active { background: var(--bg-lift); }
+    .venture-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
     .venture-name {
       font-size: 13px;
       font-weight: 600;
@@ -355,7 +372,14 @@
     .qr-corner.tr { top: 0; right: 0; border-width: 1px 1px 0 0; }
     .qr-corner.bl { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
     .qr-corner.br { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
-    #qr { display: block; cursor: pointer; }
+    #qr {
+      display: block;
+      cursor: pointer;
+      max-width: min(188px, 62vw);
+      max-height: min(188px, 62vw);
+      width: auto !important;
+      height: auto !important;
+    }
     .qr-label {
       font-size: 8px;
       color: var(--muted);
@@ -401,7 +425,11 @@
       transition: opacity 0.25s ease;
     }
     .qr-overlay.active { opacity: 1; pointer-events: auto; }
-    .qr-overlay canvas { display: block; }
+    .qr-overlay canvas {
+      display: block;
+      max-width: min(260px, 80vw);
+      height: auto;
+    }
     .qr-overlay-label {
       margin-top: 16px;
       font-size: 9px;
@@ -460,11 +488,29 @@
 
     /* ── MOBILE ── */
     @media (max-width: 480px) {
-      .hero-name { font-size: 34px; }
-      .link-row { padding: 13px 20px; min-height: 52px; }
+      .hero { padding: 22px 16px 18px; }
+      .hero-eyebrow { letter-spacing: 0.12em; font-size: 8px; }
+      .hero-name { font-size: clamp(30px, 9vw, 34px); }
+      .section-hdr { padding: 10px 16px 4px; }
+      .link-row { padding: 13px 16px; min-height: 48px; }
+      .link-row.featured { padding-left: 14px; }
+      .link-lbl { width: 56px; }
       .link-val { font-size: 11px; }
+      .venture-card { padding: 14px 14px; }
       .venture-name { font-size: 14px; }
-      .action-btn { font-size: 11px; min-height: 52px; }
+      .action-btn { font-size: 11px; min-height: 48px; padding: 14px; }
+      .ds-cell { padding: 12px 6px; }
+      .ds-val { font-size: 12px; }
+      .qr-section { padding: 16px 16px 14px; }
+      .qr-btn { min-height: 44px; }
+      .footer { padding: 14px 16px; flex-wrap: wrap; gap: 8px 12px; }
+      .toast { max-width: calc(100vw - 32px); white-space: normal; text-align: center; }
+    }
+
+    @media (max-width: 360px) {
+      .link-lbl { display: none; }
+      .ds-val { font-size: 11px; letter-spacing: -0.03em; }
+      .bb-topbar-ts { letter-spacing: 0; }
     }
 
     /* ── VIEW TRANSITIONS ── */
@@ -537,8 +583,10 @@
 
   <!-- TOPBAR -->
   <div class="bb-topbar">
-    <span class="bb-topbar-name">James Tannahill</span>
-    <span class="bb-topbar-ts">40.765°N · 73.977°W</span>
+    <div class="bb-topbar-inner">
+      <span class="bb-topbar-name">James Tannahill</span>
+      <span class="bb-topbar-ts">40.765°N · 73.977°W</span>
+    </div>
   </div>
 
   <main id="main-content" class="page">
