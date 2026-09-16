@@ -19,7 +19,7 @@ Dark Mapbox GL JS map centered on W 57th Street, Manhattan. Plocamium Holdings m
 Both subdomains ship GA4 (`G-WRDEHD4QYL`, shared with apex `jamestannahill.com`). The footer includes a "privacy" link that points at the apex policy (`https://www.jamestannahill.com/privacy`), which explicitly covers both subdomains and discloses the GA4 property + opt-out instructions.
 
 ### `contact.jamestannahill.com`
-Bloomberg editorial digital business card (redesigned Apr 2026). JetBrains Mono. White/black/red palette: black topbar with `#e01a1a` red rule, white body, 3-cell data strip (xAI / NYC / PE·HC).
+Bloomberg editorial digital business card (redesigned Apr 2026). JetBrains Mono. White/black/red palette: black topbar with `#e01a1a` red rule, white body, 3-cell data strip (SpaceXAI / NYC / PE·HC).
 
 **Features:**
 - Contact links: Email (featured, red left border), Signal (redacted/tap-to-reveal), WhatsApp (redacted/tap-to-reveal), LinkedIn, GitHub, Bloomberg Terminal Profile, Art

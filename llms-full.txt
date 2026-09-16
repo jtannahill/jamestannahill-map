@@ -75,7 +75,7 @@ A: ProSecPR is a veteran-led security advisory firm uniting the operational disc
 ## About James Tannahill
 
 - Full name: James Tannahill
-- Current role: Intelligent Capital at xAI (2026-present)
+- Current role: Intelligent Capital at SpaceXAI (2026-present)
 - Based: New York City, NY (W 57th Street)
 - Email: contact@jamestannahill.com
 - Primary website: https://www.jamestannahill.com
@@ -83,4 +83,4 @@ A: ProSecPR is a veteran-led security advisory firm uniting the operational disc
 - LinkedIn: https://www.linkedin.com/in/jamesstannahill
 - Bloomberg: https://www.bloomberg.com/profile/person/23291921
 
-James Tannahill is the president of Plocamium Holdings, a private equity intelligence firm, and president of 1nessAgency. He builds AI-native capital markets infrastructure at xAI and maintains multiple SaaS products and developer tools across healthcare, communications, and intelligence domains.
+James Tannahill is the president of Plocamium Holdings, a private equity intelligence firm, and president of 1nessAgency. He builds AI-native capital markets infrastructure at SpaceXAI and maintains multiple SaaS products and developer tools across healthcare, communications, and intelligence domains.
