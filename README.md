@@ -16,7 +16,7 @@ Static pages and Apple Wallet pass infrastructure for `map.jamestannahill.com` a
 ### `map.jamestannahill.com`
 Dark Mapbox GL JS map centered on W 57th Street, Manhattan. Plocamium Holdings marker with popup, cinematic fly-in animation on load.
 
-Both subdomains ship GA4 (`G-WRDEHD4QYL`, shared with apex `jamestannahill.com`). The footer includes a "privacy" link that points at the apex policy (`https://www.jamestannahill.com/privacy`), which explicitly covers both subdomains and discloses the GA4 property + opt-out instructions.
+Neither subdomain ships analytics. The GA4 tag (`G-WRDEHD4QYL`, shared with apex `jamestannahill.com`) was removed from both pages on 2026-09-17: it loaded unconditionally, with none of the consent gating the apex applies, and `localStorage` consent does not cross origins. The footer still includes a "privacy" link pointing at the apex policy (`https://www.jamestannahill.com/privacy`).
 
 ### `contact.jamestannahill.com`
 Bloomberg editorial digital business card (redesigned Apr 2026). JetBrains Mono. White/black/red palette: black topbar with `#e01a1a` red rule, white body, 3-cell data strip (SpaceXAI / NYC / PE·HC).
