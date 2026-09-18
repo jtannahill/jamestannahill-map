@@ -1,6 +1,6 @@
 User-agent: *
-Allow: /
+Disallow: /
 
-# This host is a vCard / NFC landing (noindex). The indexed contact page is:
-Sitemap: https://jamestannahill.com/sitemap-index.xml
+# This host is a vCard / NFC landing. Do not index it.
+# Indexed contact page: https://jamestannahill.com/contact
 
