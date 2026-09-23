@@ -1,7 +1,7 @@
 // Service Worker — JT Contact Card
 // Cache-first offline support + web push handler
 
-const CACHE = 'jt-v3';
+const CACHE = 'jt-v4';
 const PRECACHE = [
   '/',
   '/favicon.png',
