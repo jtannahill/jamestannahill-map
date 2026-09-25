@@ -53,7 +53,7 @@ An interactive Mapbox map centered on James Tannahill's location in New York Cit
 ### Details
 
 - Location: W 57th Street, New York, NY
-- Coordinates: 40.765 N, 73.977 W
+- Coordinates: 40.764 N, 73.975 W
 - Map style: Mapbox dark-v11 with cinematic fly-in animation
 - Marker: custom gold Plocamium "P" marker at the office location
 - Popup: shows Plocamium Holdings address and link to plocamium.com
