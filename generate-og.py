@@ -70,7 +70,7 @@ draw.text(
 )
 
 # --- Coordinates ---
-coords_text = "40.765°N  ·  73.977°W  ·  NYC"
+coords_text = "40.764°N  ·  73.975°W  ·  NYC"
 coords_bbox = draw.textbbox((0, 0), coords_text, font=font_coords)
 coords_w = coords_bbox[2] - coords_bbox[0]
 draw.text(
