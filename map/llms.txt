@@ -1,10 +1,10 @@
-# James Tannahill — New York (Map)
+# James Tannahill · New York (Map)
 
 > Interactive dark Mapbox map centered on W 57th Street, Manhattan, marking the Plocamium Holdings office. Companion page to the digital business card at contact.jamestannahill.com.
 
 ## map.jamestannahill.com
 
-- [Map](https://map.jamestannahill.com/): Cinematic fly-in map, Plocamium Holdings marker, W 57th St, New York (40.765N, 73.977W)
+- [Map](https://map.jamestannahill.com/): Cinematic fly-in map, Plocamium Holdings marker, W 57th St, New York (40.764N, 73.975W)
 
 ## Related
 

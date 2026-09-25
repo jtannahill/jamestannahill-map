@@ -14,7 +14,7 @@ Static pages and Apple Wallet pass infrastructure for `map.jamestannahill.com` a
 ## Pages
 
 ### `map.jamestannahill.com`
-Dark Mapbox GL JS map centered on W 57th Street, Manhattan. Plocamium Holdings marker with popup, cinematic fly-in animation on load.
+Dark Mapbox GL JS map centered on W 57th Street, Manhattan. Plocamium Holdings marker with popup, cinematic fly-in animation on load. Source is `map/`; design rules in `map/DESIGN.md`. Pin = Plocamium Holdings, LLC Google place (9 W 57th St). Falls back to an "Open in Google Maps" link when the map cannot load.
 
 Neither subdomain ships analytics. The GA4 tag (`G-WRDEHD4QYL`, shared with apex `jamestannahill.com`) was removed from both pages on 2026-09-17: it loaded unconditionally, with none of the consent gating the apex applies, and `localStorage` consent does not cross origins. The footer still includes a "privacy" link pointing at the apex policy (`https://www.jamestannahill.com/privacy`).
 
@@ -144,7 +144,7 @@ Tap iPhone to card
 # Root index.html is the CONTACT card (it deploys to the contact bucket as
 # index.html). Deploying root index.html to the map bucket is the Apr-Jun
 # 2026 regression that served the contact card on map.jamestannahill.com.
-aws s3 sync map/ s3://map.jamestannahill.com/ --exclude ".*"
+aws s3 sync map/ s3://map.jamestannahill.com/ --exclude ".*" --exclude "DESIGN.md"
 aws cloudfront create-invalidation --distribution-id EBLKZPTH1FBUA --paths "/*"
 
 # Contact page
@@ -166,7 +166,7 @@ aws cloudfront create-invalidation --distribution-id E28BIZ72OMRUET --paths "/40
 ## Files
 
 ```
-index.html              Map page (Mapbox GL JS)
+index.html              Contact-card variant (the map page is map/index.html)
 contact.html            Contact/business card page
 add.html                NFC landing page: device-aware Wallet pass router
 404.html                Not-found page (served by CloudFront for 403/404)

@@ -2,20 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>James Tannahill — New York</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>James Tannahill · New York</title>
   <meta name="description" content="James Tannahill. Private Equity, Healthcare Intelligence, AI Infrastructure. New York City.">
-  <meta property="og:title" content="James Tannahill — New York">
+  <meta property="og:title" content="James Tannahill · New York">
   <meta property="og:description" content="Private Equity. Healthcare Intelligence. AI Infrastructure.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://map.jamestannahill.com">
+  <meta property="og:url" content="https://map.jamestannahill.com/">
   <meta property="og:image" content="https://map.jamestannahill.com/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="James Tannahill, New York">
   <meta property="og:site_name" content="James Tannahill">
+  <meta name="theme-color" content="#0A0A0A">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://map.jamestannahill.com/og-image.png">
-  <meta name="twitter:title" content="James Tannahill — New York">
+  <meta name="twitter:title" content="James Tannahill · New York">
   <meta name="twitter:description" content="Private Equity. Healthcare Intelligence. AI Infrastructure.">
   <meta name="robots" content="index, follow">
   <meta name="author" content="James Tannahill">
@@ -23,19 +25,19 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preload" href="https://fonts.jamestannahill.com/NHGDisplay-Roman.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="https://fonts.jamestannahill.com/NHGDisplay-Light.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="canonical" href="https://map.jamestannahill.com">
+  <link rel="canonical" href="https://map.jamestannahill.com/">
   <link rel="ai" href="/llms.txt" />
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Place",
-    "name": "James Tannahill — New York",
+    "name": "James Tannahill · New York",
     "description": "Plocamium Holdings. W 57th Street, New York.",
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 40.7654,
-      "longitude": -73.9770
+      "latitude": 40.7636,
+      "longitude": -73.9749
     },
     "address": {
       "@type": "PostalAddress",
@@ -44,7 +46,7 @@
       "addressRegion": "NY",
       "addressCountry": "US"
     },
-    "url": "https://map.jamestannahill.com"
+    "url": "https://map.jamestannahill.com/"
   }
   </script>
   <link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet">
@@ -87,7 +89,7 @@
       --gold-glow: rgba(201, 168, 76, 0.35);
       --ink: #0A0A0A;
       --smoke: #1A1A1A;
-      --ash: #6B6B6B;
+      --ash: #8C8C8C;
       --paper: #E8E4DC;
       --nhg: 'NHG Display', 'Neue Haas Grotesk Display Pro', 'Helvetica Neue', 'Helvetica', -apple-system, sans-serif;
     }
@@ -99,6 +101,7 @@
       width: 100vw;
       font-family: var(--nhg);
       -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
     }
 
     #map {
@@ -138,7 +141,8 @@
     /* Custom marker */
     .marker-container {
       cursor: pointer;
-      position: relative;
+      width: 34px;
+      height: 34px;
     }
 
     .marker-ping {
@@ -166,7 +170,7 @@
       box-shadow:
         0 0 12px var(--gold-glow),
         0 0 30px rgba(201, 168, 76, 0.15);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 160ms ease;
     }
 
     .marker-logo svg {
@@ -174,12 +178,18 @@
       height: 28px;
     }
 
-    .marker-container:hover .marker-logo {
-      transform: scale(1.15);
-      box-shadow:
-        0 0 20px var(--gold-glow),
-        0 0 50px rgba(201, 168, 76, 0.25);
+    @media (hover: hover) and (pointer: fine) {
+      .marker-container:hover .marker-logo {
+        transform: scale(1.15);
+        box-shadow:
+          0 0 20px var(--gold-glow),
+          0 0 50px rgba(201, 168, 76, 0.25);
+      }
     }
+
+    .marker-container:focus-visible { outline: none; }
+    .marker-container:focus-visible .marker-logo { outline: 1px solid var(--gold); outline-offset: 4px; }
+    .marker-container:active .marker-logo { transform: scale(0.97); }
 
     @keyframes ping {
       0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.6; }
@@ -189,10 +199,11 @@
     /* Info card */
     .card {
       position: fixed;
-      bottom: 48px;
+      bottom: calc(48px + env(safe-area-inset-bottom));
       left: 0;
       right: 0;
       z-index: 10;
+      pointer-events: none;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -203,6 +214,8 @@
       background: radial-gradient(ellipse 60% 80% at 50% 60%, rgba(10, 10, 10, 0.55) 0%, transparent 70%);
       padding: 32px 40px;
     }
+
+    .card a { pointer-events: auto; }
 
     @keyframes card-in {
       to { opacity: 1; transform: translateY(0); }
@@ -215,6 +228,7 @@
     }
 
     .card-name {
+      display: block;
       font-family: var(--nhg);
       font-weight: 300;
       font-size: 48px;
@@ -247,7 +261,7 @@
       padding: 12px 0;
       position: relative;
       width: fit-content;
-      transition: gap 0.3s ease;
+      transition: transform 160ms ease;
     }
 
     .card-cta::after {
@@ -255,14 +269,16 @@
       position: absolute;
       bottom: 8px;
       left: 0;
-      width: 0;
+      width: 100%;
       height: 1px;
       background: var(--gold);
-      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .card-cta:hover::after { width: 100%; }
-    .card-cta:hover { gap: 14px; }
+    .card-cta:focus-visible::after { transform: scaleX(1); }
+    .card-cta:active { transform: scale(0.97); }
 
     .cta-arrow {
       display: inline-block;
@@ -270,7 +286,7 @@
       height: 1px;
       background: var(--gold);
       position: relative;
-      transition: width 0.3s ease;
+      transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .cta-arrow::after {
@@ -285,13 +301,25 @@
       transform: rotate(45deg);
     }
 
-    .card-cta:hover .cta-arrow { width: 26px; }
+    @media (hover: hover) and (pointer: fine) {
+      .card-cta:hover::after { transform: scaleX(1); }
+      .card-cta:hover .cta-arrow { transform: translateX(4px); }
+      .wordmark-text:hover { opacity: 0.9; }
+      .popup-link:hover { border-color: var(--gold); }
+    }
+
+    .card-name:focus-visible,
+    .card-cta:focus-visible,
+    .wordmark-text:focus-visible,
+    .popup-link:focus-visible,
+    .privacy-link:focus-visible,
+    .mapboxgl-popup-close-button:focus-visible { outline: 1px solid var(--gold); outline-offset: 4px; }
 
     /* Coordinates display */
     .coords {
       position: fixed;
-      top: 32px;
-      right: 36px;
+      top: calc(32px + env(safe-area-inset-top));
+      right: calc(36px + env(safe-area-inset-right));
       z-index: 10;
       text-align: right;
       opacity: 0;
@@ -304,7 +332,7 @@
     }
 
     .coords-label {
-      font-size: 9px;
+      font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.25em;
       text-transform: uppercase;
@@ -314,10 +342,9 @@
 
     .coords-value {
       font-family: var(--nhg);
-      font-weight: 300;
-      font-style: italic;
+      font-weight: 400;
       font-size: 14px;
-      color: var(--gold-dim);
+      color: #A88B3F;
       letter-spacing: 0.06em;
     }
 
@@ -328,8 +355,8 @@
     /* Small wordmark top-left */
     .wordmark {
       position: fixed;
-      top: 32px;
-      left: 40px;
+      top: calc(32px + env(safe-area-inset-top));
+      left: calc(40px + env(safe-area-inset-left));
       z-index: 10;
       opacity: 0;
       animation: fade-in 1s ease 2.2s forwards;
@@ -337,17 +364,18 @@
 
     .wordmark-text {
       font-family: var(--nhg);
-      font-weight: 600;
+      font-weight: 500;
       font-size: 13px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--paper);
-      opacity: 0.4;
+      opacity: 0.6;
       text-decoration: none;
+      display: inline-block;
+      padding: 16px;
+      margin: -16px;
       transition: opacity 0.3s ease;
     }
-
-    .wordmark-text:hover { opacity: 0.8; }
 
     /* Popup override */
     .mapboxgl-popup-content {
@@ -365,7 +393,9 @@
     .mapboxgl-popup-close-button {
       color: var(--ash) !important;
       font-size: 18px !important;
-      padding: 4px 8px !important;
+      padding: 0 !important;
+      width: 44px !important;
+      height: 44px !important;
     }
 
     .popup-inner {
@@ -374,7 +404,7 @@
 
     .popup-logo {
       font-family: var(--nhg);
-      font-weight: 600;
+      font-weight: 500;
       font-size: 20px;
       color: var(--gold);
       width: 32px;
@@ -404,7 +434,7 @@
     }
 
     .popup-loc {
-      font-size: 10px;
+      font-size: 11px;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--ash);
@@ -413,7 +443,8 @@
 
     .popup-link {
       display: inline-block;
-      margin-top: 12px;
+      margin-top: 2px;
+      padding: 10px 0;
       font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.1em;
@@ -424,22 +455,43 @@
       transition: border-color 0.3s ease;
     }
 
-    .popup-link:hover { border-color: var(--gold); }
+
+    .privacy-link {
+      position: absolute;
+      left: 50%;
+      bottom: -0.5rem;
+      transform: translateX(-50%);
+      padding: 12px 16px;
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      color: var(--paper);
+      opacity: 0.6;
+      text-decoration: none;
+    }
+
+    .map-fallback {
+      display: none;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      padding: 12px 0;
+    }
+
+    body.no-map .map-fallback { display: inline-block; }
 
     /* Mobile */
     @media (max-width: 600px) {
       .card {
-        bottom: 28px;
+        bottom: calc(28px + env(safe-area-inset-bottom));
       }
       .card-name { font-size: 36px; }
-      .wordmark { top: 20px; left: 24px; }
-      .coords { top: 20px; right: 24px; }
+      .wordmark { top: calc(20px + env(safe-area-inset-top)); left: calc(24px + env(safe-area-inset-left)); }
+      .coords { top: calc(20px + env(safe-area-inset-top)); right: calc(24px + env(safe-area-inset-right)); }
       .coords-value { font-size: 12px; }
     }
 
-    /* Scroll reveal */
-    .sr { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .sr.visible { opacity: 1; transform: translateY(0); }
     /* View transitions */
     @view-transition { navigation: auto; }
     ::view-transition-old(root) { animation: 200ms ease both ct-fade-out; }
@@ -447,8 +499,13 @@
     @keyframes ct-fade-out { to { opacity: 0; } }
     @keyframes ct-fade-in { from { opacity: 0; } }
     @media (prefers-reduced-motion: reduce) {
-      .sr { opacity: 1 !important; transform: none !important; }
+      .card, .coords, .wordmark { animation: none; opacity: 1; transform: none; }
+      .marker-ping { animation: none; opacity: 0; }
+      #map { transition: none; }
       ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
+    }
+    @media (prefers-reduced-transparency: reduce) {
+      .coords { background: var(--smoke); backdrop-filter: none; -webkit-backdrop-filter: none; }
     }
   </style>
 </head>
@@ -458,32 +515,38 @@
   <div class="grain"></div>
 
   <div class="wordmark">
-    <a href="https://www.jamestannahill.com" class="wordmark-text">JT</a>
+    <a href="https://www.jamestannahill.com" class="wordmark-text" aria-label="JT, James Tannahill home">JT</a>
   </div>
 
-  <div class="coords sr">
+  <div class="coords">
     <div class="coords-label">Location</div>
-    <div class="coords-value">40.765&deg;N &middot; 73.977&deg;W</div>
+    <div class="coords-value">40.764&deg;N &middot; 73.975&deg;W</div>
   </div>
 
-  <div class="card sr">
+  <main class="card">
     <div class="card-rule"></div>
     <div>
-      <a href="https://contact.jamestannahill.com" class="card-name" style="text-decoration:none;color:var(--paper);transition:color 0.3s ease;">James Tannahill</a>
+      <h1 style="font:inherit;margin:0"><a href="https://contact.jamestannahill.com" class="card-name" style="text-decoration:none;color:var(--paper);">James Tannahill</a></h1>
       <div class="card-subtitle">W 57th St &middot; New York</div>
     </div>
+    <a href="https://maps.app.goo.gl/XjUupgjudiNXR4S2A" class="map-fallback">Open in Google Maps</a>
+    <noscript><style>.map-fallback { display: inline-block; }</style></noscript>
     <a href="https://www.jamestannahill.com" class="card-cta">
       Visit site <span class="cta-arrow"></span>
     </a>
-    <a href="https://www.jamestannahill.com/privacy" style="position:absolute;right:1.25rem;bottom:0.4rem;font-size:0.55rem;letter-spacing:0.08em;color:var(--paper);opacity:0.45;text-decoration:none;">privacy</a>
-  </div>
+    <a href="https://www.jamestannahill.com/privacy" class="privacy-link">Privacy</a>
+  </main>
 
   <script>
-    mapboxgl.accessToken = 'pk.eyJ1IjoiamFtZXN0YW5uYWhpbGwiLCJhIjoiY21tb3Y1cm96MGNpcDJxcHFmZTdkam0wcyJ9.0nI0daKUj042FAsus87gXQ';
+    if (typeof mapboxgl === 'undefined') document.body.classList.add('no-map');
+    else mapboxgl.accessToken = 'pk.eyJ1IjoiamFtZXN0YW5uYWhpbGwiLCJhIjoiY21tb3Y1cm96MGNpcDJxcHFmZTdkam0wcyJ9.0nI0daKUj042FAsus87gXQ';
 
-    const PLOCAMIUM = [-73.9769, 40.7654]; // W 57th St, New York
+    const PLOCAMIUM = [-73.9749, 40.7636]; // 9 W 57th St, New York (Google place pin)
 
-    const map = new mapboxgl.Map({
+    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let map;
+    try {
+      map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/dark-v11',
       center: [-74.02, 40.72],  // Start slightly offset
@@ -493,9 +556,26 @@
       antialias: true,
       attributionControl: false,
       logoPosition: 'bottom-right'
+      });
+    } catch (err) {
+      document.body.classList.add('no-map');
+    }
+
+    if (map) {
+    map.on('error', e => {
+      if (!map.loaded() && /style|token|401|403/i.test(String(e.error && e.error.message))) {
+        document.body.classList.add('no-map');
+      }
     });
 
     map.addControl(new mapboxgl.AttributionControl({ compact: true }), 'bottom-right');
+    const attribBtn = document.querySelector('.mapboxgl-ctrl-attrib-button');
+    if (attribBtn) attribBtn.setAttribute('aria-label', 'Toggle map attribution');
+
+    // A touch before the fly-in starts cancels it; the user's gesture wins
+    let userTook = false;
+    map.once('touchstart', () => { userTook = true; });
+    map.once('mousedown', () => { userTook = true; });
 
     // Disable scroll zoom for cleaner UX
     map.scrollZoom.disable();
@@ -504,7 +584,10 @@
       document.getElementById('map').classList.add('loaded');
 
       // Cinematic fly-in
-      setTimeout(() => {
+      if (still) {
+        map.jumpTo({ center: PLOCAMIUM, zoom: 15.5, bearing: -12 });
+      } else setTimeout(() => {
+        if (userTook) return;
         map.flyTo({
           center: PLOCAMIUM,
           zoom: 15.5,
@@ -519,6 +602,7 @@
       // Plocamium marker with logo placeholder
       const markerEl = document.createElement('div');
       markerEl.className = 'marker-container';
+      markerEl.setAttribute('aria-label', 'Plocamium Holdings, W 57th Street. Show details');
       markerEl.innerHTML = `
         <div class="marker-ping"></div>
         <div class="marker-logo">
@@ -535,7 +619,7 @@
         maxWidth: '240px'
       }).setHTML(`
         <div class="popup-inner">
-          <div class="popup-logo">P</div>
+          <div class="popup-logo" aria-hidden="true">P</div>
           <div class="popup-name">Plocamium Holdings</div>
           <div class="popup-addr">W 57th Street</div>
           <div class="popup-loc">New York, NY</div>
@@ -548,18 +632,19 @@
         .setPopup(popup)
         .addTo(map);
 
-      markerEl.addEventListener('click', () => marker.togglePopup());
-    });
-  </script>
-  <script>
-  (function() {
-    var obs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      popup.on('open', () => {
+        const close = popup.getElement().querySelector('.mapboxgl-popup-close-button');
+        if (close) close.removeAttribute('aria-hidden');
       });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.sr').forEach(function(el) { obs.observe(el); });
-  })();
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && popup.isOpen()) {
+          popup.remove();
+          markerEl.focus();
+        }
+      });
+    });
+    }
   </script>
 </body>
 </html>
