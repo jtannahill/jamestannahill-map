@@ -1,6 +1,7 @@
 User-agent: *
-Disallow: /
+Allow: /
 
-# This host is a vCard / NFC landing. Do not index it.
-# Indexed contact page: https://jamestannahill.com/contact
-
+# This host is a vCard / NFC landing. Crawling is allowed so link unfurlers
+# (iMessage, Slack, LinkedIn, X) can read the Open Graph tags, and so search
+# engines can see the page's noindex meta. Indexed contact page:
+# https://jamestannahill.com/contact

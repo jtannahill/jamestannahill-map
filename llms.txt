@@ -1,6 +1,6 @@
 # James Tannahill - Contact & Location
 
-> Contact page and interactive map for James Tannahill, Intelligent Capital at SpaceXAI, President & Managing Partner of Plocamium Holdings, and Head of Field Operations at ProSecPR.
+> Contact page and interactive map for James Tannahill, Intelligent Capital at SpaceXAI, former President and Managing Partner of Plocamium Holdings, and Head of Field Operations at ProSecPR.
 
 ## contact.jamestannahill.com
 
@@ -15,11 +15,11 @@ An interactive Mapbox map showing James Tannahill's location in New York City, w
 ## About
 
 James Tannahill - jamestannahill.com
-Intelligent Capital at SpaceXAI. President, Plocamium Holdings. Head of Field Operations, ProSecPR.
+Intelligent Capital at SpaceXAI. Formerly President and Managing Partner, Plocamium Holdings. Head of Field Operations, ProSecPR.
 
 ## Ventures
 
-- Plocamium Holdings (https://www.plocamium.com): Operator-led private equity, patient capital across industrial technologies and healthcare
+- Plocamium Holdings (https://www.plocamium.com), former role: Operator-led private equity, patient capital across industrial technologies and healthcare
 - ProSecPR (https://www.prosecpr.com): Veteran-led security advisory firm. Strategic intelligence, elite personnel, advanced technology, and continuous protection across Latin America
 - 1nessAgency (https://www.1nessagency.com): Digital marketing and growth systems engineered on ethics, data, and design for regulated industries
 - MonkeyThorn Meet (https://meet.monkeythorn.com/meet): Privacy-first video conferencing. Zero AI processing, zero recordings.

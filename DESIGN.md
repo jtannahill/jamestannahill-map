@@ -36,22 +36,24 @@ Scope: this document governs the contact card only (`contact.html`). The reposit
 ## Typography
 
 - Everything is set in `mono` (JetBrains Mono, weights 300 to 700 loaded from Google Fonts). Do not introduce a second family on this page; the Bloomberg "B" glyph in the link list is a one-off icon, not a text face.
-- Labels, section headers, eyebrows, and button text are uppercase with positive letter-spacing. Display text (the hero name, venture names, data strip values) is bold with negative letter-spacing.
-- Weight carries hierarchy: 700 for the name, section headers, and eyebrow; 600 for venture names; 500 for the topbar name and action buttons; 300 for the hero role line.
+- Labels, section headers, eyebrows, and button text are uppercase with positive letter-spacing. Display text (the hero name, venture names) is bold with negative letter-spacing.
+- Weight carries hierarchy: 700 for the name, section headers, and eyebrow; 600 for venture names; 500 for the topbar name and action buttons; 400 in `text` for the hero role line.
+- Size floor: uppercase labels (eyebrow, section headers, link labels, QR label, overlay label, venture flag) are at least 10px; values, descriptions, buttons, hints, links, and the toast are at least 11px. Keep the HUD feel with tracking and weight, never by shrinking below the floor.
 - Channel values that can be long (emails, URLs) must wrap with `overflow-wrap: anywhere` rather than truncate.
 
 ## Layout
 
 - One column, max width 480px, centered. Sections are full-bleed inside that column, separated by hairline rules rather than spacing or cards.
 - Horizontal gutter is 20px, dropping to 16px at 480px and below; the topbar respects safe-area insets on all sides.
-- Section order: topbar, hero, data strip, Contact, Ventures, Actions, QR, footer. Each section after the data strip opens with a section header: uppercase name plus a flexible hairline.
+- Section order: topbar, hero, Contact, Ventures, Actions, QR, footer. Each section after the hero opens with a section header: uppercase name plus a flexible hairline. There is no data strip; it only repeated the eyebrow and address.
+- Actions: Save Contact first, then Add to Apple Wallet, then Get Updates (only where push is supported). There is no View Map action; the hero address already links to the map.
 - Ventures and actions are two-column grids; an odd last item spans both columns. When a cell is unsupported (web push outside an installed iOS web app), remove the element so no empty cell remains.
-- Touch targets on mobile are at least 44px (48px for link rows and action buttons).
+- Touch targets on mobile are at least 44px (48px for link rows and action buttons), including the hero address link and footer links.
 
 ## Elevation & Depth
 
 - The page is flat: no shadows. Depth comes only from the sticky topbar, the full-screen QR overlay (near-opaque white scrim), and the toast.
-- Motion is small and optional. Section reveal (8px rise and fade) runs only under `(scripting: enabled) and (prefers-reduced-motion: no-preference)`, so content is never hidden when JavaScript is off. Smooth scrolling, view transitions, and the gyroscope tilt are all disabled under reduced motion.
+- Motion is small and optional. Section reveal (8px rise and fade) runs only under `(scripting: enabled) and (prefers-reduced-motion: no-preference)`, so content is never hidden when JavaScript is off. Smooth scrolling and view transitions are disabled under reduced motion. Revealed sections are forced visible for print. There is no device-orientation tilt and the page never requests motion permission.
 
 ## Shapes
 
@@ -65,6 +67,9 @@ Scope: this document governs the contact card only (`contact.html`). The reposit
 - QR block: canvas framed by four red corner brackets at half opacity. Activating it (click, Enter, Space) opens the overlay.
 - QR overlay: a modal dialog (`role="dialog"`, `aria-modal`) that is `inert` and `aria-hidden` while closed. Opening moves focus to the Close button and requests a screen wake lock; closing by the Close button, a tap anywhere, or Escape releases the wake lock and returns focus to the trigger.
 - Toast: `ink` bar with a red top rule, bottom-centered, `role="status"` with polite live announcements, auto-dismissed after 2.5s. Use it as the single feedback channel for copy, share, download, and push state.
+- Focus: every focusable element shows `:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }`.
+- Link row dividers are 1px `rule` on every row except the last row of `#links`.
+- Former roles are marked with a `venture-flag` ("Former") next to the venture name. Plocamium Holdings is a former role; the current role is Intelligent Capital at SpaceXAI.
 - Hover states apply only under `(hover: hover) and (pointer: fine)`; touch devices get `:active` feedback instead. Keep new hover rules inside that query.
 
 ## Do's and Don'ts
@@ -74,7 +79,4 @@ Scope: this document governs the contact card only (`contact.html`). The reposit
 
 ## Open Questions
 
-- Label sizes: data strip labels are 7px, section headers, link labels, QR label, and the overlay hint are 8px, the hero eyebrow is 9px (8px at 480px and below), and the topbar coordinates, hero address link, venture descriptions, link arrows, and QR buttons are 9px. These are below comfortable reading size on phones even with `muted` darkened. Should the label floor rise (for example to 10px or 11px), accepting a less dense HUD look?
-- Data strip redundancy: the strip (SpaceXAI, NYC, PE and HC) repeats what the hero eyebrow and role line already say. Keep it as a HUD readout, replace it with information not stated elsewhere, or remove it?
-- Action order: Save Contact, View Map, Add to Apple Wallet, then Notify Me (only where push is supported). Should the Wallet pass or Save Contact lead, and should View Map sit in Actions when the hero coordinates already link to the map?
-- Gyroscope tilt: the page tilts up to 4 degrees with device orientation, and on iOS it asks for motion permission on the first touch. Is the effect worth a permission prompt on a business card, or should it be opt-in or removed?
+- None open. Label floor, data strip, action order, and the gyroscope tilt were decided by the owner on 2026-10-01 (see Typography, Layout, and Elevation).

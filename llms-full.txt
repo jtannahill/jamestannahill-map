@@ -83,4 +83,4 @@ A: ProSecPR is a veteran-led security advisory firm uniting the operational disc
 - LinkedIn: https://www.linkedin.com/in/jamesstannahill
 - Bloomberg: https://www.bloomberg.com/profile/person/23291921
 
-James Tannahill is the president of Plocamium Holdings, a private equity intelligence firm, and president of 1nessAgency. He builds AI-native capital markets infrastructure at SpaceXAI and maintains multiple SaaS products and developer tools across healthcare, communications, and intelligence domains.
+James Tannahill was formerly President and Managing Partner of Plocamium Holdings, a private equity intelligence firm, and is president of 1nessAgency. He builds AI-native capital markets infrastructure at SpaceXAI and maintains multiple SaaS products and developer tools across healthcare, communications, and intelligence domains.
