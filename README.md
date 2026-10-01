@@ -14,7 +14,7 @@ Static pages and Apple Wallet pass infrastructure for `map.jamestannahill.com` a
 ## Pages
 
 ### `map.jamestannahill.com`
-Dark Mapbox GL JS map centered on W 57th Street, Manhattan. Plocamium Holdings marker with popup, cinematic fly-in animation on load. Source is `map/`; design rules in `map/DESIGN.md`. Pin = Plocamium Holdings, LLC Google place (9 W 57th St). Falls back to an "Open in Google Maps" link when the map cannot load.
+Dark Mapbox GL JS map centered on W 57th Street, Manhattan. Marker with popup at the Plocamium Holdings office (a former role), cinematic fly-in animation on load. Source is `map/`; design rules in `map/DESIGN.md`. Pin = Plocamium Holdings, LLC Google place (9 W 57th St). Falls back to an "Open in Google Maps" link when the map cannot load.
 
 Neither subdomain ships analytics. The GA4 tag (`G-WRDEHD4QYL`, shared with apex `jamestannahill.com`) was removed from both pages on 2026-09-17: it loaded unconditionally, with none of the consent gating the apex applies, and `localStorage` consent does not cross origins. The footer still includes a "privacy" link pointing at the apex policy (`https://www.jamestannahill.com/privacy`).
 
@@ -23,7 +23,7 @@ Bloomberg editorial digital business card (redesigned Apr 2026). JetBrains Mono.
 
 **Features:**
 - Contact links: Email (featured, red left border), Signal (redacted/tap-to-reveal), WhatsApp (redacted/tap-to-reveal), LinkedIn, GitHub, Bloomberg Terminal Profile, Art
-- Ventures grid: Plocamium, 1nessAgency, MonkeyThorn, gOOOvy, NewYorkLab, HMU API, RDLB
+- Ventures grid: Plocamium (flagged Former), 1nessAgency, MonkeyThorn, gOOOvy, NewYorkLab, HMU API, RDLB
 - vCard download: saves contact to phone with all channels
 - QR code: MECARD format, dark modules on light bg, red crosshairs, fullscreen overlay on tap
 - Apple Wallet pass: add to Wallet via button or NFC physical card
@@ -127,10 +127,7 @@ Tap iPhone to card
 
 ## Infrastructure
 
-| Subdomain | S3 Bucket | CloudFront ID |
-|---|---|---|
-| map.jamestannahill.com | map.jamestannahill.com | EBLKZPTH1FBUA |
-| contact.jamestannahill.com | contact.jamestannahill.com | E28BIZ72OMRUET |
+Each subdomain is a static site in its own S3 bucket behind its own CloudFront distribution.
 
 - **DNS:** Cloudflare CNAMEs → CloudFront
 - **SSL:** ACM certificates (DNS-validated)
@@ -140,24 +137,27 @@ Tap iPhone to card
 ## Deploy
 
 ```bash
-# Map page — NOTE: the map source lives in map/, NOT the repo root.
+# Placeholders: MAP_BUCKET / CONTACT_BUCKET are the S3 buckets and MAP_DIST /
+# CONTACT_DIST the CloudFront distribution IDs for each subdomain.
+
+# Map page. NOTE: the map source lives in map/, NOT the repo root.
 # Root index.html is the CONTACT card (it deploys to the contact bucket as
 # index.html). Deploying root index.html to the map bucket is the Apr-Jun
 # 2026 regression that served the contact card on map.jamestannahill.com.
-aws s3 sync map/ s3://map.jamestannahill.com/ --exclude ".*" --exclude "DESIGN.md"
-aws cloudfront create-invalidation --distribution-id EBLKZPTH1FBUA --paths "/*"
+aws s3 sync map/ "s3://$MAP_BUCKET/" --exclude ".*" --exclude "DESIGN.md"
+aws cloudfront create-invalidation --distribution-id "$MAP_DIST" --paths "/*"
 
 # Contact page
-aws s3 cp contact.html s3://contact.jamestannahill.com/index.html --content-type "text/html"
-aws cloudfront create-invalidation --distribution-id E28BIZ72OMRUET --paths "/*"
+aws s3 cp contact.html "s3://$CONTACT_BUCKET/index.html" --content-type "text/html"
+aws cloudfront create-invalidation --distribution-id "$CONTACT_DIST" --paths "/*"
 
 # NFC landing page
-aws s3 cp add.html s3://contact.jamestannahill.com/add --content-type "text/html"
-aws cloudfront create-invalidation --distribution-id E28BIZ72OMRUET --paths "/add"
+aws s3 cp add.html "s3://$CONTACT_BUCKET/add" --content-type "text/html"
+aws cloudfront create-invalidation --distribution-id "$CONTACT_DIST" --paths "/add"
 
 # 404 page (CloudFront serves /404.html for 403 and 404 errors)
-aws s3 cp 404.html s3://contact.jamestannahill.com/404.html --content-type "text/html"
-aws cloudfront create-invalidation --distribution-id E28BIZ72OMRUET --paths "/404.html"
+aws s3 cp 404.html "s3://$CONTACT_BUCKET/404.html" --content-type "text/html"
+aws cloudfront create-invalidation --distribution-id "$CONTACT_DIST" --paths "/404.html"
 
 # Wallet pass (full pipeline)
 ./update-pass.sh
