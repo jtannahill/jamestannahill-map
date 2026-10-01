@@ -63,7 +63,7 @@
         "key": "signal",
         "label": "ENCRYPTED CHANNEL",
         "value": "Open Signal",
-        "attributedValue": "<a href='https://signal.me/#eu/3hUDHh_XxE2hwtAccNwvVfHdogG5yYgHN3HUVkYwouyUV3rkCh1CDLW6u061E1Ha'>Open Signal →</a>"
+        "attributedValue": "<a href='https://signal.me/#eu/pipiM-n90HDfbE-rD_MVM1L8g3JJA-BXcmffyBAaFq7K1pg95_JMaJLfXqOm2jNi'>Open Signal →</a>"
       },
       {
         "key": "whatsapp",
@@ -116,7 +116,7 @@
       {
         "key": "ventures",
         "label": "OPERATIONS",
-        "value": "Plocamium Holdings · 1nessAgency · HLTHvrs · MonkeyThorn · gOOOvy · NewYorkLab · HMU API · RDLB"
+        "value": "Plocamium Holdings (former) · 1nessAgency · HLTHvrs · MonkeyThorn · gOOOvy · NewYorkLab · HMU API · RDLB"
       }
     ]
   },
