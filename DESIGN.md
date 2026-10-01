@@ -69,7 +69,7 @@ Scope: this document governs the contact card only (`contact.html`). The reposit
 - Toast: `ink` bar with a red top rule, bottom-centered, `role="status"` with polite live announcements, auto-dismissed after 2.5s. Use it as the single feedback channel for copy, share, download, and push state.
 - Focus: every focusable element shows `:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }`.
 - Link row dividers are 1px `rule` on every row except the last row of `#links`.
-- Former roles are marked with a `venture-flag` ("Former") next to the venture name. Plocamium Holdings is a former role; the current role is Intelligent Capital at SpaceXAI.
+- Former roles are marked with a `venture-flag` ("Former") next to the venture name. Plocamium Holdings is a former role; the current role is AI/ML for Capital Markets at SpaceXAI.
 - Hover states apply only under `(hover: hover) and (pointer: fine)`; touch devices get `:active` feedback instead. Keep new hover rules inside that query.
 
 ## Do's and Don'ts
