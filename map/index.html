@@ -9,14 +9,17 @@
   <meta property="og:description" content="AI/ML for Capital Markets at SpaceXAI. Private Equity. Healthcare Intelligence. AI Infrastructure.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://map.jamestannahill.com/">
-  <meta property="og:image" content="https://map.jamestannahill.com/og-image.png">
+  <meta property="og:image" content="https://map.jamestannahill.com/og-image.png?v=2">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="James Tannahill, New York">
+  <meta property="og:image:alt" content="James Tannahill. AI/ML for Capital Markets, SpaceXAI. 40.764°N, 73.975°W, NYC.">
   <meta property="og:site_name" content="James Tannahill">
   <meta name="theme-color" content="#0A0A0A">
+  <meta name="color-scheme" content="dark">
+  <link rel="manifest" href="/manifest.json">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://map.jamestannahill.com/og-image.png">
+  <meta name="twitter:image" content="https://map.jamestannahill.com/og-image.png?v=2">
+  <meta name="twitter:image:alt" content="James Tannahill. AI/ML for Capital Markets, SpaceXAI. 40.764°N, 73.975°W, NYC.">
   <meta name="twitter:title" content="James Tannahill · New York">
   <meta name="twitter:description" content="AI/ML for Capital Markets at SpaceXAI. Private Equity. Healthcare Intelligence. AI Infrastructure.">
   <meta name="robots" content="index, follow">
@@ -32,8 +35,8 @@
   {
     "@context": "https://schema.org",
     "@type": "Place",
-    "name": "James Tannahill · New York",
-    "description": "Plocamium Holdings. W 57th Street, New York.",
+    "name": "Former Plocamium Holdings office, W 57th Street",
+    "description": "Pin on the former Plocamium Holdings office, W 57th Street, New York, shown on James Tannahill's map.",
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 40.7636,
@@ -91,6 +94,8 @@
       --smoke: #1A1A1A;
       --ash: #8C8C8C;
       --paper: #E8E4DC;
+      --paper-dim: #B8B4AC;
+      color-scheme: dark;
       --nhg: 'NHG Display', 'Neue Haas Grotesk Display Pro', 'Helvetica Neue', 'Helvetica', -apple-system, sans-serif;
     }
 
@@ -100,9 +105,12 @@
       height: 100dvh;
       width: 100vw;
       font-family: var(--nhg);
+      color: var(--paper);
       -webkit-font-smoothing: antialiased;
       -webkit-tap-highlight-color: transparent;
     }
+
+    ::selection { background: rgba(201, 168, 76, 0.35); color: var(--paper); }
 
     #map {
       position: absolute;
@@ -128,16 +136,6 @@
       );
     }
 
-    /* Top grain texture */
-    .grain {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 3;
-      opacity: 0.03;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
-
     /* Custom marker */
     .marker-container {
       cursor: pointer;
@@ -154,7 +152,9 @@
       transform: translate(-50%, -50%);
       border-radius: 50%;
       background: var(--gold-glow);
-      animation: ping 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+      /* Three pulses once the map lands, then still: the card is the focus. */
+      animation: ping 3s cubic-bezier(0, 0, 0.2, 1) 3;
+      opacity: 0;
     }
 
     .marker-logo {
@@ -167,9 +167,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow:
-        0 0 12px var(--gold-glow),
-        0 0 30px rgba(201, 168, 76, 0.15);
+      box-shadow: 0 0 12px var(--gold-glow);
       transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 160ms ease;
     }
 
@@ -181,14 +179,12 @@
     @media (hover: hover) and (pointer: fine) {
       .marker-container:hover .marker-logo {
         transform: scale(1.15);
-        box-shadow:
-          0 0 20px var(--gold-glow),
-          0 0 50px rgba(201, 168, 76, 0.25);
+        box-shadow: 0 0 16px var(--gold-glow);
       }
     }
 
     .marker-container:focus-visible { outline: none; }
-    .marker-container:focus-visible .marker-logo { outline: 1px solid var(--gold); outline-offset: 4px; }
+    .marker-container:focus-visible .marker-logo { outline: 2px solid var(--gold); outline-offset: 4px; box-shadow: 0 0 0 4px rgba(10, 10, 10, 0.6); }
     .marker-container:active .marker-logo { transform: scale(0.97); }
 
     @keyframes ping {
@@ -210,8 +206,9 @@
       gap: 20px;
       opacity: 0;
       transform: translateY(24px);
-      animation: card-in 1s cubic-bezier(0.16, 1, 0.3, 1) 2s forwards;
-      background: radial-gradient(ellipse 60% 80% at 50% 60%, rgba(10, 10, 10, 0.55) 0%, transparent 70%);
+      animation: card-in 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+      animation-play-state: paused;
+      background: radial-gradient(ellipse 60% 80% at 50% 60%, rgba(10, 10, 10, 0.72) 0%, transparent 70%);
       padding: 32px 40px;
     }
 
@@ -232,20 +229,23 @@
       font-family: var(--nhg);
       font-weight: 300;
       font-size: 48px;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.01em;
       color: var(--paper);
       line-height: 1.1;
       text-align: center;
+      text-wrap: balance;
+      transition: opacity 160ms cubic-bezier(0.23, 1, 0.32, 1);
     }
 
     .card-subtitle {
       font-size: 12px;
-      font-weight: 300;
+      font-weight: 400;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--ash);
       margin-top: 8px;
       text-align: center;
+      text-shadow: 0 0 8px rgba(10, 10, 10, 0.9);
     }
 
     .card-cta {
@@ -279,6 +279,8 @@
 
     .card-cta:focus-visible::after { transform: scaleX(1); }
     .card-cta:active { transform: scale(0.97); }
+    /* Pressed state, visible on touch (iOS needs the touchstart listener in map.js). */
+    .card-cta:active, .privacy-link:active, .wordmark-text:active, .popup-link:active, .card-name:active { opacity: 0.6; }
 
     .cta-arrow {
       display: inline-block;
@@ -288,6 +290,9 @@
       position: relative;
       transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
     }
+
+    .popup-arrow { width: 12px; margin-left: 6px; vertical-align: middle; }
+    .popup-arrow::after { width: 5px; height: 5px; top: -2px; }
 
     .cta-arrow::after {
       content: '';
@@ -304,8 +309,9 @@
     @media (hover: hover) and (pointer: fine) {
       .card-cta:hover::after { transform: scaleX(1); }
       .card-cta:hover .cta-arrow { transform: translateX(4px); }
-      .wordmark-text:hover { opacity: 0.9; }
+      .wordmark-text:hover { opacity: 1; }
       .popup-link:hover { border-color: var(--gold); }
+      .card-name:hover { opacity: 0.85; }
     }
 
     .card-name:focus-visible,
@@ -313,7 +319,7 @@
     .wordmark-text:focus-visible,
     .popup-link:focus-visible,
     .privacy-link:focus-visible,
-    .mapboxgl-popup-close-button:focus-visible { outline: 1px solid var(--gold); outline-offset: 4px; }
+    .mapboxgl-popup-close-button:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; box-shadow: 0 0 0 4px rgba(10, 10, 10, 0.6); }
 
     /* Coordinates display */
     .coords {
@@ -323,10 +329,9 @@
       z-index: 10;
       text-align: right;
       opacity: 0;
-      animation: fade-in 1s ease 2.4s forwards;
-      background: rgba(10, 10, 10, 0.4);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      animation: fade-in 1s ease 0.6s forwards;
+      animation-play-state: paused;
+      background: rgba(10, 10, 10, 0.75);
       padding: 10px 14px;
       border-radius: 4px;
     }
@@ -352,6 +357,8 @@
       to { opacity: 1; }
     }
 
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
     /* Small wordmark top-left */
     .wordmark {
       position: fixed;
@@ -359,7 +366,8 @@
       left: calc(40px + env(safe-area-inset-left));
       z-index: 10;
       opacity: 0;
-      animation: fade-in 1s ease 2.2s forwards;
+      animation: fade-in 1s ease 0.4s forwards;
+      animation-play-state: paused;
     }
 
     .wordmark-text {
@@ -369,12 +377,13 @@
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--paper);
-      opacity: 0.6;
+      opacity: 0.85;
+      text-shadow: 0 0 8px rgba(10, 10, 10, 0.9);
       text-decoration: none;
       display: inline-block;
       padding: 16px;
       margin: -16px;
-      transition: opacity 0.3s ease;
+      transition: opacity 160ms cubic-bezier(0.23, 1, 0.32, 1);
     }
 
     /* Popup override */
@@ -452,7 +461,7 @@
       color: var(--gold);
       text-decoration: none;
       border-bottom: 1px solid transparent;
-      transition: border-color 0.3s ease;
+      transition: border-color 160ms cubic-bezier(0.23, 1, 0.32, 1);
     }
 
 
@@ -465,7 +474,8 @@
       font-size: 0.6875rem;
       letter-spacing: 0.08em;
       color: var(--paper);
-      opacity: 0.6;
+      opacity: 0.85;
+      text-shadow: 0 0 8px rgba(10, 10, 10, 0.9);
       text-decoration: none;
     }
 
@@ -487,6 +497,7 @@
         bottom: calc(28px + env(safe-area-inset-bottom));
       }
       .card-name { font-size: 36px; }
+      .card { padding: 24px 16px; }
       .wordmark { top: calc(20px + env(safe-area-inset-top)); left: calc(24px + env(safe-area-inset-left)); }
       .coords { top: calc(20px + env(safe-area-inset-top)); right: calc(24px + env(safe-area-inset-right)); }
       .coords-value { font-size: 12px; }
@@ -505,146 +516,55 @@
       ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
     }
     @media (prefers-reduced-transparency: reduce) {
-      .coords { background: var(--smoke); backdrop-filter: none; -webkit-backdrop-filter: none; }
+      .coords { background: var(--smoke); }
+    }
+
+    /* Overlays enter once the map has landed (map.js adds .is-landing after
+       the fly-in, at once under reduced motion, or when the map fails). */
+    body.is-landing .card, body.is-landing .wordmark, body.is-landing .coords { animation-play-state: running; }
+    body:not(.is-landing) .marker-ping { animation-play-state: paused; }
+
+    /* Touch targets follow the input, not the width. */
+    @media (pointer: coarse) {
+      .card-cta, .privacy-link, .popup-link, .map-fallback { min-height: 44px; display: inline-flex; align-items: center; }
+      .mapboxgl-ctrl-attrib-button { width: 44px !important; height: 44px !important; background-position: center !important; }
+    }
+
+    /* Short viewports (landscape phones): a smaller card keeps the pin clear. */
+    @media (max-height: 500px) {
+      .card { padding: 16px 40px; gap: 12px; bottom: calc(16px + env(safe-area-inset-bottom)); }
+      .card-name { font-size: 32px; }
     }
   </style>
 </head>
 <body>
   <div id="map"></div>
   <div class="vignette"></div>
-  <div class="grain"></div>
 
-  <div class="wordmark">
+  <header class="wordmark">
     <a href="https://www.jamestannahill.com" class="wordmark-text" aria-label="JT, James Tannahill home">JT</a>
-  </div>
+  </header>
 
-  <div class="coords">
+  <aside class="coords" aria-label="Location">
     <div class="coords-label">Location</div>
     <div class="coords-value">40.764&deg;N &middot; 73.975&deg;W</div>
-  </div>
+  </aside>
 
   <main class="card">
     <div class="card-rule"></div>
     <div>
       <h1 style="font:inherit;margin:0"><a href="https://contact.jamestannahill.com" class="card-name" style="text-decoration:none;color:var(--paper);">James Tannahill</a></h1>
       <div class="card-subtitle">W 57th St &middot; New York</div>
+      <p class="sr-only">The map is pinned on the former Plocamium Holdings office, W 57th Street, New York.</p>
     </div>
     <a href="https://maps.app.goo.gl/XjUupgjudiNXR4S2A" class="map-fallback">Open in Google Maps</a>
-    <noscript><style>.map-fallback { display: inline-block; }</style></noscript>
+    <noscript><style>.map-fallback { display: inline-block; } .card, .wordmark, .coords { animation-play-state: running; }</style></noscript>
     <a href="https://www.jamestannahill.com" class="card-cta">
       Visit site <span class="cta-arrow"></span>
     </a>
     <a href="https://www.jamestannahill.com/privacy" class="privacy-link">Privacy</a>
   </main>
 
-  <script>
-    if (typeof mapboxgl === 'undefined') document.body.classList.add('no-map');
-    else mapboxgl.accessToken = 'pk.eyJ1IjoiamFtZXN0YW5uYWhpbGwiLCJhIjoiY21tb3Y1cm96MGNpcDJxcHFmZTdkam0wcyJ9.0nI0daKUj042FAsus87gXQ';
-
-    const PLOCAMIUM = [-73.9749, 40.7636]; // 9 W 57th St, New York (Google place pin)
-
-    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let map;
-    try {
-      map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/dark-v11',
-      center: [-74.02, 40.72],  // Start slightly offset
-      zoom: 10.5,               // Start zoomed out
-      pitch: 0,
-      bearing: 0,
-      antialias: true,
-      attributionControl: false,
-      logoPosition: 'bottom-right'
-      });
-    } catch (err) {
-      document.body.classList.add('no-map');
-    }
-
-    if (map) {
-    map.on('error', e => {
-      if (!map.loaded() && /style|token|401|403/i.test(String(e.error && e.error.message))) {
-        document.body.classList.add('no-map');
-      }
-    });
-
-    map.addControl(new mapboxgl.AttributionControl({ compact: true }), 'bottom-right');
-    const attribBtn = document.querySelector('.mapboxgl-ctrl-attrib-button');
-    if (attribBtn) attribBtn.setAttribute('aria-label', 'Toggle map attribution');
-
-    // A touch before the fly-in starts cancels it; the user's gesture wins
-    let userTook = false;
-    map.once('touchstart', () => { userTook = true; });
-    map.once('mousedown', () => { userTook = true; });
-
-    // Disable scroll zoom for cleaner UX
-    map.scrollZoom.disable();
-
-    map.on('load', () => {
-      document.getElementById('map').classList.add('loaded');
-
-      // Cinematic fly-in
-      if (still) {
-        map.jumpTo({ center: PLOCAMIUM, zoom: 15.5, bearing: -12 });
-      } else setTimeout(() => {
-        if (userTook) return;
-        map.flyTo({
-          center: PLOCAMIUM,
-          zoom: 15.5,
-          pitch: 0,
-          bearing: -12,
-          duration: 3500,
-          curve: 1.4,
-          easing: t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
-        });
-      }, 400);
-
-      // Plocamium marker with logo placeholder
-      const markerEl = document.createElement('div');
-      markerEl.className = 'marker-container';
-      markerEl.setAttribute('aria-label', 'Plocamium Holdings, W 57th Street. Show details');
-      markerEl.innerHTML = `
-        <div class="marker-ping"></div>
-        <div class="marker-logo">
-          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <text x="14" y="19" text-anchor="middle" font-family="NHG Display, Helvetica Neue, sans-serif" font-weight="500" font-size="16" fill="#C9A84C">P</text>
-          </svg>
-        </div>
-      `;
-
-      const popup = new mapboxgl.Popup({
-        offset: 24,
-        closeButton: true,
-        closeOnClick: false,
-        maxWidth: '240px'
-      }).setHTML(`
-        <div class="popup-inner">
-          <div class="popup-logo" aria-hidden="true">P</div>
-          <div class="popup-name">Plocamium Holdings</div>
-          <div class="popup-addr">W 57th Street</div>
-          <div class="popup-loc">New York, NY</div>
-          <a href="https://www.plocamium.com" class="popup-link">plocamium.com &rarr;</a>
-        </div>
-      `);
-
-      const marker = new mapboxgl.Marker({ element: markerEl })
-        .setLngLat(PLOCAMIUM)
-        .setPopup(popup)
-        .addTo(map);
-
-      popup.on('open', () => {
-        const close = popup.getElement().querySelector('.mapboxgl-popup-close-button');
-        if (close) close.removeAttribute('aria-hidden');
-      });
-
-      document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && popup.isOpen()) {
-          popup.remove();
-          markerEl.focus();
-        }
-      });
-    });
-    }
-  </script>
+  <script src="/map.js"></script>
 </body>
 </html>

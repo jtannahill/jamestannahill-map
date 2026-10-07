@@ -1,0 +1,13 @@
+{
+  "name": "James Tannahill",
+  "short_name": "JT",
+  "description": "AI/ML for Capital Markets at SpaceXAI. New York.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "theme_color": "#0A0A0A",
+  "icons": [
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" },
+    { "src": "/favicon.png", "sizes": "32x32", "type": "image/png" }
+  ]
+}

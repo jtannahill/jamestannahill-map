@@ -1,0 +1,18 @@
+{
+  "Comment": "Security headers plus CSP for map.jamestannahill.com. All scripts are files on 'self' or Mapbox; no hashes.",
+  "Name": "map-jamestannahill-security-csp",
+  "SecurityHeadersConfig": {
+    "FrameOptions": { "Override": true, "FrameOption": "DENY" },
+    "ReferrerPolicy": { "Override": true, "ReferrerPolicy": "strict-origin-when-cross-origin" },
+    "ContentSecurityPolicy": {
+      "Override": true,
+      "ContentSecurityPolicy": "default-src 'self'; script-src 'self' https://api.mapbox.com; style-src 'self' 'unsafe-inline' https://api.mapbox.com; font-src 'self' https://fonts.jamestannahill.com; img-src 'self' data: blob:; connect-src 'self' https://api.mapbox.com https://events.mapbox.com https://*.tiles.mapbox.com; worker-src blob:; child-src blob:; manifest-src 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; form-action 'self'"
+    },
+    "ContentTypeOptions": { "Override": true },
+    "StrictTransportSecurity": { "Override": true, "IncludeSubdomains": true, "Preload": false, "AccessControlMaxAgeSec": 31536000 }
+  },
+  "CustomHeadersConfig": {
+    "Quantity": 1,
+    "Items": [ { "Header": "Permissions-Policy", "Value": "camera=(), microphone=(), geolocation=(), payment=(), usb=()", "Override": true } ]
+  }
+}

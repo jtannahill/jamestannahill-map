@@ -31,7 +31,8 @@ The pin is the Plocamium Holdings, LLC Google place: `[-73.9749, 40.7636]` (plac
 
 - Ink `#0A0A0A` page background; smoke `#1A1A1A` popup and reduced-transparency surfaces.
 - Gold `#C9A84C` marks interactive things only: marker, CTA, popup link, focus rings.
-- `#A88B3F` is the coordinates text (static, so a step down from gold, still 5:1 over the map).
+- `#A88B3F` is the coordinates text (static, so a step down from gold). Text over the map sits on a solid scrim (coords chip `rgba(10,10,10,0.75)`, no backdrop blur; card gradient 0.72) or carries a dark `text-shadow`, because road labels behind it are light enough to break 4.5:1 on their own.
+- The page declares `color-scheme: dark`, sets body text to paper and themes `::selection`. There is no grain layer (at 3% it was invisible). Scroll and pinch zoom are on; a wheel during the fly-in cancels it.
 - `--gold-dim` `#8B7332` is decoration only (the card rule). Never text.
 - Ash `#8C8C8C` for small caps labels; the old `#6B6B6B` failed 4.5:1.
 - Paper `#E8E4DC` for the name; secondary chrome sits at 0.6 opacity of paper, not lower.
@@ -43,9 +44,10 @@ NHG Display from fonts.jamestannahill.com, faces 300/400/500/700 only. Do not us
 ## Motion
 
 - Map fades in on load; the fly-in is a 3.5s `flyTo` 400ms after load. A touch or mousedown before it starts cancels it.
-- Card, wordmark and coords use CSS keyframes with 2s to 2.4s delays. There is no scroll reveal; the page does not scroll.
-- Marker ping loops; hover effects live inside `@media (hover: hover) and (pointer: fine)`; press states use `scale(0.97)`.
-- Hover transitions animate `transform` only (the CTA underline is `scaleX`, the arrow `translateX`).
+- Card, wordmark and coords use CSS keyframes that stay paused until `body.is-landing`, which `map.js` adds when the fly-in ends (at once under reduced motion or when the map fails, with a 6s backstop); they then stagger 0.2s, 0.4s, 0.6s. There is no scroll reveal; the page does not scroll.
+- The fly-in and `jumpTo` pass `padding` (card height + 48px at the bottom), so the pin lands in the open space above the card, never under the name link.
+- The marker pings three times after landing, then holds still. Hover effects live inside `@media (hover: hover) and (pointer: fine)`; press states drop links to 0.6 opacity (the CTA also scales to 0.97), and a passive `touchstart` listener makes `:active` fire on iOS.
+- Hover transitions animate `transform`, plus `opacity` and `border-color` at 160ms on the strong ease-out (`cubic-bezier(0.23, 1, 0.32, 1)`).
 - `prefers-reduced-motion`: `jumpTo` instead of `flyTo`, no ping, no entrance animations, no map fade.
 
 ## Layout
@@ -66,7 +68,7 @@ NHG Display from fonts.jamestannahill.com, faces 300/400/500/700 only. Do not us
 - Marker `aria-label` names the place; the popup close button has its `aria-hidden` removed on open; Escape closes the popup and returns focus to the marker.
 - The attribution button gets `aria-label="Toggle map attribution"`.
 - The card is the `main` landmark and the name is the `h1`.
-- Gold 1px focus rings with a 4px offset on every link and the marker.
+- Gold 2px focus rings with a 4px offset on every link and the marker; on the marker and popup close button a dark 4px halo keeps the ring visible over light map labels.
 
 ## Do and do not
 
