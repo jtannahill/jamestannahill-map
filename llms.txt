@@ -10,7 +10,7 @@ Contact API: https://hmuapi.com/api/u/jamestannahill
 
 ## map.jamestannahill.com
 
-An interactive Mapbox map showing James Tannahill's location in New York City, with a tactical business card layout and MECARD QR code for contact sharing.
+An interactive Mapbox map pinned on the former Plocamium Holdings office, W 57th Street, New York, with a card linking to jamestannahill.com.
 
 ## About
 
@@ -23,6 +23,7 @@ AI/ML for Capital Markets at SpaceXAI. Formerly President and Managing Partner, 
 - ProSecPR (https://www.prosecpr.com): Veteran-led security advisory firm. Strategic intelligence, elite personnel, advanced technology, and continuous protection across Latin America
 - 1nessAgency (https://www.1nessagency.com): Digital marketing and growth systems engineered on ethics, data, and design for regulated industries
 - MonkeyThorn Meet (https://meet.monkeythorn.com/): Privacy-first video conferencing. Zero AI processing, zero recordings.
+- gOOOvy (https://gooovy.com): Google Voice OOO auto-reply SaaS
 - NewYorkLab (https://www.newyorklab.co): Urban intelligence platform mapping the future state of cities through data and sensor networks
 - Nargusta (https://nargusta.com): Sailors' hospitality network. Yacht club members extend reciprocal guest privileges: club access, moorings, day sails, and local hosting
 - HMU API (https://hmuapi.com): Structured contact channels for people, apps, and AI agents

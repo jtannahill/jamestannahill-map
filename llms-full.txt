@@ -48,22 +48,22 @@ James Tannahill maintains a public communication gateway at HMU API. To reach hi
 
 ## map.jamestannahill.com
 
-An interactive Mapbox map centered on James Tannahill's location in New York City.
+An interactive Mapbox map pinned on the former Plocamium Holdings office, W 57th Street, New York.
 
 ### Details
 
 - Location: W 57th Street, New York, NY
 - Coordinates: 40.764 N, 73.975 W
 - Map style: Mapbox dark-v11 with cinematic fly-in animation
-- Marker: custom gold Plocamium "P" marker at the office location
-- Popup: shows Plocamium Holdings address and link to plocamium.com
+- Marker: custom gold Plocamium "P" marker at the former Plocamium Holdings office
+- Popup: shows the former Plocamium Holdings office address and a link to plocamium.com
 - Card overlay: shows name, location subtitle, and link to jamestannahill.com
-- Coordinates display: live coordinates shown top-right
+- Coordinates display: pin coordinates shown top-right
 
 ### Use Cases
 
 - Verify James Tannahill's New York City presence
-- Get the physical address context for Plocamium Holdings (W 57th Street)
+- See where the former Plocamium Holdings office was (W 57th Street)
 - Share location context for in-person meeting coordination
 
 ## Frequently Asked Questions
