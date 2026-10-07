@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>James Tannahill — Add to Wallet</title>
+  <title>James Tannahill | Add to Wallet</title>
   <meta name="robots" content="noindex">
   <style>
     @font-face {
@@ -112,7 +112,7 @@
       margin: 0 auto 32px;
     }
 
-    /* iOS Safari — show wallet button */
+    /* iOS Safari: show the wallet button */
     .wallet-btn {
       display: none;
       align-items: center;
@@ -257,33 +257,6 @@
     <div class="hint" id="hint"></div>
   </div>
 
-  <!-- CSP NOTE: this inline script is allowlisted by a sha256 hash in the
-       CloudFront response headers policy "contact-jamestannahill-security-csp"
-       (25fe67ef-1688-4657-b87a-8138ed0e245b). Any edit to the script body
-       requires recomputing the hash and updating that policy. -->
-  <script>
-    const ua = navigator.userAgent;
-    const isIOS = /iPhone|iPad|iPod/.test(ua);
-    const isSafari = /Safari/.test(ua) && !/CriOS|Chrome|FxiOS|OPiOS|EdgiOS/.test(ua);
-    const isAndroid = /Android/.test(ua);
-
-    if (isIOS && isSafari) {
-      // Safari on iOS — show wallet button (or auto-redirect)
-      document.getElementById('walletBtn').style.display = 'flex';
-      document.getElementById('hint').textContent = 'tap to add · updates automatically';
-      // Auto-trigger after brief delay so user sees the card
-      setTimeout(() => {
-        window.location.href = '/JamesTannahill.pkpass';
-      }, 800);
-    } else if (isIOS) {
-      // Chrome / Firefox on iOS
-      document.getElementById('safariPrompt').style.display = 'block';
-      document.getElementById('hint').textContent = 'ios · non-safari browser detected';
-    } else {
-      // Android / Desktop
-      document.getElementById('fallback').style.display = 'block';
-      document.getElementById('hint').textContent = isAndroid ? 'android · apple wallet not available' : 'desktop · scan on iphone';
-    }
-  </script>
+  <script src="/add.js"></script>
 </body>
 </html>

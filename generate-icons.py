@@ -41,6 +41,28 @@ def generate_apple_touch_icon():
     print("apple-touch-icon.png saved (180x180)")
 
 
+def generate_pwa_icon(px, maskable=False):
+    """192/512 manifest icons. The maskable one is full-bleed with the mark
+    inside the central 80% safe zone, so launchers can crop it to any shape."""
+    scale = 3
+    size = px * scale
+    img = Image.new("RGBA", (size, size), BG)
+    draw = ImageDraw.Draw(img)
+    font = ImageFont.truetype(FONT_PATH, int(size * (0.34 if maskable else 0.44)))
+    bbox = draw.textbbox((0, 0), "JT", font=font)
+    tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
+    draw.text(((size - tw) / 2 - bbox[0], (size - th) / 2 - bbox[1]), "JT", fill=GOLD, font=font)
+    if not maskable:
+        draw.rectangle([0, 0, size - 1, size - 1], outline=GOLD_DIM, width=max(3, size // 180))
+    img = img.resize((px, px), Image.LANCZOS)
+    name = f"icon-maskable-{px}.png" if maskable else f"icon-{px}.png"
+    img.save(f"{OUT_DIR}/{name}")
+    print(f"{name} saved ({px}x{px})")
+
+
 if __name__ == "__main__":
     generate_favicon()
     generate_apple_touch_icon()
+    generate_pwa_icon(192)
+    generate_pwa_icon(512)
+    generate_pwa_icon(512, maskable=True)

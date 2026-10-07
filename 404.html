@@ -2,17 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 — Not Found | James Tannahill</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Not Found | James Tannahill</title>
   <meta name="robots" content="noindex">
-  <meta name="theme-color" content="#060606">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#1a1a1a">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Same tokens as the contact card (contact.html :root). */
+    :root { --red: #e01a1a; --ink: #1a1a1a; --text: #333; --muted: #6b6b6b; --rule: #e0e0e0; --bg: #fff; color-scheme: light; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--bg); color: var(--ink); font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; -webkit-font-smoothing: antialiased; min-height: 100dvh; }
+    .bar { background: var(--ink); border-bottom: 2px solid var(--red); min-height: 44px; display: flex; align-items: center; padding: 0 20px; }
+    .bar span { color: #fff; font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; max-width: 480px; width: 100%; margin: 0 auto; }
+    main { max-width: 480px; margin: 0 auto; padding: 48px 20px; }
+    h1 { font-size: 34px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; margin-bottom: 14px; }
+    p { font-size: 13px; color: var(--text); line-height: 1.6; margin-bottom: 24px; }
+    a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); }
+    a span { color: var(--red); }
+    a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    @media (hover: hover) and (pointer: fine) { a:hover { border-color: var(--ink); } }
+  </style>
 </head>
-<body style="margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; background:#060606; color:#D8D4CC; font-family:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace; text-align:center;">
-  <main style="padding:2rem;">
-    <p style="margin:0 0 1rem; font-size:0.7rem; letter-spacing:0.3em; text-transform:uppercase; color:#C9A84C;">James Tannahill</p>
-    <h1 style="margin:0 0 1.5rem; font-size:1.5rem; font-weight:500; letter-spacing:0.05em;">404 &mdash; Not Found</h1>
-    <p style="margin:0 0 2rem; font-size:0.8rem; color:#9A9690;">The page you requested does not exist.</p>
-    <a href="https://contact.jamestannahill.com/" style="display:inline-block; padding:0.6rem 1.4rem; border:1px solid rgba(201,168,76,0.3); color:#C9A84C; text-decoration:none; font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase;">Return Home</a>
+<body>
+  <header class="bar"><span>James Tannahill</span></header>
+  <main>
+    <h1>Page not found</h1>
+    <p>Nothing lives at this address. The contact card is one tap away.</p>
+    <a href="https://contact.jamestannahill.com/">Back to the contact card <span aria-hidden="true">→</span></a>
   </main>
 </body>
 </html>

@@ -1,9 +1,12 @@
-// Service Worker — JT Contact Card
-// Cache-first offline support + web push handler
+// Service worker for the JT contact card.
+// Pages are network-first (a role or title change shows on the next visit);
+// static assets are cache-first. Bump CACHE on every deploy.
 
-const CACHE = 'jt-v4';
+const CACHE = 'jt-v5';
 const PRECACHE = [
   '/',
+  '/card.js',
+  '/James_Tannahill.vcf',
   '/favicon.png',
   '/apple-touch-icon.png',
   '/add-to-apple-wallet.svg',
@@ -29,17 +32,19 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
   if (e.request.url.includes('/api/')) return; // never cache API calls
-  e.respondWith(
-    caches.match(e.request).then(cached => {
-      const network = fetch(e.request).then(resp => {
-        if (resp && resp.ok) {
-          caches.open(CACHE).then(c => c.put(e.request, resp.clone()));
-        }
-        return resp;
-      });
-      return cached || network;
-    })
-  );
+  const put = resp => {
+    if (resp && resp.ok && new URL(e.request.url).origin === self.location.origin) {
+      const copy = resp.clone();
+      caches.open(CACHE).then(c => c.put(e.request, copy));
+    }
+    return resp;
+  };
+  if (e.request.mode === 'navigate') {
+    // Network first, cache as the offline fallback.
+    e.respondWith(fetch(e.request).then(put).catch(() => caches.match(e.request).then(r => r || caches.match('/'))));
+    return;
+  }
+  e.respondWith(caches.match(e.request).then(cached => cached || fetch(e.request).then(put)));
 });
 
 self.addEventListener('push', e => {

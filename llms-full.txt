@@ -1,4 +1,4 @@
-# James Tannahill — Contact & Location (Full Index)
+# James Tannahill: Contact & Location (Full Index)
 
 > Comprehensive index of contact.jamestannahill.com and map.jamestannahill.com for AI agents and LLM crawlers.
 
@@ -14,6 +14,7 @@ A tactical personal contact page for James Tannahill, designed for fast human co
 - LinkedIn: https://www.linkedin.com/in/jamesstannahill
 - GitHub: https://github.com/jtannahill
 - Bloomberg Terminal Profile: https://www.bloomberg.com/profile/person/23291921
+- Art: https://art.jamestannahill.com
 
 ### Programmatic Contact
 
@@ -27,23 +28,22 @@ James Tannahill maintains a public communication gateway at HMU API. To reach hi
 
 ### Ventures Listed on the Contact Page
 
-1. Plocamium Holdings — https://www.plocamium.com — Private equity intelligence platform. Operates the Plocamium Intelligence Network covering healthcare, industrials, GCC, and LATAM sectors. Publishes PSI (Plocamium Signal Index) for entity momentum scoring.
+1. Plocamium Holdings (https://www.plocamium.com), former role: Private equity intelligence platform. Operates the Plocamium Intelligence Network covering healthcare, industrials, GCC, and LATAM sectors. Publishes PSI (Plocamium Signal Index) for entity momentum scoring.
 2. ProSecPR (https://www.prosecpr.com): Veteran-led security advisory firm. Strategic intelligence, elite personnel, advanced technology, and continuous protection across Latin America. Headquartered in Puerto Rico.
-3. 1nessAgency — https://www.1nessagency.com — Healthcare marketing agency. HIPAA-compliant campaigns, brand strategy, and AI-native marketing infrastructure for health systems and life sciences companies.
-4. MonkeyThorn Meet — https://meet.monkeythorn.com/meet — Encrypted video conferencing application. End-to-end encrypted, built for sensitive conversations.
-5. gOOOvy — https://gooovy.com — Google Voice OOO auto-reply SaaS. Dual-stack free and pro tiers. Breakthrough list, VIP contacts, scheduling. $8.99/mo.
-6. NewYorkLab — https://www.newyorklab.co — Environmental intelligence platform for New York City.
-7. HMU API — https://hmuapi.com — Communication gateway and contact routing API.
-8. RDLB — https://rdlb.nyc — Brand strategy firm. Partners with 1nessAgency on healthcare brand capital.
-9. Nargusta — https://nargusta.com — Sailors' hospitality network. Yacht club members extend reciprocal guest privileges, carried on a digital letter of introduction.
+3. 1nessAgency (https://www.1nessagency.com): Healthcare marketing agency. HIPAA-compliant campaigns, brand strategy, and AI-native marketing infrastructure for health systems and life sciences companies.
+4. MonkeyThorn Meet (https://meet.monkeythorn.com/): Encrypted video conferencing application. End-to-end encrypted, built for sensitive conversations.
+5. gOOOvy (https://gooovy.com): Google Voice OOO auto-reply SaaS. Dual-stack free and pro tiers. Breakthrough list, VIP contacts, scheduling. $8.99/mo.
+6. NewYorkLab (https://www.newyorklab.co): Environmental intelligence platform for New York City.
+7. HMU API (https://hmuapi.com): Communication gateway and contact routing API.
+8. RDLB (https://rdlb.nyc): Brand strategy firm. Partners with 1nessAgency on healthcare brand capital.
+9. Nargusta (https://nargusta.com): Sailors' hospitality network. Yacht club members extend reciprocal guest privileges, carried on a digital letter of introduction.
 
 ### Page Features
 
-- MECARD QR code: scan to add James Tannahill as a contact on iOS or Android
-- vCard download: .vcf file with all contact details
-- Apple Wallet pass: /JamesTannahill.pkpass
+- QR code (MECARD): scan to add James Tannahill as a contact on iOS or Android; also full screen from the QR button in the top bar
+- vCard download: https://contact.jamestannahill.com/James_Tannahill.vcf
+- Apple Wallet pass: /JamesTannahill.pkpass (offered on Apple devices)
 - Web push notifications: supported via service worker
-- Gyroscope parallax: subtle 3D tilt on mobile devices
 - PWA: installable as a home screen app (manifest.json + sw.js)
 
 ## map.jamestannahill.com
@@ -78,7 +78,7 @@ A: ProSecPR is a veteran-led security advisory firm uniting the operational disc
 - Current role: AI/ML for Capital Markets at SpaceXAI (2026-present)
 - Based: New York City, NY (W 57th Street)
 - Email: contact@jamestannahill.com
-- Primary website: https://www.jamestannahill.com
+- Primary website: https://jamestannahill.com
 - GitHub: https://github.com/jtannahill (29 repos)
 - LinkedIn: https://www.linkedin.com/in/jamesstannahill
 - Bloomberg: https://www.bloomberg.com/profile/person/23291921

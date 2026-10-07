@@ -4,7 +4,7 @@
 
 ## contact.jamestannahill.com
 
-A structured contact page for James Tannahill. Includes venture links (Plocamium Holdings, 1nessAgency, MonkeyThorn Meet, gOOOvy, NewYorkLab, HMU API, RDLB, ProSecPR), social profiles (LinkedIn, GitHub, X/Twitter), and a contact form via HMU API.
+A structured contact page for James Tannahill. Includes email, Signal and WhatsApp (tap to reveal), profiles (LinkedIn, GitHub, Bloomberg, Art), venture links (Plocamium Holdings as a former role, ProSecPR, 1nessAgency, MonkeyThorn, gOOOvy, NewYorkLab, Nargusta, HMU API, RDLB), a contact QR code, a vCard download, and an Apple Wallet pass.
 
 Contact API: https://hmuapi.com/api/u/jamestannahill
 
@@ -22,7 +22,7 @@ AI/ML for Capital Markets at SpaceXAI. Formerly President and Managing Partner, 
 - Plocamium Holdings (https://www.plocamium.com), former role: Operator-led private equity, patient capital across industrial technologies and healthcare
 - ProSecPR (https://www.prosecpr.com): Veteran-led security advisory firm. Strategic intelligence, elite personnel, advanced technology, and continuous protection across Latin America
 - 1nessAgency (https://www.1nessagency.com): Digital marketing and growth systems engineered on ethics, data, and design for regulated industries
-- MonkeyThorn Meet (https://meet.monkeythorn.com/meet): Privacy-first video conferencing. Zero AI processing, zero recordings.
+- MonkeyThorn Meet (https://meet.monkeythorn.com/): Privacy-first video conferencing. Zero AI processing, zero recordings.
 - NewYorkLab (https://www.newyorklab.co): Urban intelligence platform mapping the future state of cities through data and sensor networks
 - Nargusta (https://nargusta.com): Sailors' hospitality network. Yacht club members extend reciprocal guest privileges: club access, moorings, day sails, and local hosting
 - HMU API (https://hmuapi.com): Structured contact channels for people, apps, and AI agents

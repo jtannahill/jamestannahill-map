@@ -9,13 +9,13 @@
   <meta property="og:description" content="AI/ML for Capital Markets at SpaceXAI. Private Equity. Healthcare Intelligence. AI Infrastructure.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://contact.jamestannahill.com/">
-  <meta property="og:image" content="https://contact.jamestannahill.com/og-image.png">
+  <meta property="og:image" content="https://contact.jamestannahill.com/og-image.png?v=2">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="James Tannahill, AI/ML for Capital Markets at SpaceXAI">
   <meta property="og:site_name" content="James Tannahill">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://contact.jamestannahill.com/og-image.png">
+  <meta name="twitter:image" content="https://contact.jamestannahill.com/og-image.png?v=2">
   <meta name="twitter:image:alt" content="James Tannahill, AI/ML for Capital Markets at SpaceXAI">
   <meta name="twitter:title" content="James Tannahill | AI/ML for Capital Markets · SpaceXAI">
   <meta name="twitter:description" content="AI/ML for Capital Markets at SpaceXAI. Private Equity. Healthcare Intelligence. AI Infrastructure.">
@@ -25,7 +25,9 @@
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="color-scheme" content="light">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="JT">
   <meta name="theme-color" content="#1a1a1a">
@@ -50,7 +52,6 @@
     "address": { "@type": "PostalAddress", "streetAddress": "W 57th Street", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US" },
     "email": "contact@jamestannahill.com",
     "affiliation": [
-      {"@type": "Organization", "name": "SpaceXAI"},
       {"@type": "Organization", "name": "ProSecPR", "url": "https://www.prosecpr.com"},
       {"@type": "Organization", "name": "1nessAgency", "url": "https://www.1nessagency.com"},
       {"@type": "Organization", "name": "MonkeyThorn", "url": "https://meet.monkeythorn.com/"},
@@ -59,9 +60,6 @@
       {"@type": "Organization", "name": "Nargusta", "url": "https://nargusta.com"},
       {"@type": "Organization", "name": "HMU API", "url": "https://hmuapi.com"},
       {"@type": "Organization", "name": "RDLB", "url": "https://www.rdlb.nyc"}
-    ],
-    "alumniOf": [
-      {"@type": "Organization", "name": "Plocamium Holdings", "url": "https://www.plocamium.com", "description": "Former President and Managing Partner"}
     ]
   }
   </script>
@@ -70,6 +68,8 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    /* Component display rules (flex, grid) must not override [hidden]. */
+    [hidden] { display: none !important; }
 
     :root {
       --red: #e01a1a;
@@ -80,10 +80,12 @@
       --rule: #e0e0e0;
       --bg: #ffffff;
       --bg-lift: #f8f8f8;
+      /* Pressed state: visibly darker than white on a bright phone screen. */
+      --bg-press: #ececec;
       --mono: 'JetBrains Mono', monospace;
     }
 
-    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; color-scheme: light; }
     @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 
     body {
@@ -112,10 +114,22 @@
       display: flex;
       align-items: center;
       width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
       min-height: 44px;
       padding: 0 4px;
       gap: 12px;
     }
+    .bb-topbar-qr {
+      flex-shrink: 0;
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      min-width: 44px; min-height: 44px; margin-right: -8px; padding: 0 8px;
+      background: none; border: 0; color: #fff; cursor: pointer;
+      font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: 0.12em;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .bb-topbar-qr svg { width: 16px; height: 16px; }
+    .bb-topbar-qr:active { color: var(--red); }
     .bb-topbar-name {
       color: #fff;
       font-size: 11px;
@@ -165,13 +179,14 @@
       margin-bottom: 12px;
     }
     .hero-role {
-      font-size: 11px;
+      font-size: 13px;
       color: var(--text);
-      line-height: 1.55;
+      line-height: 1.5;
       margin-bottom: 10px;
       font-weight: 400;
       text-wrap: pretty;
     }
+    .hero-role-former { display: block; font-size: 11px; color: var(--muted); margin-top: 2px; }
     .hero-coords {
       font-size: 11px;
       color: var(--muted);
@@ -179,11 +194,12 @@
       text-decoration: none;
       display: inline-flex;
       align-items: center;
+      gap: 8px;
     }
 
     /* ── SECTION HEADER ── */
     .section-hdr {
-      padding: 10px 20px 4px;
+      padding: 18px 20px 4px;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -221,7 +237,7 @@
       font-family: var(--mono);
     }
     #links > .link-row:last-child { border-bottom: none; }
-    .link-row:active { background: var(--bg-lift); }
+    .link-row:active { background: var(--bg-press); }
     .link-row.featured {
       border-left: 2px solid var(--red);
       padding-left: 18px;
@@ -231,14 +247,6 @@
       height: 15px;
       color: #949494;
       flex-shrink: 0;
-    }
-    .link-ico-b {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Avenir 85 Heavy', 'Avenir Heavy', Avenir, sans-serif;
-      font-weight: 800;
-      font-size: 16px;
     }
     .link-lbl {
       font-size: 10px;
@@ -262,6 +270,8 @@
     }
     .link-val.revealed { color: var(--ink); }
     .link-arr { font-size: 11px; color: var(--red); flex-shrink: 0; }
+    .link-arr.dim { color: var(--muted); }
+    .link-arr.dim.live { color: var(--red); }
 
     /* ── VENTURES ── */
     .ventures-grid {
@@ -273,14 +283,14 @@
     }
     .venture-card {
       background: var(--bg);
-      padding: 14px 16px;
+      padding: 14px 20px;
       text-decoration: none;
       color: inherit;
       transition: background 0.1s;
       -webkit-tap-highlight-color: transparent;
       display: block;
     }
-    .venture-card:active { background: var(--bg-lift); }
+    .venture-card:active { background: var(--bg-press); }
     .venture-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
     .venture-name {
       font-size: 13px;
@@ -292,7 +302,7 @@
     .venture-desc {
       font-size: 11px;
       color: var(--muted);
-      letter-spacing: 0.02em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
     }
     .venture-flag {
@@ -301,7 +311,7 @@
       color: var(--muted);
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-left: 6px;
+      margin-left: 2px;
       vertical-align: 1px;
     }
 
@@ -314,7 +324,7 @@
     }
     .action-btn {
       background: var(--bg);
-      padding: 14px 16px;
+      padding: 14px 20px;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -331,7 +341,7 @@
       width: 100%;
       text-align: left;
     }
-    .action-btn:active { background: var(--bg-lift); }
+    .action-btn:active { background: var(--bg-press); }
     .action-btn svg { width: 14px; height: 14px; flex-shrink: 0; color: var(--muted); }
     .action-btn.subscribed { color: var(--red); }
     .action-btn.subscribed svg { color: var(--red); }
@@ -367,14 +377,8 @@
     .qr-corner.tr { top: 0; right: 0; border-width: 1px 1px 0 0; }
     .qr-corner.bl { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
     .qr-corner.br { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
-    #qr {
-      display: block;
-      cursor: pointer;
-      max-width: min(188px, 62vw);
-      max-height: min(188px, 62vw);
-      width: auto !important;
-      height: auto !important;
-    }
+    /* The script sizes the canvas to whole device pixels; no CSS scaling. */
+    #qr { display: block; cursor: pointer; image-rendering: pixelated; }
     .qr-label {
       font-size: 10px;
       color: var(--muted);
@@ -418,13 +422,10 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.25s ease;
+      overscroll-behavior: contain;
     }
     .qr-overlay.active { opacity: 1; pointer-events: auto; }
-    .qr-overlay canvas {
-      display: block;
-      max-width: min(260px, 80vw);
-      height: auto;
-    }
+    .qr-overlay canvas { display: block; image-rendering: pixelated; }
     .qr-overlay-label {
       margin-top: 16px;
       font-size: 10px;
@@ -445,6 +446,7 @@
       color: var(--ink);
       cursor: pointer;
     }
+    .qr-overlay-close:focus-visible { outline-offset: 3px; }
     .qr-overlay-hint {
       margin-top: 6px;
       font-size: 11px;
@@ -503,19 +505,28 @@
     @media (max-width: 480px) {
       .hero { padding: 22px 16px 18px; }
       .hero-eyebrow { letter-spacing: 0.12em; }
-      .hero-coords, .footer-link { min-height: 44px; }
       .hero-name { font-size: clamp(30px, 9vw, 34px); }
       .section-hdr { padding: 10px 16px 4px; }
-      .link-row { padding: 13px 16px; min-height: 48px; }
+      .link-row { padding: 13px 16px; }
       .link-row.featured { padding-left: 14px; }
       .link-lbl { width: 70px; }
-      .venture-card { padding: 14px 14px; }
+      .venture-card { padding: 14px 16px; }
       .venture-name { font-size: 14px; }
-      .action-btn { min-height: 48px; padding: 14px; }
+      .action-btn { padding: 14px 16px; }
       .qr-section { padding: 16px 16px 14px; }
-      .qr-btn { min-height: 44px; }
       .footer { padding: 14px 16px; flex-wrap: wrap; gap: 8px 12px; }
       .toast { max-width: calc(100vw - 32px); white-space: normal; text-align: center; }
+    }
+
+    /* Touch sizing follows the input, not the width: landscape phones and
+       tablets get the same targets as a portrait phone. */
+    @media (pointer: coarse) {
+      .link-row, .action-btn { min-height: 48px; }
+      .hero-coords, .footer-link, .qr-btn { min-height: 44px; }
+    }
+
+    @media (max-width: 380px) {
+      .bb-topbar-ts { display: none; }
     }
 
     @media (max-width: 360px) {
@@ -528,6 +539,7 @@
       .hero-coords:hover { color: var(--red); }
       .venture-card:hover { background: var(--bg-lift); }
       .action-btn:hover { background: var(--bg-lift); }
+      .bb-topbar-qr:hover { color: var(--red); }
       .qr-btn:hover { border-color: var(--ink); color: var(--ink); }
       .footer-link:hover { color: var(--ink); }
     }
@@ -541,6 +553,7 @@
     @keyframes fade-in { from { opacity: 0; } }
     @media (prefers-reduced-motion: reduce) {
       .sr { opacity: 1 !important; transform: none !important; }
+      .toast { transform: translateX(-50%) !important; transition: opacity 0.2s; }
       ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
     }
 
@@ -583,13 +596,9 @@
       border: 0;
     }
   </style>
-  <!-- CSP NOTE: the inline script blocks below (and the one on add.html) are
-       allowlisted by sha256 hashes in the CloudFront response headers policy
-       "contact-jamestannahill-security-csp" (25fe67ef-1688-4657-b87a-8138ed0e245b).
-       Inline onclick="" handlers are covered by 'unsafe-hashes' plus per-handler
-       hashes. ANY edit to an inline script block or onclick attribute value
-       requires recomputing its hash and updating that policy, or the script will
-       be blocked in production. -->
+  <!-- CSP NOTE: all behaviour lives in /card.js (covered by 'self'); keep
+       this page free of inline scripts and on* attributes so the CloudFront
+       policy needs no hashes. The JSON-LD block is data and is not affected. -->
 </head>
 <body>
 
@@ -598,8 +607,12 @@
   <!-- TOPBAR -->
   <header class="bb-topbar">
     <div class="bb-topbar-inner">
-      <span class="bb-topbar-name">James Tannahill</span>
+      <span class="bb-topbar-name" aria-hidden="true">James Tannahill</span>
       <span class="bb-topbar-ts">40.764°N · 73.975°W</span>
+      <button type="button" class="bb-topbar-qr" id="qrTopBtn" aria-label="Show contact QR code" data-needs-js hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM18 18h3v3h-3zM14 20h2M20 14v2"/></svg>
+        QR
+      </button>
     </div>
   </header>
 
@@ -609,8 +622,8 @@
     <header class="hero">
       <div class="hero-eyebrow">AI/ML for Capital Markets · SpaceXAI</div>
       <h1 class="hero-name">James<br>Tannahill</h1>
-      <p class="hero-role">Operator · Investor · Builder<br>Formerly President and Managing Partner, Plocamium Holdings</p>
-      <a href="https://map.jamestannahill.com" class="hero-coords">W 57th Street · New York, NY</a>
+      <p class="hero-role">Operator · Investor · Builder<span class="hero-role-former">Formerly President and Managing Partner, Plocamium Holdings</span></p>
+      <a href="https://map.jamestannahill.com" class="hero-coords" aria-label="W 57th Street, New York, NY, open map">W 57th Street · New York, NY<span class="link-arr" aria-hidden="true">→</span></a>
     </header>
 
     <!-- CONTACT LINKS -->
@@ -629,22 +642,22 @@
         <span class="link-arr" aria-hidden="true">→</span>
       </a>
 
-      <button type="button" class="link-row" id="signal-btn" aria-label="Show Signal handle">
+      <button type="button" class="link-row" id="signal-btn" aria-label="Show Signal handle" data-needs-js hidden>
         <svg class="link-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.5 14.5l-4-4 1.41-1.41L10.5 13.67l5.09-5.09L17 10l-6.5 6.5z"/>
         </svg>
         <span class="link-lbl">Signal</span>
         <span class="link-val redacted" id="signal-val">████████</span>
-        <span class="link-arr" style="color:var(--muted)" aria-hidden="true">→</span>
+        <span class="link-arr dim" aria-hidden="true">→</span>
       </button>
 
-      <button type="button" class="link-row" id="wa-btn" aria-label="Show WhatsApp link">
+      <button type="button" class="link-row" id="wa-btn" aria-label="Show WhatsApp link" data-needs-js hidden>
         <svg class="link-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
         </svg>
         <span class="link-lbl">WhatsApp</span>
         <span class="link-val redacted" id="wa-val">████████████</span>
-        <span class="link-arr" style="color:var(--muted)" aria-hidden="true">→</span>
+        <span class="link-arr dim" aria-hidden="true">→</span>
       </button>
 
       <a href="https://www.linkedin.com/in/jamesstannahill" target="_blank" rel="noopener" class="link-row">
@@ -666,7 +679,7 @@
       </a>
 
       <a href="https://www.bloomberg.com/profile/person/23291921" target="_blank" rel="noopener" class="link-row">
-        <span class="link-ico link-ico-b" aria-hidden="true">B</span>
+        <svg class="link-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3h7.2c3.3 0 5.3 1.7 5.3 4.4 0 1.8-1 3.1-2.6 3.7 2.1.5 3.4 2 3.4 4.2 0 3-2.3 4.7-6 4.7H6V3zm3.4 2.9v3.9h3.3c1.5 0 2.4-.7 2.4-2s-.9-1.9-2.4-1.9H9.4zm0 6.6v4.6h3.8c1.7 0 2.7-.8 2.7-2.3s-1-2.3-2.7-2.3H9.4z"/></svg>
         <span class="link-lbl">Bloomberg</span>
         <span class="link-val">Terminal Profile</span>
         <span class="link-arr" aria-hidden="true">→</span>
@@ -684,13 +697,13 @@
 
     <!-- VENTURES -->
     <div class="sr">
-      <div class="section-hdr" style="margin-top:8px">
+      <div class="section-hdr">
         <h2 class="section-hdr-name">Ventures</h2>
         <span class="section-hdr-rule"></span>
       </div>
       <div class="ventures-grid">
         <a href="https://www.plocamium.com" target="_blank" rel="noopener" class="venture-card">
-          <div class="venture-name">Plocamium<span class="venture-flag">Former</span></div>
+          <div class="venture-name">Plocamium <span class="venture-flag">Former</span></div>
           <div class="venture-desc">Private Equity</div>
         </a>
         <a href="https://www.prosecpr.com" target="_blank" rel="noopener" class="venture-card">
@@ -730,21 +743,21 @@
 
     <!-- ACTIONS -->
     <div class="sr">
-      <div class="section-hdr" style="margin-top:8px">
+      <div class="section-hdr">
         <h2 class="section-hdr-name">Actions</h2>
         <span class="section-hdr-rule"></span>
       </div>
       <div class="actions-grid">
-        <button class="action-btn" onclick="downloadVCard()">
+        <a class="action-btn" id="saveContact" href="/James_Tannahill.vcf" download="James_Tannahill.vcf">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
           </svg>
           Save Contact
-        </button>
-        <a href="./JamesTannahill.pkpass" class="action-btn action-wallet">
+        </a>
+        <a href="./JamesTannahill.pkpass" class="action-btn action-wallet" id="walletBtn" hidden>
           <img src="./add-to-apple-wallet.svg" alt="Add to Apple Wallet">
         </a>
-        <button class="action-btn" id="pushBtn" onclick="togglePush()" style="display:none;">
+        <button type="button" class="action-btn" id="pushBtn" hidden>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
           </svg>
@@ -754,7 +767,7 @@
     </div>
 
     <!-- QR -->
-    <div class="qr-section sr">
+    <div class="qr-section sr" data-needs-js hidden>
       <div class="qr-frame">
         <span class="qr-corner tl"></span>
         <span class="qr-corner tr"></span>
@@ -766,19 +779,18 @@
           tabindex="0"
           aria-label="Show contact QR code full screen"
           aria-describedby="qr-desc"
-          style="cursor:pointer;"
         ></canvas>
       </div>
       <p class="visually-hidden" id="qr-desc">QR code encoding James Tannahill contact card.</p>
-      <div class="qr-label" id="qr-label">contact.jamestannahill.com</div>
+      <div class="qr-label" id="qr-label">Scan to add contact</div>
       <div class="qr-actions">
-        <button class="qr-btn" onclick="shareQR()">
+        <button type="button" class="qr-btn" id="shareQrBtn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/>
           </svg>
           Share QR
         </button>
-        <button class="qr-btn" onclick="copyLink()">
+        <button type="button" class="qr-btn" id="copyLinkBtn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
           </svg>
@@ -805,301 +817,6 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
-  <script>
-  // ── SERVICE WORKER ────────────────────────────────────────────────────
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js').catch(e => console.warn('[SW]', e));
-    });
-  }
-
-  // ── WEB PUSH ──────────────────────────────────────────────────────────
-  const VAPID_PUBLIC_KEY = 'BFIFhADuQ1yanvfGWtfEhtWCDRegFn98goWLzQbU8qgb95YOatlYKNkDg2kWIVNKzMinEMbV_Lulou5EmGxx4bY';
-
-  function urlBase64ToUint8Array(b64) {
-    const pad = '='.repeat((4 - b64.length % 4) % 4);
-    const raw = atob((b64 + pad).replace(/-/g, '+').replace(/_/g, '/'));
-    return new Uint8Array([...raw].map(c => c.charCodeAt(0)));
-  }
-
-  async function initPush() {
-    if (!('Notification' in window) || !('serviceWorker' in navigator) || !('PushManager' in window)) {
-      // No push here (iOS Safari outside an installed web app): drop the cell so the grid has no empty block.
-      document.getElementById('pushBtn')?.remove();
-      return;
-    }
-    const btn = document.getElementById('pushBtn');
-    if (btn) btn.style.display = 'flex';
-    if (Notification.permission === 'granted') {
-      const sw = await navigator.serviceWorker.ready;
-      const sub = await sw.pushManager.getSubscription();
-      if (sub) updatePushBtn(true);
-    }
-  }
-
-  function updatePushBtn(subscribed) {
-    const btn = document.getElementById('pushBtn');
-    const lbl = document.getElementById('pushLabel');
-    if (!btn || !lbl) return;
-    lbl.textContent = subscribed ? 'Subscribed' : 'Get Updates';
-    if (subscribed) btn.classList.add('subscribed'); else btn.classList.remove('subscribed');
-  }
-
-  async function togglePush() {
-    if (!('Notification' in window) || !('PushManager' in window)) { showToast('Push not supported'); return; }
-    try {
-      const sw = await navigator.serviceWorker.ready;
-      const existing = await sw.pushManager.getSubscription();
-      if (existing) {
-        await existing.unsubscribe();
-        await fetch('/api/push/unsubscribe', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ endpoint: existing.endpoint }) });
-        updatePushBtn(false);
-        showToast('Notifications off');
-        return;
-      }
-      const perm = await Notification.requestPermission();
-      if (perm !== 'granted') { showToast('Notifications blocked. Allow them in browser settings.'); return; }
-      const sub = await sw.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY) });
-      const res = await fetch('/api/push/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ subscription: sub.toJSON() }) });
-      if (!res.ok) { await sub.unsubscribe().catch(() => {}); throw new Error('subscribe ' + res.status); }
-      updatePushBtn(true);
-      showToast('Notifications on');
-    } catch (e) {
-      console.warn('[push]', e);
-      showToast('Could not update notifications. Try again.');
-    }
-  }
-
-  window.addEventListener('load', initPush);
-  </script>
-
-  <script>
-    const MECARD = 'MECARD:N:Tannahill,James;ORG:SpaceXAI;TITLE:AI/ML for Capital Markets;EMAIL:contact@jamestannahill.com;URL:https://www.jamestannahill.com;ADR:W 57th Street;NOTE:Signal preferred;;';
-
-    function revealSignal(el) {
-      const val = document.getElementById('signal-val');
-      if (val.classList.contains('revealed')) {
-        window.open('https://signal.me/#eu/pipiM-n90HDfbE-rD_MVM1L8g3JJA-BXcmffyBAaFq7K1pg95_JMaJLfXqOm2jNi', '_blank');
-        return;
-      }
-      val.textContent = '@special.123 → Open';
-      val.classList.remove('redacted');
-      val.classList.add('revealed');
-      el.setAttribute('aria-label', 'Open Signal, @special.123');
-      el.querySelector('.link-arr').style.color = 'var(--red)';
-      showToast('Tap again to open Signal');
-    }
-
-    function revealWhatsApp(el) {
-      const val = document.getElementById('wa-val');
-      if (val.classList.contains('revealed')) {
-        window.open('https://wa.me/12123086406', '_blank');
-        return;
-      }
-      val.textContent = 'WhatsApp → Open';
-      val.classList.remove('redacted');
-      val.classList.add('revealed');
-      el.setAttribute('aria-label', 'Open WhatsApp');
-      el.querySelector('.link-arr').style.color = 'var(--red)';
-      showToast('Tap again to open WhatsApp');
-    }
-
-    function downloadVCard() {
-      const vcard = [
-        'BEGIN:VCARD', 'VERSION:3.0',
-        'N:Tannahill;James;;;', 'FN:James Tannahill',
-        'TITLE:AI/ML for Capital Markets', 'ORG:SpaceXAI',
-        'EMAIL;TYPE=INTERNET:contact@jamestannahill.com',
-        'URL:https://jamestannahill.com',
-        'URL:https://hmuapi.com/jamestannahill',
-        'URL:https://art.jamestannahill.com',
-        'URL:https://www.rdlb.nyc',
-        'URL:https://www.linkedin.com/in/jamesstannahill',
-        'URL:https://github.com/jtannahill',
-        'URL:https://signal.me/#eu/pipiM-n90HDfbE-rD_MVM1L8g3JJA-BXcmffyBAaFq7K1pg95_JMaJLfXqOm2jNi',
-        'URL:https://wa.me/12123086406',
-        'URL:https://contact.jamestannahill.com',
-        'URL:https://map.jamestannahill.com',
-        'ADR;TYPE=WORK:;;W 57th Street;;;',
-        'NOTE:AI/ML for Capital Markets at SpaceXAI. Formerly President and Managing Partner\\, Plocamium Holdings. Signal preferred.',
-        'END:VCARD'
-      ].join('\r\n');
-      const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = 'James_Tannahill.vcf'; a.click();
-      URL.revokeObjectURL(url);
-      showToast('Contact card downloaded');
-    }
-
-    async function shareQR() {
-      const canvas = document.getElementById('qr');
-      try {
-        const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-        const file = new File([blob], 'james-tannahill-contact.png', { type: 'image/png' });
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          await navigator.share({ title: 'James Tannahill: Contact', text: 'Scan to connect', files: [file] });
-        } else {
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url; a.download = 'james-tannahill-qr.png'; a.click();
-          URL.revokeObjectURL(url);
-          showToast('QR downloaded');
-        }
-      } catch (e) {
-        if (e.name !== 'AbortError') copyLink();
-      }
-    }
-
-    function copyLink() {
-      navigator.clipboard.writeText('https://contact.jamestannahill.com')
-        .then(() => showToast('Link copied'))
-        .catch(() => showToast('Unable to copy. Use Share QR instead.'));
-    }
-
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      t.textContent = msg;
-      t.classList.add('show');
-      clearTimeout(t._h);
-      t._h = setTimeout(() => t.classList.remove('show'), 2500);
-    }
-
-    let qrReturnFocus = null;
-    let qrWakeLock = null;
-
-    function openQROverlay(e) {
-      e.stopPropagation();
-      if (typeof qrcode === 'undefined') { showToast('QR unavailable. Use Save Contact.'); return; }
-      const overlay = document.getElementById('qrOverlay');
-      qrReturnFocus = document.activeElement;
-      overlay.classList.add('active');
-      overlay.removeAttribute('inert');
-      overlay.setAttribute('aria-hidden', 'false');
-      document.getElementById('qrClose').focus();
-      if ('wakeLock' in navigator) navigator.wakeLock.request('screen').then(l => { qrWakeLock = l; }).catch(() => {});
-      {
-        const canvas = document.getElementById('qrLarge');
-        const qr = qrcode(0, 'L');
-        qr.addData(MECARD);
-        qr.make();
-        const mc = qr.getModuleCount();
-        const dpr = window.devicePixelRatio || 1;
-        const cell = 10, margin = 30;
-        const size = mc * cell + margin * 2;
-        canvas.width = size * dpr; canvas.height = size * dpr;
-        canvas.style.width = 'min(260px, 80vw)'; canvas.style.height = 'auto';
-        const ctx = canvas.getContext('2d');
-        ctx.scale(dpr, dpr);
-        ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, size, size);
-        ctx.fillStyle = '#1a1a1a';
-        for (let r = 0; r < mc; r++) {
-          for (let c = 0; c < mc; c++) {
-            if (qr.isDark(r, c)) ctx.fillRect(c * cell + margin, r * cell + margin, cell, cell);
-          }
-        }
-      }
-    }
-
-    function closeQROverlay() {
-      const overlay = document.getElementById('qrOverlay');
-      if (!overlay.classList.contains('active')) return;
-      overlay.classList.remove('active');
-      overlay.setAttribute('inert', '');
-      overlay.setAttribute('aria-hidden', 'true');
-      if (qrWakeLock) { qrWakeLock.release().catch(() => {}); qrWakeLock = null; }
-      if (qrReturnFocus && qrReturnFocus.focus) qrReturnFocus.focus();
-    }
-
-    document.getElementById('qrOverlay').addEventListener('click', closeQROverlay);
-    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeQROverlay(); });
-
-    document.getElementById('signal-btn')?.addEventListener('click', function() { revealSignal(this); });
-    document.getElementById('wa-btn')?.addEventListener('click', function() { revealWhatsApp(this); });
-
-    const qrCanvas = document.getElementById('qr');
-    if (qrCanvas) {
-      qrCanvas.addEventListener('click', openQROverlay);
-      qrCanvas.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          openQROverlay(e);
-        }
-      });
-    }
-
-    // QR code: dark modules on light bg, red crosshairs
-    (function(){
-      const canvas = document.getElementById('qr');
-      if (!canvas) return;
-      const script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js';
-      script.onload = function() {
-        const qr = qrcode(0, 'L');
-        qr.addData(MECARD);
-        qr.make();
-        const mc = qr.getModuleCount();
-        const dpr = window.devicePixelRatio || 1;
-        const cell = 5, margin = 20;
-        const size = mc * cell + margin * 2;
-        canvas.width = size * dpr; canvas.height = size * dpr;
-        canvas.style.width = size + 'px'; canvas.style.height = size + 'px';
-        const ctx = canvas.getContext('2d');
-        ctx.scale(dpr, dpr);
-        ctx.fillStyle = '#f8f8f8';
-        ctx.fillRect(0, 0, size, size);
-        // QR modules
-        ctx.fillStyle = '#1a1a1a';
-        for (let r = 0; r < mc; r++) {
-          for (let c = 0; c < mc; c++) {
-            if (qr.isDark(r, c)) ctx.fillRect(c * cell + margin, r * cell + margin, cell, cell);
-          }
-        }
-        // Red crosshairs
-        const cx = size / 2, cy = size / 2;
-        ctx.strokeStyle = 'rgba(224, 26, 26, 0.25)';
-        ctx.lineWidth = 0.5;
-        ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(margin - 6, cy); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(size - margin + 6, cy); ctx.lineTo(size, cy); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, margin - 6); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(cx, size - margin + 6); ctx.lineTo(cx, size); ctx.stroke();
-        // Corner ticks
-        ctx.strokeStyle = 'rgba(224, 26, 26, 0.35)';
-        ctx.lineWidth = 1;
-        const tm = 8;
-        [[margin-2, margin-2, 1, 0, 1, 0],
-         [size-margin+2, margin-2, -1, 0, 1, 0],
-         [margin-2, size-margin+2, 1, 0, -1, 0],
-         [size-margin+2, size-margin+2, -1, 0, -1, 0]].forEach(([x,y,dx,_,dy]) => {
-          ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+dx*tm,y); ctx.stroke();
-          ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x,y+dy*tm); ctx.stroke();
-        });
-      };
-      script.onerror = function() {
-        canvas.width = 160; canvas.height = 160;
-        const ctx = canvas.getContext('2d');
-        ctx.fillStyle = '#f8f8f8'; ctx.fillRect(0,0,160,160);
-        ctx.fillStyle = '#6b6b6b'; ctx.font = '11px JetBrains Mono, monospace';
-        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-        ctx.fillText('QR unavailable', 80, 74);
-        ctx.fillText('Use Save Contact', 80, 88);
-      };
-      document.head.appendChild(script);
-    })();
-  </script>
-
-  <script>
-  (function() {
-    var obs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-      });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.sr').forEach(function(el) { obs.observe(el); });
-    window.addEventListener('beforeprint', function() {
-      document.querySelectorAll('.sr').forEach(function(el) { el.classList.add('visible'); });
-    });
-  })();
-  </script>
+  <script src="/card.js" defer></script>
 </body>
 </html>

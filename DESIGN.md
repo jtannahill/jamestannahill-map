@@ -10,6 +10,7 @@ colors:
   rule: "#e0e0e0"
   bg: "#ffffff"
   bg-lift: "#f8f8f8"
+  bg-press: "#ececec"
 typography:
   mono:
     fontFamily: JetBrains Mono
@@ -30,7 +31,8 @@ Scope: this document governs the contact card only (`contact.html`). The reposit
 - `muted` is the floor for small labels on white. It was darkened for contrast; do not reintroduce a lighter gray for text.
 - Icons in link rows and the topbar coordinates use `#949494`, which sits on the dark topbar and as decorative glyphs next to labeled text. Keep that value to those two roles; do not use it for readable text on white.
 - `rule` draws every hairline: section header rules, row dividers, and the 1px gaps of the ventures and actions grids (a `rule` background behind `bg` cells).
-- `bg-lift` is the pressed and hovered surface for rows, cards, and action buttons, and the QR canvas background.
+- `bg-lift` is the hovered surface for rows, cards, and action buttons, and the QR canvas background. `bg-press` is the pressed surface: `bg-lift` is only 1.06:1 against white, too faint to see on a bright phone.
+- The page is light only and says so (`color-scheme: light`), so browser auto-dark modes leave it, and the QR, alone.
 - The page is light only. There is no dark theme; `theme-color` matches `ink` so the browser chrome continues the topbar.
 
 ## Typography
@@ -48,7 +50,8 @@ Scope: this document governs the contact card only (`contact.html`). The reposit
 - Section order: topbar, hero, Contact, Ventures, Actions, QR, footer. Each section after the hero opens with a section header: uppercase name plus a flexible hairline. There is no data strip; it only repeated the eyebrow and address.
 - Actions: Save Contact first, then Add to Apple Wallet, then Get Updates (only where push is supported). There is no View Map action; the hero address already links to the map.
 - Ventures and actions are two-column grids; an odd last item spans both columns. When a cell is unsupported (web push outside an installed iOS web app), remove the element so no empty cell remains.
-- Touch targets on mobile are at least 44px (48px for link rows and action buttons), including the hero address link and footer links.
+- Touch targets are at least 44px (48px for link rows and action buttons), including the hero address link and footer links. They follow `pointer: coarse`, not width, so landscape phones and tablets get them too.
+- The topbar content aligns with the 480px column and ends in a QR button, so the code is one tap away when showing the card in person. The coordinates drop below 380px.
 
 ## Elevation & Depth
 
@@ -64,8 +67,9 @@ Scope: this document governs the contact card only (`contact.html`). The reposit
 
 - Link row: icon, fixed-width uppercase label, value, red arrow. The featured row (email) adds a 2px red left border and reduces left padding by the same amount. Rows that act rather than navigate are `<button type="button">` elements styled identically to the anchors.
 - Redacted row (Signal, WhatsApp): the value shows block characters in `muted` and a `muted` arrow. The first tap reveals the value, turns the arrow red, updates the button's accessible name, and shows a toast; the second tap opens the channel.
-- QR block: canvas framed by four red corner brackets at half opacity. Activating it (click, Enter, Space) opens the overlay.
-- QR overlay: a modal dialog (`role="dialog"`, `aria-modal`) that is `inert` and `aria-hidden` while closed. Opening moves focus to the Close button and requests a screen wake lock; closing by the Close button, a tap anywhere, or Escape releases the wake lock and returns focus to the trigger.
+- QR block: canvas framed by four red corner brackets at half opacity. Activating it (click, Enter, Space) or the topbar QR button opens the overlay. Both canvases are drawn at whole device pixels per module and never scaled by CSS, so the code stays sharp.
+- QR overlay: a modal dialog (`role="dialog"`, `aria-modal`) that is `inert` and `aria-hidden` while closed. Opening moves focus to the Close button and requests a screen wake lock; closing by the Close button, a tap anywhere, or Escape releases the wake lock and returns focus to the trigger. While open, the page behind is `inert`; the wake lock is requested again when the tab becomes visible.
+- Script-only controls (Signal, WhatsApp, the QR block, the topbar QR button) are `hidden` in markup and shown by `card.js`. Save Contact is a plain link to the static `/James_Tannahill.vcf`, so it works without script. All behaviour lives in `card.js` and `add.js`; the pages carry no inline scripts or `on*` attributes, so the CSP needs no hashes.
 - Toast: `ink` bar with a red top rule, bottom-centered, `role="status"` with polite live announcements, auto-dismissed after 2.5s. Use it as the single feedback channel for copy, share, download, and push state.
 - Focus: every focusable element shows `:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }`.
 - Link row dividers are 1px `rule` on every row except the last row of `#links`.
