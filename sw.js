@@ -2,7 +2,7 @@
 // Pages are network-first (a role or title change shows on the next visit);
 // static assets are cache-first. Bump CACHE on every deploy.
 
-const CACHE = 'jt-v6';
+const CACHE = 'jt-v7';
 const PRECACHE = [
   '/',
   '/card.js',
