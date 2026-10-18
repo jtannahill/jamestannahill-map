@@ -1,10 +1,10 @@
 # James Tannahill - Contact & Location
 
-> Contact page and interactive map for James Tannahill, AI/ML for Capital Markets at SpaceXSI, former President and Managing Partner of Plocamium Holdings, and Head of Field Operations at ProSecPR.
+> Contact page and interactive map for James Tannahill, AI/ML for Capital Markets at SpaceXSI, former President and Managing Partner of Plocamium Holdings, and former Head of Field Operations at ProSecPR.
 
 ## contact.jamestannahill.com
 
-A structured contact page for James Tannahill. Includes email, Signal and WhatsApp (tap to reveal), profiles (LinkedIn, GitHub, Bloomberg, Art), venture links (Plocamium Holdings as a former role, ProSecPR, 1nessAgency, MonkeyThorn, gOOOvy, NewYorkLab, Nargusta, HMU API, RDLB), a contact QR code, a vCard download, and an Apple Wallet pass.
+A structured contact page for James Tannahill. Includes email, Signal and WhatsApp (tap to reveal), profiles (LinkedIn, GitHub, Bloomberg, Art), venture links (Plocamium Holdings, ProSecPR and RDLB as former roles, 1nessAgency, MonkeyThorn, gOOOvy, NewYorkLab, Nargusta, HMU API, RDLB), a contact QR code, a vCard download, and an Apple Wallet pass.
 
 Contact API: https://hmuapi.com/api/u/jamestannahill
 
@@ -15,16 +15,16 @@ An interactive Mapbox map pinned on the former Plocamium Holdings office, W 57th
 ## About
 
 James Tannahill - jamestannahill.com
-AI/ML for Capital Markets at SpaceXSI. Formerly President and Managing Partner, Plocamium Holdings. Head of Field Operations, ProSecPR.
+AI/ML for Capital Markets at SpaceXSI. Formerly President and Managing Partner, Plocamium Holdings, and Head of Field Operations, ProSecPR. Builder of 1ness Strategies and NewYorkLab.
 
 ## Ventures
 
 - Plocamium Holdings (https://www.plocamium.com), former role: Operator-led private equity, patient capital across industrial technologies and healthcare
-- ProSecPR (https://www.prosecpr.com): Veteran-led security advisory firm. Strategic intelligence, elite personnel, advanced technology, and continuous protection across Latin America
+- ProSecPR (https://www.prosecpr.com), former role: Veteran-led security advisory firm. Strategic intelligence, elite personnel, advanced technology, and continuous protection across Latin America
 - 1nessAgency (https://www.1nessagency.com): Digital marketing and growth systems engineered on ethics, data, and design for regulated industries
 - MonkeyThorn Meet (https://meet.monkeythorn.com/): Privacy-first video conferencing. Zero AI processing, zero recordings.
 - gOOOvy (https://gooovy.com): Google Voice OOO auto-reply SaaS
 - NewYorkLab (https://www.newyorklab.co): Urban intelligence platform mapping the future state of cities through data and sensor networks
 - Nargusta (https://nargusta.com): Sailors' hospitality network. Yacht club members extend reciprocal guest privileges: club access, moorings, day sails, and local hosting
 - HMU API (https://hmuapi.com): Structured contact channels for people, apps, and AI agents
-- RDLB (https://www.rdlb.nyc): Strategic brand architecture for investors and operators
+- RDLB (https://www.rdlb.nyc), former role: Strategic brand architecture for investors and operators
