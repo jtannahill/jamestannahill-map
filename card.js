@@ -152,7 +152,7 @@
   document.getElementById('saveContact')?.addEventListener('click', () => showToast('Contact card downloaded'));
 
   // ── QR ────────────────────────────────────────────────────────────────
-  const MECARD = 'MECARD:N:Tannahill,James;ORG:SpaceXSI;TITLE:AI/ML for Capital Markets;EMAIL:contact@jamestannahill.com;URL:https://jamestannahill.com;ADR:W 57th Street\\, New York\\, NY;NOTE:Signal preferred;;';
+  const MECARD = 'MECARD:N:Tannahill,James;ORG:SpaceX Super Intelligence;TITLE:AI/ML for Capital Markets;EMAIL:contact@jamestannahill.com;URL:https://jamestannahill.com;ADR:W 57th Street\\, New York\\, NY;NOTE:Signal preferred;;';
 
   // Draw on whole device pixels: each module is an integer number of
   // physical pixels and the CSS size matches the bitmap exactly, so the

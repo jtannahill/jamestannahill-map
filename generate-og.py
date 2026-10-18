@@ -58,8 +58,8 @@ draw.text(
     font=font_name,
 )
 
-# --- "AI/ML FOR CAPITAL MARKETS · SpaceXSI" ---
-subtitle_text = "AI/ML FOR CAPITAL MARKETS  ·  SpaceXSI"
+# --- "AI/ML FOR CAPITAL MARKETS · SPACEX SUPER INTELLIGENCE" ---
+subtitle_text = "AI/ML FOR CAPITAL MARKETS  ·  SPACEX SUPER INTELLIGENCE"
 subtitle_bbox = draw.textbbox((0, 0), subtitle_text, font=font_subtitle)
 subtitle_w = subtitle_bbox[2] - subtitle_bbox[0]
 draw.text(

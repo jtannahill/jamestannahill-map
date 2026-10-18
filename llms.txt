@@ -1,6 +1,6 @@
 # James Tannahill - Contact & Location
 
-> Contact page and interactive map for James Tannahill, AI/ML for Capital Markets at SpaceXSI, former President and Managing Partner of Plocamium Holdings, and former Head of Field Operations at ProSecPR.
+> Contact page and interactive map for James Tannahill, AI/ML for Capital Markets at SpaceX Super Intelligence, former President and Managing Partner of Plocamium Holdings, and former Head of Field Operations at ProSecPR.
 
 ## contact.jamestannahill.com
 
@@ -15,7 +15,7 @@ An interactive Mapbox map pinned on the former Plocamium Holdings office, W 57th
 ## About
 
 James Tannahill - jamestannahill.com
-AI/ML for Capital Markets at SpaceXSI. Formerly President and Managing Partner, Plocamium Holdings, and Head of Field Operations, ProSecPR. Builder of 1ness Strategies and NewYorkLab.
+AI/ML for Capital Markets at SpaceX Super Intelligence. Formerly President and Managing Partner, Plocamium Holdings, and Head of Field Operations, ProSecPR. Builder of 1ness Strategies and NewYorkLab.
 
 ## Ventures
 

@@ -19,7 +19,7 @@ Dark Mapbox GL JS map centered on W 57th Street, Manhattan. Marker with popup at
 Neither subdomain ships analytics. The GA4 tag (`G-WRDEHD4QYL`, shared with apex `jamestannahill.com`) was removed from both pages on 2026-09-17: it loaded unconditionally, with none of the consent gating the apex applies, and `localStorage` consent does not cross origins. The footer still includes a "privacy" link pointing at the apex policy (`https://www.jamestannahill.com/privacy`).
 
 ### `contact.jamestannahill.com`
-Bloomberg editorial digital business card (redesigned Apr 2026). JetBrains Mono. White/black/red palette: black topbar with `#e01a1a` red rule, white body, 3-cell data strip (SpaceXSI / NYC / PE·HC).
+Bloomberg editorial digital business card (redesigned Apr 2026). JetBrains Mono. White/black/red palette: black topbar with `#e01a1a` red rule, white body, 3-cell data strip (SpaceX Super Intelligence / NYC / PE·HC).
 
 **Features:**
 - Contact links: Email (featured, red left border), Signal (redacted/tap-to-reveal), WhatsApp (redacted/tap-to-reveal), LinkedIn, GitHub, Bloomberg Terminal Profile, Art
