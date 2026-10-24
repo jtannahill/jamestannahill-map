@@ -4,10 +4,14 @@ N:Tannahill;James;;;
 FN:James Tannahill
 TITLE:AI/ML for Capital Markets
 ORG:SpaceX Super Intelligence
-EMAIL;TYPE=INTERNET:contact@jamestannahill.com
-URL:https://jamestannahill.com
-URL:https://www.linkedin.com/in/jamesstannahill
-URL:https://signal.me/#eu/pipiM-n90HDfbE-rD_MVM1L8g3JJA-BXcmffyBAaFq7K1pg95_JMaJLfXqOm2jNi
-URL:https://wa.me/12123086406
+EMAIL;TYPE=INTERNET,WORK:contact@jamestannahill.com
+item1.URL:https://jamestannahill.com
+item1.X-ABLabel:Website
+item2.URL:https://www.linkedin.com/in/jamesstannahill
+item2.X-ABLabel:LinkedIn
+item3.URL:https://signal.me/#eu/pipiM-n90HDfbE-rD_MVM1L8g3JJA-BXcmffyBAaFq7K1pg95_JMaJLfXqOm2jNi
+item3.X-ABLabel:Signal
+item4.URL:https://wa.me/12123086406
+item4.X-ABLabel:WhatsApp
 NOTE:Signal preferred.
 END:VCARD
