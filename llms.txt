@@ -4,7 +4,7 @@
 
 ## contact.jamestannahill.com
 
-A structured contact page for James Tannahill. Includes email, Signal and WhatsApp (tap to reveal), profiles (LinkedIn, GitHub, Bloomberg, Art), venture links (Plocamium Holdings, ProSecPR and RDLB as former roles, 1nessAgency, MonkeyThorn, gOOOvy, NewYorkLab, Nargusta, HMU API, RDLB), a contact QR code, a vCard download, and an Apple Wallet pass.
+A short contact page for James Tannahill: email, Signal and WhatsApp (tap to reveal), LinkedIn, a contact QR code, a vCard download, and an Apple Wallet pass.
 
 Contact API: https://hmuapi.com/api/u/jamestannahill
 

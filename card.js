@@ -22,66 +22,6 @@
   // Controls that only work with script stay hidden in the markup until now.
   document.querySelectorAll('[data-needs-js]').forEach(el => { el.hidden = false; });
 
-  // ── WEB PUSH ──────────────────────────────────────────────────────────
-  const VAPID_PUBLIC_KEY = 'BFIFhADuQ1yanvfGWtfEhtWCDRegFn98goWLzQbU8qgb95YOatlYKNkDg2kWIVNKzMinEMbV_Lulou5EmGxx4bY';
-
-  function urlBase64ToUint8Array(b64) {
-    const pad = '='.repeat((4 - b64.length % 4) % 4);
-    const raw = atob((b64 + pad).replace(/-/g, '+').replace(/_/g, '/'));
-    return new Uint8Array([...raw].map(c => c.charCodeAt(0)));
-  }
-
-  function updatePushBtn(subscribed) {
-    const btn = document.getElementById('pushBtn');
-    const lbl = document.getElementById('pushLabel');
-    if (!btn || !lbl) return;
-    lbl.textContent = subscribed ? 'Subscribed' : 'Get Updates';
-    btn.classList.toggle('subscribed', subscribed);
-  }
-
-  async function initPush() {
-    const btn = document.getElementById('pushBtn');
-    if (!('Notification' in window) || !('serviceWorker' in navigator) || !('PushManager' in window)) {
-      // No push here (iOS Safari outside an installed web app): drop the cell so the grid has no empty block.
-      btn?.remove();
-      return;
-    }
-    if (btn) btn.hidden = false;
-    if (Notification.permission === 'granted') {
-      const sw = await navigator.serviceWorker.ready;
-      const sub = await sw.pushManager.getSubscription();
-      if (sub) updatePushBtn(true);
-    }
-  }
-
-  async function togglePush() {
-    if (!('Notification' in window) || !('PushManager' in window)) { showToast('Push not supported'); return; }
-    try {
-      const sw = await navigator.serviceWorker.ready;
-      const existing = await sw.pushManager.getSubscription();
-      if (existing) {
-        await existing.unsubscribe();
-        await fetch('/api/push/unsubscribe', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ endpoint: existing.endpoint }) });
-        updatePushBtn(false);
-        showToast('Notifications off');
-        return;
-      }
-      const perm = await Notification.requestPermission();
-      if (perm !== 'granted') { showToast('Notifications blocked. Allow them in browser settings.'); return; }
-      const sub = await sw.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY) });
-      const res = await fetch('/api/push/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ subscription: sub.toJSON() }) });
-      if (!res.ok) { await sub.unsubscribe().catch(() => {}); throw new Error('subscribe ' + res.status); }
-      updatePushBtn(true);
-      showToast('Notifications on');
-    } catch (e) {
-      console.warn('[push]', e);
-      showToast('Could not update notifications. Try again.');
-    }
-  }
-
-  window.addEventListener('load', initPush);
-  document.getElementById('pushBtn')?.addEventListener('click', togglePush);
-
   // ── APPLE WALLET ──────────────────────────────────────────────────────
   // A .pkpass only does something on Apple devices; elsewhere the badge stays
   // hidden and Save Contact spans the row.
@@ -152,7 +92,7 @@
   document.getElementById('saveContact')?.addEventListener('click', () => showToast('Contact card downloaded'));
 
   // ── QR ────────────────────────────────────────────────────────────────
-  const MECARD = 'MECARD:N:Tannahill,James;ORG:SpaceX Super Intelligence;TITLE:AI/ML for Capital Markets;EMAIL:contact@jamestannahill.com;URL:https://jamestannahill.com;ADR:W 57th Street\\, New York\\, NY;NOTE:Signal preferred;;';
+  const MECARD = 'MECARD:N:Tannahill,James;ORG:SpaceX Super Intelligence;TITLE:AI/ML for Capital Markets;EMAIL:contact@jamestannahill.com;URL:https://jamestannahill.com;NOTE:Signal preferred;;';
 
   // Draw on whole device pixels: each module is an integer number of
   // physical pixels and the CSS size matches the bitmap exactly, so the
@@ -247,14 +187,16 @@
     });
   }
 
+  // The library loads even without the inline canvas: the topbar QR button
+  // opens the overlay, which draws with it.
   (function loadQR() {
-    if (!qrCanvas) return;
     const script = document.createElement('script');
     script.src = 'https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js';
     script.integrity = 'sha384-lQXOAyZwHXE55JFyrOMB7nY2Wv+m5ZWNtJcHrd1rceRQXAYNLak8ukN5TjBTcIwz';
     script.crossOrigin = 'anonymous';
-    script.onload = () => drawQR(qrCanvas, Math.min(188, window.innerWidth * 0.62), '#f8f8f8', true);
+    script.onload = () => qrCanvas && drawQR(qrCanvas, Math.min(188, window.innerWidth * 0.62), '#f8f8f8', true);
     script.onerror = () => {
+      if (!qrCanvas) return;
       qrCanvas.width = 160; qrCanvas.height = 160;
       const ctx = qrCanvas.getContext('2d');
       ctx.fillStyle = '#f8f8f8'; ctx.fillRect(0, 0, 160, 160);

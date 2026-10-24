@@ -26,32 +26,32 @@ Scope: this document governs the contact card only (`contact.html`). The reposit
 
 ## Colors
 
-- `red` is a signal, not a fill. Use it for the topbar bottom rule, the hero eyebrow, link arrows, the featured row's left border, the subscribed push state, QR corner brackets and crosshairs, and the toast top rule. Never use it as a large background.
+- `red` is a signal, not a fill. Use it for the topbar bottom rule, the hero eyebrow, link arrows, the featured row's left border, and the toast top rule. Never use it as a large background.
 - `ink` is both the primary text color and the only dark surface (topbar, toast, skip link). Text on `ink` is white.
 - `muted` is the floor for small labels on white. It was darkened for contrast; do not reintroduce a lighter gray for text.
-- Icons in link rows and the topbar coordinates use `#949494`, which sits on the dark topbar and as decorative glyphs next to labeled text. Keep that value to those two roles; do not use it for readable text on white.
-- `rule` draws every hairline: section header rules, row dividers, and the 1px gaps of the ventures and actions grids (a `rule` background behind `bg` cells).
-- `bg-lift` is the hovered surface for rows, cards, and action buttons, and the QR canvas background. `bg-press` is the pressed surface: `bg-lift` is only 1.06:1 against white, too faint to see on a bright phone.
+- Icons in link rows use `#949494`, as decorative glyphs next to labeled text. Do not use it for readable text on white.
+- `rule` draws every hairline: the hero's bottom rule, row dividers, the line above the actions, and the 1px gap of the actions grid (a `rule` background behind `bg` cells).
+- `bg-lift` is the hovered surface for rows and action buttons. `bg-press` is the pressed surface: `bg-lift` is only 1.06:1 against white, too faint to see on a bright phone.
 - The page is light only and says so (`color-scheme: light`), so browser auto-dark modes leave it, and the QR, alone.
 - The page is light only. There is no dark theme; `theme-color` matches `ink` so the browser chrome continues the topbar.
 
 ## Typography
 
 - Everything is set in `mono` (JetBrains Mono, weights 300 to 700 loaded from Google Fonts). Do not introduce a second family on this page; the Bloomberg "B" glyph in the link list is a one-off icon, not a text face.
-- Labels, section headers, eyebrows, and button text are uppercase with positive letter-spacing. Display text (the hero name, venture names) is bold with negative letter-spacing.
-- Weight carries hierarchy: 700 for the name, section headers, and eyebrow; 600 for venture names; 500 for the topbar name and action buttons; 400 in `text` for the hero role line.
-- Size floor: uppercase labels (eyebrow, section headers, link labels, QR label, overlay label, venture flag) are at least 10px; values, descriptions, buttons, hints, links, and the toast are at least 11px. Keep the HUD feel with tracking and weight, never by shrinking below the floor.
+- Labels, eyebrows, and button text are uppercase with positive letter-spacing. Display text (the hero name) is bold with negative letter-spacing.
+- Weight carries hierarchy: 700 for the name and eyebrow; 500 for the topbar name and action buttons.
+- Size floor: uppercase labels (eyebrow, link labels, overlay label) are at least 10px; values, buttons, hints, links, and the toast are at least 11px. Keep the HUD feel with tracking and weight, never by shrinking below the floor.
 - Channel values that can be long (emails, URLs) must wrap with `overflow-wrap: anywhere` rather than truncate.
 
 ## Layout
 
 - One column, max width 480px, centered. Sections are full-bleed inside that column, separated by hairline rules rather than spacing or cards.
 - Horizontal gutter is 20px, dropping to 16px at 480px and below; the topbar respects safe-area insets on all sides.
-- Section order: topbar, hero, Contact, Ventures, Actions, QR, footer. Each section after the hero opens with a section header: uppercase name plus a flexible hairline. There is no data strip; it only repeated the eyebrow and address.
-- Actions: Save Contact first, then Add to Apple Wallet, then Get Updates (only where push is supported). There is no View Map action; the hero address already links to the map.
-- Ventures and actions are two-column grids; an odd last item spans both columns. When a cell is unsupported (web push outside an installed iOS web app), remove the element so no empty cell remains.
-- Touch targets are at least 44px (48px for link rows and action buttons), including the hero address link and footer links. They follow `pointer: coarse`, not width, so landscape phones and tablets get them too.
-- The topbar content aligns with the 480px column and ends in a QR button, so the code is one tap away when showing the card in person. The coordinates drop below 380px.
+- Less is more: the card is gate-kept. Order: topbar, hero (eyebrow and name only), contact rows (Email, Signal, WhatsApp, LinkedIn), actions, footer. There are no visible section headers (the `h2`s are visually hidden), no address or coordinates, no ventures grid, no extra profiles, and no inline QR block. Do not add them back without the owner asking (decided 2026-10-24). The saved vCard and the QR's MECARD carry the same short set: no address, no venture links.
+- Actions: Save Contact, then Add to Apple Wallet (Apple devices only). There is no Get Updates or View Map action.
+- Actions are a two-column grid; an odd last item spans both columns. Off Apple devices the Wallet badge is removed, so Save Contact spans the row.
+- Touch targets are at least 44px (48px for link rows and action buttons), including footer links. They follow `pointer: coarse`, not width, so landscape phones and tablets get them too.
+- The topbar content aligns with the 480px column: name on the left, QR button pushed to the right edge, so the code is one tap away when showing the card in person.
 
 ## Elevation & Depth
 
@@ -61,19 +61,19 @@ Scope: this document governs the contact card only (`contact.html`). The reposit
 ## Shapes
 
 - Corners are square everywhere. Do not add border radii to rows, cards, buttons, the overlay button, or the toast.
-- Accents are drawn with 1px or 2px lines: 2px for the topbar rule, featured-row border, and toast rule; 1px for dividers, QR buttons, and QR corner brackets.
+- Accents are drawn with 1px or 2px lines: 2px for the topbar rule, featured-row border, and toast rule; 1px for dividers.
 
 ## Components
 
 - Link row: icon, fixed-width uppercase label, value, red arrow. The featured row (email) adds a 2px red left border and reduces left padding by the same amount. Rows that act rather than navigate are `<button type="button">` elements styled identically to the anchors.
 - Redacted row (Signal, WhatsApp): the value shows block characters in `muted` and a `muted` arrow. The first tap reveals the value, turns the arrow red, updates the button's accessible name, and shows a toast; the second tap opens the channel.
-- QR block: canvas framed by four red corner brackets at half opacity. Activating it (click, Enter, Space) or the topbar QR button opens the overlay. Both canvases are drawn at whole device pixels per module and never scaled by CSS, so the code stays sharp.
+- QR: the topbar QR button opens the overlay; `card.js` loads the QR library on every visit for it. The canvas is drawn at whole device pixels per module and never scaled by CSS, so the code stays sharp.
 - QR overlay: a modal dialog (`role="dialog"`, `aria-modal`) that is `inert` and `aria-hidden` while closed. Opening moves focus to the Close button and requests a screen wake lock; closing by the Close button, a tap anywhere, or Escape releases the wake lock and returns focus to the trigger. While open, the page behind is `inert`; the wake lock is requested again when the tab becomes visible.
-- Script-only controls (Signal, WhatsApp, the QR block, the topbar QR button) are `hidden` in markup and shown by `card.js`. Save Contact is a plain link to the static `/James_Tannahill.vcf`, so it works without script. All behaviour lives in `card.js` and `add.js`; the pages carry no inline scripts or `on*` attributes, so the CSP needs no hashes.
-- Toast: `ink` bar with a red top rule, bottom-centered, `role="status"` with polite live announcements, auto-dismissed after 2.5s. Use it as the single feedback channel for copy, share, download, and push state.
+- Script-only controls (Signal, WhatsApp, the topbar QR button) are `hidden` in markup and shown by `card.js`. Save Contact is a plain link to the static `/James_Tannahill.vcf`, so it works without script. All behaviour lives in `card.js` and `add.js`; the pages carry no inline scripts or `on*` attributes, so the CSP needs no hashes.
+- Toast: `ink` bar with a red top rule, bottom-centered, `role="status"` with polite live announcements, auto-dismissed after 2.5s. Use it as the single feedback channel for download and reveal feedback.
 - Focus: every focusable element shows `:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }`.
-- Link row dividers are 1px `rule` on every row except the last row of `#links`.
-- Former roles are marked with a `venture-flag` ("Former") next to the venture name. Plocamium Holdings is a former role; the current role is AI/ML for Capital Markets at SpaceX Super Intelligence.
+- Link row dividers are 1px `rule` on every row except the last row of `#links`; the actions grid draws its own top rule.
+- The current role is AI/ML for Capital Markets at SpaceX Super Intelligence, shown only as the hero eyebrow.
 - Hover states apply only under `(hover: hover) and (pointer: fine)`; touch devices get `:active` feedback instead. Keep new hover rules inside that query.
 
 ## Do's and Don'ts
