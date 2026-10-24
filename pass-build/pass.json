@@ -64,6 +64,12 @@
         "attributedValue": "<a href='https://www.linkedin.com/in/jamesstannahill'>linkedin.com/in/jamesstannahill</a>"
       },
       {
+        "key": "apps",
+        "label": "APPS",
+        "value": "OpenTime · SigScan · Nargusta",
+        "attributedValue": "<a href='https://apps.apple.com/app/id6760204246'>OpenTime</a> · <a href='https://apps.apple.com/app/id6806315838'>SigScan</a> · <a href='https://apps.apple.com/app/id6793273419'>Nargusta</a>"
+      },
+      {
         "key": "website",
         "label": "HQ",
         "value": "jamestannahill.com",
@@ -82,7 +88,9 @@
     "message": "MECARD:N:Tannahill,James;ORG:SpaceX Super Intelligence;TITLE:AI/ML for Capital Markets;EMAIL:contact@jamestannahill.com;URL:https://jamestannahill.com;NOTE:Signal preferred;;",
     "messageEncoding": "iso-8859-1"
   },
-  "associatedStoreIdentifiers": [6760204246],
+  "associatedStoreIdentifiers": [
+    6760204246
+  ],
   "barcodes": [
     {
       "format": "PKBarcodeFormatQR",
