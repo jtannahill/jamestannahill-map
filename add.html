@@ -207,13 +207,22 @@
 
     .contact-link:hover { border-color: rgba(201,168,76,0.3); color: var(--gold); }
 
-    .hint {
+    /* Desktop: a code to scan with an iPhone, which lands back on this page */
+    .desktop { display: none; }
+    .qr-tile {
+      display: inline-block;
+      background: var(--paper);
+      line-height: 0;
+      margin-bottom: 16px;
+    }
+    .qr-tile canvas { display: block; image-rendering: pixelated; }
+    .desktop .message {
       font-family: var(--mono);
-      font-size: 7px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--ash);
-      margin-top: 20px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--paper-dim);
+      line-height: 1.8;
+      margin-bottom: 20px;
     }
   </style>
 </head>
@@ -254,7 +263,14 @@
       </a>
     </div>
 
-    <div class="hint" id="hint"></div>
+    <!-- Desktop -->
+    <div class="desktop" id="desktop">
+      <div class="qr-tile"><canvas id="qr" role="img" aria-label="QR code that opens this page on an iPhone"></canvas></div>
+      <div class="message">Scan with your iPhone camera<br>to add the pass.</div>
+      <a class="contact-link" href="https://contact.jamestannahill.com">
+        contact.jamestannahill.com &rarr;
+      </a>
+    </div>
   </div>
 
   <script src="/add.js"></script>
