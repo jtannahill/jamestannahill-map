@@ -19,15 +19,15 @@ Dark Mapbox GL JS map centered on W 57th Street, Manhattan. Marker with popup at
 Neither subdomain ships analytics. The GA4 tag (`G-WRDEHD4QYL`, shared with apex `jamestannahill.com`) was removed from both pages on 2026-09-17: it loaded unconditionally, with none of the consent gating the apex applies, and `localStorage` consent does not cross origins. The footer still includes a "privacy" link pointing at the apex policy (`https://www.jamestannahill.com/privacy`).
 
 ### `contact.jamestannahill.com`
-Bloomberg editorial digital business card (redesigned Apr 2026). JetBrains Mono. White/black/red palette: black topbar with `#e01a1a` red rule, white body, 3-cell data strip (SpaceX Super Intelligence / NYC / PE·HC).
+A gate-kept digital business card, served from `contact.html`. JetBrains Mono, off-white body, near-black topbar with a `#e01a1a` red rule. Design rules and owner decisions live in `DESIGN.md`.
 
 **Features:**
-- Contact links: Email (featured, red left border), Signal (redacted/tap-to-reveal), WhatsApp (redacted/tap-to-reveal), LinkedIn, GitHub, Bloomberg Terminal Profile, Art
-- Ventures grid: Plocamium (flagged Former), 1nessAgency, MonkeyThorn, gOOOvy, NewYorkLab, HMU API, RDLB
-- vCard download: saves contact to phone with all channels
-- QR code: MECARD format, dark modules on light bg, red crosshairs, fullscreen overlay on tap
-- Apple Wallet pass: add to Wallet via button or NFC physical card
-- Gyroscope parallax: subtle tilt effect on mobile
+- Hero: role eyebrow and name only
+- Contact rows: Email, Signal and WhatsApp (redacted: tap to reveal, tap again to open), LinkedIn
+- Save Contact: static vCard (`James_Tannahill.vcf`)
+- QR code: MECARD, opened from the topbar button as a full-screen overlay with a wake lock
+- Apple Wallet pass: add from the card, or from the NFC landing page (`add.html`)
+- Link preview: `og-image.png`, drawn by `generate-og.py`
 - PWA: installable, service worker cached, offline-capable
 - Web push: opt-in `// Subscribed` button (shows when supported)
 - SEO: Person schema (JSON-LD), OG + Twitter cards
@@ -140,10 +140,9 @@ Each subdomain is a static site in its own S3 bucket behind its own CloudFront d
 # Placeholders: MAP_BUCKET / CONTACT_BUCKET are the S3 buckets and MAP_DIST /
 # CONTACT_DIST the CloudFront distribution IDs for each subdomain.
 
-# Map page. NOTE: the map source lives in map/, NOT the repo root.
-# Root index.html is the CONTACT card (it deploys to the contact bucket as
-# index.html). Deploying root index.html to the map bucket is the Apr-Jun
-# 2026 regression that served the contact card on map.jamestannahill.com.
+# Map page. NOTE: the map source lives in map/, NOT the repo root. Deploying
+# a root-level page to the map bucket is the Apr-Jun 2026 regression that
+# served the contact card on map.jamestannahill.com.
 aws s3 sync map/ "s3://$MAP_BUCKET/" --exclude ".*" --exclude "DESIGN.md"
 aws cloudfront create-invalidation --distribution-id "$MAP_DIST" --paths "/*"
 
@@ -159,6 +158,11 @@ aws cloudfront create-invalidation --distribution-id "$CONTACT_DIST" --paths "/a
 aws s3 cp 404.html "s3://$CONTACT_BUCKET/404.html" --content-type "text/html"
 aws cloudfront create-invalidation --distribution-id "$CONTACT_DIST" --paths "/404.html"
 
+# Link previews: redraw both, upload, then bump ?v= on og:image/twitter:image
+# in contact.html and map/index.html (map/og-image.jpg rides the map sync)
+uv run --with pillow python generate-og.py
+aws s3 cp og-image.png "s3://$CONTACT_BUCKET/og-image.png" --content-type "image/png"
+
 # Wallet pass (full pipeline)
 ./update-pass.sh
 ```
@@ -166,22 +170,19 @@ aws cloudfront create-invalidation --distribution-id "$CONTACT_DIST" --paths "/4
 ## Files
 
 ```
-index.html              Contact-card variant (the map page is map/index.html)
-contact.html            Contact/business card page
+contact.html            Contact/business card page (deploys as the contact bucket's index.html)
+card.js                 Contact card behaviour: reveal, QR overlay, wake lock
 add.html                NFC landing page: device-aware Wallet pass router
 404.html                Not-found page (served by CloudFront for 403/404)
 sitemap.xml             Sitemap (lists only the root URL)
 sw.js                   Service worker (PWA + offline cache)
 manifest.json           PWA manifest
-og-image.png            OG social preview image
+og-image.png            Contact link preview (1200x630), drawn by generate-og.py
+generate-og.py          Draws both link previews: og-image.png and map/og-image.jpg
+og/                     Generator inputs: JetBrains Mono (OFL) and the Mapbox base map
 
-pass-build/
-  pass.pass/            Pass bundle (edit pass.json here)
-    pass.json           Pass definition: fields, locations, web service URL
-    manifest.json       Auto-generated SHA-1 manifest (do not edit)
-    signature           Auto-generated PKCS#7 signature (do not edit)
-    *.png               Pass imagery (icon, logo, thumbnail)
-  JamesTannahill.pkpass Signed pass (built by update-pass.sh)
+pass-build/             Repo copy of the pass: pass.json, manifest.json, signature, imagery
+JamesTannahill.pkpass   Last signed pass, copied back from ~/pass-build after signing
 
 pass-service/
   handler.py            Lambda: Apple Wallet web service (register/unregister/serve/log)
@@ -189,3 +190,8 @@ pass-service/
 
 update-pass.sh          Full pass pipeline: rebuild, sign, upload, invalidate, push
 ```
+
+`update-pass.sh` signs `~/pass-build/pass.pass/`, which is outside this repo. Edit
+`pass.json` there as well as in `pass-build/`, and keep nothing else in that folder:
+every file in it is zipped into the pass. After signing, copy `manifest.json` and
+`signature` back into `pass-build/` and the `.pkpass` into the repo root.
