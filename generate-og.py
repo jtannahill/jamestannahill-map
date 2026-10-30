@@ -1,125 +1,142 @@
 #!/usr/bin/env python3
-"""Generate a 1200x630 OG image for social sharing."""
+"""Generate the two 1200x630 link-preview images.
 
-import random
+og-image.png      contact.jamestannahill.com: the card's own hero (off-white,
+                  ink band with the red rule, red role lines, stacked name in
+                  JetBrains Mono), so the preview looks like the page it opens.
+map/og-image.png  map.jamestannahill.com: the dark-v11 map of New York under a
+                  neutral scrim, name in NHG Display Light. No pin and no
+                  coordinates (owner decision 2026-10-30).
+
+Run: uv run --with pillow python generate-og.py
+JetBrains Mono (OFL) ships in og/fonts. NHG Display is licensed and stays in
+/Library/Fonts. og/map-base.png is a Mapbox Static Images render, kept with its
+Mapbox logo and attribution; refetch it with the URL in og/map-base.url.
+"""
+
+from pathlib import Path
+
 from PIL import Image, ImageDraw, ImageFont
 
-SCALE = 3
-W, H = 1200 * SCALE, 630 * SCALE
-BG = (6, 6, 6)
-GOLD = (201, 168, 76)
-GOLD_DIM = (139, 115, 50)
-TEXT_LIGHT = (216, 212, 204)
-GRAY = (74, 74, 74)
+ROOT = Path(__file__).resolve().parent
+OG = ROOT / "og"
+SCALE = 2
+W, H = 1200, 630
 
-FONT_PATH = "/System/Library/Fonts/HelveticaNeue.ttc"
-AVENIR_PATH = "/Users/jamest/Library/Fonts/Avenir LT Std 85 Heavy.otf"
+ROLE = "VP of Super Intelligence Innovation"
+EMPLOYER = "Atlas SP, an Apollo company"
+FIRST, LAST = "James", "Tannahill"
 
-img = Image.new("RGB", (W, H), BG)
-draw = ImageDraw.Draw(img)
-
-# --- Grain / noise texture ---
-random.seed(42)
-pixels = img.load()
-for y in range(H):
-    for x in range(W):
-        noise = random.randint(-8, 8)
-        r, g, b = pixels[x, y]
-        pixels[x, y] = (
-            max(0, min(255, r + noise)),
-            max(0, min(255, g + noise)),
-            max(0, min(255, b + noise)),
-        )
-
-# --- Fonts ---
-font_name = ImageFont.truetype(AVENIR_PATH, size=120 * SCALE)       # Avenir 85 Heavy
-font_subtitle = ImageFont.truetype(AVENIR_PATH, size=34 * SCALE)   # Avenir 85 Heavy
-font_coords = ImageFont.truetype(AVENIR_PATH, size=22 * SCALE)     # Avenir 85 Heavy
-font_tiny = ImageFont.truetype(FONT_PATH, size=10 * SCALE, index=0)       # Regular
-font_bracket = ImageFont.truetype(FONT_PATH, size=18 * SCALE, index=7)    # Light
-
-# --- Gold horizontal rule near top center ---
-rule_y = 190 * SCALE
-rule_w = 32 * SCALE
-draw.line(
-    [(W // 2 - rule_w // 2, rule_y), (W // 2 + rule_w // 2, rule_y)],
-    fill=GOLD,
-    width=1,
-)
-
-# --- "James Tannahill" ---
-name_text = "James Tannahill"
-name_bbox = draw.textbbox((0, 0), name_text, font=font_name)
-name_w = name_bbox[2] - name_bbox[0]
-draw.text(
-    ((W - name_w) // 2, rule_y + 20 * SCALE),
-    name_text,
-    fill=TEXT_LIGHT,
-    font=font_name,
-)
-
-# --- "AI/ML FOR CAPITAL MARKETS · SPACEX SUPER INTELLIGENCE" ---
-subtitle_text = "AI/ML FOR CAPITAL MARKETS  ·  SPACEX SUPER INTELLIGENCE"
-subtitle_bbox = draw.textbbox((0, 0), subtitle_text, font=font_subtitle)
-subtitle_w = subtitle_bbox[2] - subtitle_bbox[0]
-draw.text(
-    ((W - subtitle_w) // 2, rule_y + 120 * SCALE),
-    subtitle_text,
-    fill=GOLD_DIM,
-    font=font_subtitle,
-)
-
-# --- Coordinates ---
-coords_text = "40.764°N  ·  73.975°W  ·  NYC"
-coords_bbox = draw.textbbox((0, 0), coords_text, font=font_coords)
-coords_w = coords_bbox[2] - coords_bbox[0]
-draw.text(
-    ((W - coords_w) // 2, rule_y + 160 * SCALE),
-    coords_text,
-    fill=GRAY,
-    font=font_coords,
-)
-
-# --- Corner brackets ---
-BRACKET_LEN = 28 * SCALE
-BRACKET_WEIGHT = SCALE
-MARGIN = 36 * SCALE
+MONO_BOLD = OG / "fonts" / "JetBrainsMono-Bold.ttf"
+NHG_LIGHT = Path("/Library/Fonts/NeueHaasDisplayLight.ttf")
+NHG_ROMAN = Path("/Library/Fonts/NeueHaasDisplayRoman.ttf")
 
 
-def draw_bracket(corner: str):
-    if corner == "tl":
-        x0, y0 = MARGIN, MARGIN
-        draw.line([(x0, y0), (x0 + BRACKET_LEN, y0)], fill=GOLD_DIM, width=BRACKET_WEIGHT)
-        draw.line([(x0, y0), (x0, y0 + BRACKET_LEN)], fill=GOLD_DIM, width=BRACKET_WEIGHT)
-    elif corner == "tr":
-        x0, y0 = W - MARGIN, MARGIN
-        draw.line([(x0, y0), (x0 - BRACKET_LEN, y0)], fill=GOLD_DIM, width=BRACKET_WEIGHT)
-        draw.line([(x0, y0), (x0, y0 + BRACKET_LEN)], fill=GOLD_DIM, width=BRACKET_WEIGHT)
-    elif corner == "bl":
-        x0, y0 = MARGIN, H - MARGIN
-        draw.line([(x0, y0), (x0 + BRACKET_LEN, y0)], fill=GOLD_DIM, width=BRACKET_WEIGHT)
-        draw.line([(x0, y0), (x0, y0 - BRACKET_LEN)], fill=GOLD_DIM, width=BRACKET_WEIGHT)
-    elif corner == "br":
-        x0, y0 = W - MARGIN, H - MARGIN
-        draw.line([(x0, y0), (x0 - BRACKET_LEN, y0)], fill=GOLD_DIM, width=BRACKET_WEIGHT)
-        draw.line([(x0, y0), (x0, y0 - BRACKET_LEN)], fill=GOLD_DIM, width=BRACKET_WEIGHT)
+def font(path, size):
+    return ImageFont.truetype(str(path), size=round(size * SCALE))
 
 
-for c in ("tl", "tr", "bl", "br"):
-    draw_bracket(c)
+def text_width(text, f, tracking):
+    """Advance width with per-letter tracking (in em), no trailing tracking."""
+    extra = tracking * f.size
+    return sum(f.getlength(c) for c in text) + extra * (len(text) - 1)
 
-# --- "// SECURE CHANNEL" top-left ---
-draw.text(
-    (MARGIN + 4 * SCALE, MARGIN + 8 * SCALE),
-    "// SECURE CHANNEL",
-    fill=GRAY,
-    font=font_tiny,
-)
 
-# --- Downscale with high-quality antialiasing ---
-img = img.resize((1200, 630), Image.LANCZOS)
+def draw_text(draw, xy, text, f, fill, tracking=0.0):
+    x, y = xy
+    if not tracking:
+        draw.text((x, y), text, font=f, fill=fill, anchor="ls")
+        return
+    extra = tracking * f.size
+    for c in text:
+        draw.text((x, y), c, font=f, fill=fill, anchor="ls")
+        x += f.getlength(c) + extra
 
-# --- Save ---
-out_path = "/Users/jamest/jamestannahill-map/og-image.png"
-img.save(out_path, "PNG", optimize=True)
-print(f"Saved 1200x630 OG image (rendered at {W}x{H}, 3x supersampled) to {out_path}")
+
+def cap_height(f):
+    return -f.getbbox("H", anchor="ls")[1]
+
+
+def contact_card():
+    """Tokens from DESIGN.md: bg #fdfdfc, ink #1a1a1a, red #e01a1a."""
+    bg, ink, red = (253, 253, 252), (26, 26, 26), (224, 26, 26)
+    img = Image.new("RGB", (W * SCALE, H * SCALE), bg)
+    d = ImageDraw.Draw(img)
+
+    band, rule = 72 * SCALE, 6 * SCALE
+    d.rectangle((0, 0, W * SCALE, band), fill=ink)
+    d.rectangle((0, band, W * SCALE, band + rule), fill=red)
+
+    eyebrow = font(MONO_BOLD, 32)
+    name = font(MONO_BOLD, 150)
+    eyebrow_track, name_track = 0.08, -0.02
+    x = 96 * SCALE
+
+    eyebrow_lead = round(eyebrow.size * 1.5)
+    name_lead = round(name.size * 0.98)
+    gap = 44 * SCALE
+    block = cap_height(eyebrow) + eyebrow_lead + gap + cap_height(name) + name_lead
+    top = band + rule + ((H * SCALE - band - rule) - block) // 2 - 8 * SCALE
+
+    y = top + cap_height(eyebrow)
+    draw_text(d, (x, y), ROLE.upper(), eyebrow, red, eyebrow_track)
+    draw_text(d, (x, y + eyebrow_lead), EMPLOYER.upper(), eyebrow, red, eyebrow_track)
+
+    y += eyebrow_lead + gap + cap_height(name)
+    draw_text(d, (x, y), FIRST, name, ink, name_track)
+    draw_text(d, (x, y + name_lead), LAST, name, ink, name_track)
+
+    widest = max(text_width(s, f, t) for s, f, t in (
+        (ROLE.upper(), eyebrow, eyebrow_track),
+        (LAST, name, name_track),
+    ))
+    assert x + widest < (W - 96) * SCALE, "contact text runs into the right margin"
+    return img.resize((W, H), Image.LANCZOS)
+
+
+def map_card():
+    """Tokens from map/DESIGN.md: ink #0A0A0A, paper #E8E4DC, gold-text #A88B3F."""
+    ink, paper, gold_text = (10, 10, 10), (232, 228, 220), (168, 139, 63)
+    base = Image.open(OG / "map-base.png").convert("RGB").resize((W * SCALE, H * SCALE), Image.LANCZOS)
+
+    # Neutral scrim under the type (the one sanctioned gradient): solid ink at
+    # 88% across the text column, easing to clear by 66% of the width so
+    # Manhattan stays untouched.
+    scrim = Image.new("L", base.size, 0)
+    sd = ImageDraw.Draw(scrim)
+    solid, clear = 0.46 * base.width, 0.66 * base.width
+    for px in range(base.width):
+        a = 0.88 if px <= solid else max(0.0, 0.88 * (1 - (px - solid) / (clear - solid)))
+        sd.line((px, 0, px, base.height), fill=round(a * 255))
+    img = Image.composite(Image.new("RGB", base.size, ink), base, scrim)
+    d = ImageDraw.Draw(img)
+
+    name = font(NHG_LIGHT, 132)
+    role = font(NHG_ROMAN, 36)
+    x = 96 * SCALE
+    name_lead = round(name.size * 0.98)
+    role_lead = round(role.size * 1.4)
+    gap = 48 * SCALE
+    block = cap_height(name) + name_lead + gap + cap_height(role) + role_lead
+    top = (H * SCALE - block) // 2 - 8 * SCALE
+
+    y = top + cap_height(name)
+    draw_text(d, (x, y), FIRST, name, paper, -0.01)
+    draw_text(d, (x, y + name_lead), LAST, name, paper, -0.01)
+    y += name_lead + gap + cap_height(role)
+    draw_text(d, (x, y), ROLE, role, gold_text)
+    draw_text(d, (x, y + role_lead), EMPLOYER, role, paper)
+    return img.resize((W, H), Image.LANCZOS)
+
+
+if __name__ == "__main__":
+    outputs = (
+        (contact_card(), ROOT / "og-image.png"),
+        (map_card(), ROOT / "map" / "og-image.jpg"),
+    )
+    for image, path in outputs:
+        if path.suffix == ".jpg":
+            image.save(path, "JPEG", quality=86, optimize=True, progressive=True)
+        else:
+            image.save(path, "PNG", optimize=True)
+        print(f"Saved {path.relative_to(ROOT)} ({path.stat().st_size // 1024} KB)")
