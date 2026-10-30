@@ -92,7 +92,7 @@
   document.getElementById('saveContact')?.addEventListener('click', () => showToast('Contact card downloaded'));
 
   // ── QR ────────────────────────────────────────────────────────────────
-  const MECARD = 'MECARD:N:Tannahill,James;ORG:Atlas SP;TITLE:VP of SI Innovation;EMAIL:contact@jamestannahill.com;URL:https://jamestannahill.com;NOTE:Signal preferred;;';
+  const MECARD = 'MECARD:N:Tannahill,James;ORG:Atlas SP Partners;TITLE:VP of SI Innovation;EMAIL:contact@jamestannahill.com;URL:https://jamestannahill.com;NOTE:Signal preferred;;';
 
   // Draw on whole device pixels: each module is an integer number of
   // physical pixels and the CSS size matches the bitmap exactly, so the

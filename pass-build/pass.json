@@ -28,7 +28,7 @@
       {
         "key": "org",
         "label": "ATTACHED TO",
-        "value": "Atlas SP"
+        "value": "Atlas SP Partners"
       }
     ],
     "auxiliaryFields": [
@@ -85,7 +85,7 @@
   },
   "barcode": {
     "format": "PKBarcodeFormatQR",
-    "message": "MECARD:N:Tannahill,James;ORG:Atlas SP;TITLE:VP of SI Innovation;EMAIL:contact@jamestannahill.com;URL:https://jamestannahill.com;NOTE:Signal preferred;;",
+    "message": "MECARD:N:Tannahill,James;ORG:Atlas SP Partners;TITLE:VP of SI Innovation;EMAIL:contact@jamestannahill.com;URL:https://jamestannahill.com;NOTE:Signal preferred;;",
     "messageEncoding": "iso-8859-1"
   },
   "associatedStoreIdentifiers": [
@@ -94,7 +94,7 @@
   "barcodes": [
     {
       "format": "PKBarcodeFormatQR",
-      "message": "MECARD:N:Tannahill,James;ORG:Atlas SP;TITLE:VP of SI Innovation;EMAIL:contact@jamestannahill.com;URL:https://jamestannahill.com;NOTE:Signal preferred;;",
+      "message": "MECARD:N:Tannahill,James;ORG:Atlas SP Partners;TITLE:VP of SI Innovation;EMAIL:contact@jamestannahill.com;URL:https://jamestannahill.com;NOTE:Signal preferred;;",
       "messageEncoding": "iso-8859-1"
     }
   ]

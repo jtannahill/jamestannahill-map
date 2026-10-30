@@ -24,7 +24,7 @@ SCALE = 2
 W, H = 1200, 630
 
 ROLE = "VP of Super Intelligence Innovation"
-EMPLOYER = "Atlas SP, an Apollo company"
+EMPLOYER = "Atlas SP Partners, an Apollo company"
 FIRST, LAST = "James", "Tannahill"
 
 MONO_BOLD = OG / "fonts" / "JetBrainsMono-Bold.ttf"
