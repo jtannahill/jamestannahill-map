@@ -76,7 +76,7 @@ Scope: this document governs the contact card only (`contact.html`). The reposit
 - Toast: `ink` bar with a red top rule, bottom-centered, `role="status"` with polite live announcements, auto-dismissed after 2.5s. Use it as the single feedback channel for download and reveal feedback.
 - Focus: every focusable element shows `:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }`.
 - Link row dividers are 1px `rule` on every row except the last row of `#links`; the actions grid draws its own top rule.
-- The current role is VP of Super Intelligence Innovation at ATLAS SP Partners, an Apollo company, shown only as the hero eyebrow.
+- The current role is VP of Super Intelligence Innovation at ATLAS SP Partners, L.P., an Apollo Global Management company, shown only as the hero eyebrow.
 - Hover states apply only under `(hover: hover) and (pointer: fine)`; touch devices get `:active` feedback instead. Keep new hover rules inside that query.
 
 ## Do's and Don'ts

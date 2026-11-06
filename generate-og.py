@@ -24,7 +24,8 @@ SCALE = 2
 W, H = 1200, 630
 
 ROLE = "VP of Super Intelligence Innovation"
-EMPLOYER = "ATLAS SP Partners, an Apollo company"
+# One line each: the full styling is too wide for a single line at these sizes.
+EMPLOYER = ("ATLAS SP Partners, L.P.", "An Apollo Global Management company")
 FIRST, LAST = "James", "Tannahill"
 
 MONO_BOLD = OG / "fonts" / "JetBrainsMono-Bold.ttf"
@@ -75,19 +76,21 @@ def contact_card():
     eyebrow_lead = round(eyebrow.size * 1.5)
     name_lead = round(name.size * 0.98)
     gap = 44 * SCALE
-    block = cap_height(eyebrow) + eyebrow_lead + gap + cap_height(name) + name_lead
+    block = cap_height(eyebrow) + eyebrow_lead * len(EMPLOYER) + gap + cap_height(name) + name_lead
     top = band + rule + ((H * SCALE - band - rule) - block) // 2 - 8 * SCALE
 
     y = top + cap_height(eyebrow)
     draw_text(d, (x, y), ROLE.upper(), eyebrow, red, eyebrow_track)
-    draw_text(d, (x, y + eyebrow_lead), EMPLOYER.upper(), eyebrow, red, eyebrow_track)
+    for i, line in enumerate(EMPLOYER, 1):
+        draw_text(d, (x, y + eyebrow_lead * i), line.upper(), eyebrow, red, eyebrow_track)
 
-    y += eyebrow_lead + gap + cap_height(name)
+    y += eyebrow_lead * len(EMPLOYER) + gap + cap_height(name)
     draw_text(d, (x, y), FIRST, name, ink, name_track)
     draw_text(d, (x, y + name_lead), LAST, name, ink, name_track)
 
     widest = max(text_width(s, f, t) for s, f, t in (
         (ROLE.upper(), eyebrow, eyebrow_track),
+        *((line.upper(), eyebrow, eyebrow_track) for line in EMPLOYER),
         (LAST, name, name_track),
     ))
     assert x + widest < (W - 96) * SCALE, "contact text runs into the right margin"
@@ -117,7 +120,7 @@ def map_card():
     name_lead = round(name.size * 0.98)
     role_lead = round(role.size * 1.4)
     gap = 48 * SCALE
-    block = cap_height(name) + name_lead + gap + cap_height(role) + role_lead
+    block = cap_height(name) + name_lead + gap + cap_height(role) + role_lead * len(EMPLOYER)
     top = (H * SCALE - block) // 2 - 8 * SCALE
 
     y = top + cap_height(name)
@@ -125,7 +128,10 @@ def map_card():
     draw_text(d, (x, y + name_lead), LAST, name, paper, -0.01)
     y += name_lead + gap + cap_height(role)
     draw_text(d, (x, y), ROLE, role, gold_text)
-    draw_text(d, (x, y + role_lead), EMPLOYER, role, paper)
+    for i, line in enumerate(EMPLOYER, 1):
+        draw_text(d, (x, y + role_lead * i), line, role, paper)
+    widest = max(text_width(s, role, 0.0) for s in (ROLE, *EMPLOYER))
+    assert x + widest < 0.66 * img.width, "map text runs past the scrim"
     return img.resize((W, H), Image.LANCZOS)
 
 

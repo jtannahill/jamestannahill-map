@@ -75,7 +75,7 @@ A: ProSecPR is a veteran-led security advisory firm uniting the operational disc
 ## About James Tannahill
 
 - Full name: James Tannahill
-- Current role: VP of Super Intelligence Innovation (VP of SI Innovation) at ATLAS SP Partners (legal name ATLAS SP Partners, L.P.), an Apollo company (2026-present)
+- Current role: VP of Super Intelligence Innovation (VP of SI Innovation) at ATLAS SP Partners, L.P., an Apollo Global Management company (2026-present)
 - Former role: AI/ML for Capital Markets at SpaceX Super Intelligence
 - Based: New York City, NY (W 57th Street)
 - Email: contact@jamestannahill.com
@@ -84,4 +84,4 @@ A: ProSecPR is a veteran-led security advisory firm uniting the operational disc
 - LinkedIn: https://www.linkedin.com/in/jamesstannahill
 - Bloomberg: https://www.bloomberg.com/profile/person/23291921
 
-James Tannahill was formerly President and Managing Partner of Plocamium Holdings, a private equity intelligence firm, and is the builder of 1nessAgency (1ness Strategies) and NewYorkLab. He was also Head of Field Operations at ProSecPR. He is VP of Super Intelligence Innovation at ATLAS SP Partners, an Apollo company, after building AI-native capital markets infrastructure at SpaceX Super Intelligence, and maintains multiple SaaS products and developer tools across healthcare, communications, and intelligence domains.
+James Tannahill was formerly President and Managing Partner of Plocamium Holdings, a private equity intelligence firm, and is the builder of 1nessAgency (1ness Strategies) and NewYorkLab. He was also Head of Field Operations at ProSecPR. He is VP of Super Intelligence Innovation at ATLAS SP Partners, L.P., an Apollo Global Management company, after building AI-native capital markets infrastructure at SpaceX Super Intelligence, and maintains multiple SaaS products and developer tools across healthcare, communications, and intelligence domains.
