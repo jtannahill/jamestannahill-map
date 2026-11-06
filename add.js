@@ -26,9 +26,8 @@
     function drawDesktopQR() {
       const canvas = document.getElementById('qr');
       const script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js';
-      script.integrity = 'sha384-lQXOAyZwHXE55JFyrOMB7nY2Wv+m5ZWNtJcHrd1rceRQXAYNLak8ukN5TjBTcIwz';
-      script.crossOrigin = 'anonymous';
+      script.src = '/qrcode.min.js';
+      script.integrity = 'sha384-KYHQIQhr/XPSEueqR9p0PfXM3HnIGrUk4njABnco+fC+h0T5/GLmsV7/nALqNbcf';
       script.onload = () => {
         const qr = qrcode(0, 'M');
         qr.addData('https://contact.jamestannahill.com/add');

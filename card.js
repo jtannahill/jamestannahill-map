@@ -191,9 +191,8 @@
   // opens the overlay, which draws with it.
   (function loadQR() {
     const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js';
-    script.integrity = 'sha384-lQXOAyZwHXE55JFyrOMB7nY2Wv+m5ZWNtJcHrd1rceRQXAYNLak8ukN5TjBTcIwz';
-    script.crossOrigin = 'anonymous';
+    script.src = '/qrcode.min.js';
+    script.integrity = 'sha384-KYHQIQhr/XPSEueqR9p0PfXM3HnIGrUk4njABnco+fC+h0T5/GLmsV7/nALqNbcf';
     script.onload = () => qrCanvas && drawQR(qrCanvas, Math.min(188, window.innerWidth * 0.62), '#f8f8f8', true);
     script.onerror = () => {
       if (!qrCanvas) return;
